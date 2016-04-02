@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 15:50:27 by qloubier          #+#    #+#              #
-#    Updated: 2016/03/19 22:42:02 by qloubier         ###   ########.fr        #
+#    Updated: 2016/04/02 14:52:15 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,67 +16,74 @@ NAME=libft.a
 INCDIR=./
 FANCY_OUT=on
 
-MEMOBJ=mem/ft_bzero.o\
-	mem/ft_memalloc.o\
-	mem/ft_memccpy.o\
-	mem/ft_memchr.o\
-	mem/ft_memcmp.o\
-	mem/ft_memcpy.o\
-	mem/ft_memdel.o\
-	mem/ft_memdup.o\
-	mem/ft_memmove.o\
-	mem/ft_memset.o
+MEMDIR=mem/
+STRDIR=str/
+LSTDIR=lst/
+FORMATDIR=format/
 
-STROBJ=str/ft_isalnum.o\
-	str/ft_isalpha.o\
-	str/ft_isascii.o\
-	str/ft_isdigit.o\
-	str/ft_isprint.o\
-	str/ft_strcat.o\
-	str/ft_strchr.o\
-	str/ft_strchrnot.o\
-	str/ft_strchrany.o\
-	str/ft_strclr.o\
-	str/ft_strcmp.o\
-	str/ft_strcpy.o\
-	str/ft_strdel.o\
-	str/ft_strdup.o\
-	str/ft_strequ.o\
-	str/ft_stridx.o\
-	str/ft_striter.o\
-	str/ft_striteri.o\
-	str/ft_strjoin.o\
-	str/ft_strlcat.o\
-	str/ft_strlen.o\
-	str/ft_strmap.o\
-	str/ft_strmapi.o\
-	str/ft_strncat.o\
-	str/ft_strncmp.o\
-	str/ft_strncpy.o\
-	str/ft_strnequ.o\
-	str/ft_strnew.o\
-	str/ft_strnstr.o\
-	str/ft_strrchr.o\
-	str/ft_strsplit.o\
-	str/ft_strstr.o\
-	str/ft_strsub.o\
-	str/ft_strtrim.o\
-	str/ft_tolower.o\
-	str/ft_toupper.o\
-	str/ft_ptabdel.o\
-	str/ft_wrdcount.o
+MEMOBJ=${MEMDIR}ft_bzero.o\
+	${MEMDIR}ft_memalloc.o\
+	${MEMDIR}ft_memccpy.o\
+	${MEMDIR}ft_memchr.o\
+	${MEMDIR}ft_memcmp.o\
+	${MEMDIR}ft_memcpy.o\
+	${MEMDIR}ft_memdel.o\
+	${MEMDIR}ft_memdup.o\
+	${MEMDIR}ft_memmove.o\
+	${MEMDIR}ft_memset.o
 
-LSTOBJ=lst/ft_lstadd.o\
-	lst/ft_lstdel.o\
-	lst/ft_lstdelone.o\
-	lst/ft_lstiter.o\
-	lst/ft_lstlen.o\
-	lst/ft_lstmap.o\
-	lst/ft_lstnew.o\
-	lst/ft_lstlast.o\
-	lst/ft_lstpush.o\
-	lst/ft_lsttotab.o\
-	lst/ft_lstpushback.o
+STROBJ=${STRDIR}ft_isalnum.o\
+	${STRDIR}ft_isalpha.o\
+	${STRDIR}ft_isascii.o\
+	${STRDIR}ft_isdigit.o\
+	${STRDIR}ft_isprint.o\
+	${STRDIR}ft_strcat.o\
+	${STRDIR}ft_strchr.o\
+	${STRDIR}ft_strchrnot.o\
+	${STRDIR}ft_strchrany.o\
+	${STRDIR}ft_strclr.o\
+	${STRDIR}ft_strcmp.o\
+	${STRDIR}ft_strcpy.o\
+	${STRDIR}ft_strdel.o\
+	${STRDIR}ft_strdup.o\
+	${STRDIR}ft_strequ.o\
+	${STRDIR}ft_stridx.o\
+	${STRDIR}ft_striter.o\
+	${STRDIR}ft_striteri.o\
+	${STRDIR}ft_strjoin.o\
+	${STRDIR}ft_strlcat.o\
+	${STRDIR}ft_strlen.o\
+	${STRDIR}ft_strmap.o\
+	${STRDIR}ft_strmapi.o\
+	${STRDIR}ft_strncat.o\
+	${STRDIR}ft_strncmp.o\
+	${STRDIR}ft_strncpy.o\
+	${STRDIR}ft_strnequ.o\
+	${STRDIR}ft_strnew.o\
+	${STRDIR}ft_strnstr.o\
+	${STRDIR}ft_strrchr.o\
+	${STRDIR}ft_strsplit.o\
+	${STRDIR}ft_strstr.o\
+	${STRDIR}ft_strsub.o\
+	${STRDIR}ft_strtrim.o\
+	${STRDIR}ft_tolower.o\
+	${STRDIR}ft_toupper.o\
+	${STRDIR}ft_ptabdel.o\
+	${STRDIR}ft_wrdcount.o
+
+LSTOBJ=${LSTDIR}ft_lstadd.o\
+	${LSTDIR}ft_lstdel.o\
+	${LSTDIR}ft_lstdelone.o\
+	${LSTDIR}ft_lstiter.o\
+	${LSTDIR}ft_lstlen.o\
+	${LSTDIR}ft_lstmap.o\
+	${LSTDIR}ft_lstnew.o\
+	${LSTDIR}ft_lstlast.o\
+	${LSTDIR}ft_lstpush.o\
+	${LSTDIR}ft_lsttotab.o\
+	${LSTDIR}ft_lstpushback.o
+
+FORMATOBJ=${FORMATDIR}ft_printf.o
 
 MIXOBJ=ft_atoi.o\
 	ft_itoa.o\
@@ -91,7 +98,7 @@ MIXOBJ=ft_atoi.o\
 	ft_putstr_fd.o
 
 OBJ=
-ALLOBJ=$(MEMOBJ) $(LSTOBJ) $(STROBJ) $(MIXOBJ)
+ALLOBJ=$(MEMOBJ) $(LSTOBJ) $(STROBJ) $(MIXOBJ) $(FORMATOBJ)
 
 .PHONY: all clean fclean re\
 	mem lst str mix\

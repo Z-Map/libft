@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 19:15:20 by qloubier          #+#    #+#             */
-/*   Updated: 2016/03/20 20:49:34 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/04/02 14:27:06 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,8 @@ static t_gnlb	*get_gnlb(int const fd, char *rbuf, t_list **gnlb_lst, int *err)
 	*err = read(fd, rbuf, BUFF_SIZE);
 	if ((*err < 1))
 		return (NULL);
-	ret.fd = fd;
-	ret.buf_size = START_SIZE + 1;
-	ret.cursor = 0;
-	ret.strb = malloc((sizeof(char) * (START_SIZE + 1)));
+	ret = (t_gnlb){ fd, START_SIZE + 1, 0,
+		malloc((sizeof(char) * (START_SIZE + 1)))};
 	if (!(ret.strb) || !(i = ft_lstnew(&ret, sizeof(t_gnlb))))
 		return (gnl_free(fd, gnlb_lst, &ret));
 	ft_strncpy(ft_memset(ret.strb, 0, START_SIZE + 1), rbuf, *err);

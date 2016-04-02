@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:05:20 by qloubier          #+#    #+#             */
-/*   Updated: 2016/03/19 17:55:56 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/04/02 16:49:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,24 @@
 # define LIBFT_H
 
 # include <string.h>
+# include <stdarg.h>
 # include "mem/libft_memory.h"
 # include "str/libft_string.h"
 # include "lst/libft_list.h"
-# define BUFF_SIZE 32
-# if BUFF_SIZE < 32
-#  define GROW_SIZE 32
+
+# ifndef BUFF_SIZE
+#  define BUFF_SIZE 64
+# endif
+
+# if BUFF_SIZE < 64
+#  define GROW_SIZE 64
 # else
 #  define GROW_SIZE BUFF_SIZE
 # endif
-# define START_SIZE 64
-# if START_SIZE < BUFF_SIZE
+# if BUFF_SIZE > 128
 #  define START_SIZE BUFF_SIZE
+# else
+#  define START_SIZE 128
 # endif
 
 typedef unsigned int	t_idx;
@@ -49,5 +55,19 @@ void					ft_putchar_fd(char c, int fd);
 void					ft_putstr_fd(char const *s, int fd);
 void					ft_putendl_fd(char const *s, int fd);
 void					ft_putnbr_fd(int n, int fd);
+
+/*
+**	Declare public format function
+*/
+
+int						ft_snbrlen(short nbr);
+int						ft_nbrlen(int nbr);
+int						ft_lnbrlen(long nbr);
+
+int						ft_floatlen(float nbr, int pre);
+int						ft_doublelen(double nbr, int pre);
+
+int						ft_printf(const char *fstr, ...);
+int						ft_printf_fd(int fd, const char *fstr, ...);
 
 #endif
