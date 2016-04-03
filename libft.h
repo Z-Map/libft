@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:05:20 by qloubier          #+#    #+#             */
-/*   Updated: 2016/04/02 16:49:04 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/04/03 06:21:54 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,33 @@ void					ft_putstr_fd(char const *s, int fd);
 void					ft_putendl_fd(char const *s, int fd);
 void					ft_putnbr_fd(int n, int fd);
 
+
+
 /*
 **	Declare public format function
 */
+
+enum					e_pf_flag
+{
+						LEFT_ALIGN = 1,
+						FORCE_SIGN = 1 << 1,
+						ZERO_FILL = 1 << 2,
+						ALTERNTE = 1 << 3,
+						SHORT_SHORT = 1 << 4,
+						SHORT = 1 << 5,
+						LONG = 1 << 6,
+						LONG_LONG = 1 << 7,
+						INTMAX = 1 << 8,
+						SIZE_T = 1 << 9,
+						CAPITAL = 1 << 10
+};
+
+typedef struct			s_printf_convert
+{
+	enum e_pf_flag		flag;
+	int					precision;
+	int					minwidth;
+}						t_ptfc;
 
 int						ft_snbrlen(short nbr);
 int						ft_nbrlen(int nbr);
