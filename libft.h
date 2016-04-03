@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:05:20 by qloubier          #+#    #+#             */
-/*   Updated: 2016/04/03 06:21:54 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/04/03 16:58:23 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct			s_printf_convert
 	enum e_pf_flag		flag;
 	int					precision;
 	int					minwidth;
+	unsigned long long	arg;
 }						t_ptfc;
 
 int						ft_snbrlen(short nbr);
