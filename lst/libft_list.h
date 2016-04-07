@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:28:45 by qloubier          #+#    #+#             */
-/*   Updated: 2016/03/21 18:59:43 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/04/07 19:16:50 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,4 @@ void				ft_lstpush(t_list **alst, t_list *new);
 void				ft_lstpushback(t_list **alst, t_list *new);
 size_t				ft_lstlen(t_list *lst);
 void				*ft_lsttotab(t_list *node, size_t ts, size_t *len);
+void				ft_lstcfree(void *vec, size_t s);
