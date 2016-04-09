@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 15:50:27 by qloubier          #+#    #+#              #
-#    Updated: 2016/04/02 14:52:15 by qloubier         ###   ########.fr        #
+#    Updated: 2016/04/07 19:26:31 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,7 @@ LSTOBJ=${LSTDIR}ft_lstadd.o\
 	${LSTDIR}ft_lstlast.o\
 	${LSTDIR}ft_lstpush.o\
 	${LSTDIR}ft_lsttotab.o\
+	${LSTDIR}ft_lstcfree.o\
 	${LSTDIR}ft_lstpushback.o
 
 FORMATOBJ=${FORMATDIR}ft_printf.o
@@ -102,9 +103,9 @@ ALLOBJ=$(MEMOBJ) $(LSTOBJ) $(STROBJ) $(MIXOBJ) $(FORMATOBJ)
 
 .PHONY: all clean fclean re\
 	mem lst str mix\
-	fancy_msg fancy_mem fancy_lst fancy_str fancy_mix\
+	fancy_msg fancy_mem fancy_lst fancy_str fancy_format fancy_mix\
 
-all: fancy_msg  mem str lst mix
+all: fancy_msg  mem str lst format mix
 	@make --no-print-directory $(NAME)
 
 mem: fancy_mem $(MEMOBJ)
@@ -121,6 +122,12 @@ endif
 
 str: fancy_str $(STROBJ)
 	$(eval $OBJ += $(STROBJ))
+ifeq ($(FANCY_OUT),on)
+	@printf "\e[34m]\e[32m>>\e(B\e[m\n"
+endif
+
+format: fancy_format $(FORMATOBJ)
+	$(eval $OBJ += $(FORMATOBJ))
 ifeq ($(FANCY_OUT),on)
 	@printf "\e[34m]\e[32m>>\e(B\e[m\n"
 endif
@@ -147,11 +154,15 @@ fancy_mem:
 
 fancy_lst:
 	@printf "\e[1m\e[32m<<\e[34m[\e[33m__{\e[36m List Function \e[33m}__\e[34m]\e[32m>>\n\e[1m\e[32m<<\e[34m[\e[33m"
-	@printf "¤¤¤¤¤¤¤¤¤¤¤\e[34m]\e[32m>>\e[14D"
+	@printf "¤¤¤¤¤¤¤¤¤¤¤¤\e[34m]\e[32m>>\e[15D"
 
 fancy_str:
 	@printf "\e[1m\e[32m<<\e[34m[\e[33m__{\e[36m String Function \e[33m}__\e[34m]\e[32m>>\n\e[1m\e[32m<<\e[34m[\e[33m"
 	@printf "¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤\e[34m]\e[32m>>\e[41D"
+
+fancy_format:
+	@printf "\e[1m\e[32m<<\e[34m[\e[33m__{\e[36m Format Function \e[33m}__\e[34m]\e[32m>>\n\e[1m\e[32m<<\e[34m[\e[33m"
+	@printf "¤\e[34m]\e[32m>>\e[4D"
 
 fancy_mix:
 	@printf "\e[1m\e[32m<<\e[34m[\e[33m__{\e[36m Other Function \e[33m}__\e[34m]\e[32m>>\n\e[1m\e[32m<<\e[34m[\e[33m"
@@ -177,6 +188,8 @@ fancy_mem:
 fancy_lst:
 
 fancy_str:
+
+fancy_format:
 
 fancy_mix:
 
