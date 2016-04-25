@@ -6,12 +6,15 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:28:45 by qloubier          #+#    #+#             */
-/*   Updated: 2016/04/07 19:16:50 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/04/25 21:29:47 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef LIBFT_LIST_H
+# define LIBFT_LIST_H
+# include <stdarg.h>
 # include <string.h>
-#include "../mem/libft_memory.h"
+# include "../mem/libft_memory.h"
 
 typedef struct		s_list
 {
@@ -23,8 +26,27 @@ typedef struct		s_list
 typedef struct		s_static_list
 {
 	size_t			len;
-	void 			*data;
+	void			*data;
 }					t_slst;
+
+typedef struct		s_blist
+{
+	size_t			csize;
+	size_t			bsize;
+	size_t			len;
+	void			*data;
+	struct s_blist	*next;
+}					t_blst;
+
+typedef struct		s_blist_iter
+{
+	t_blst			*bloc;
+	size_t			idx;
+}					t_blit;
+
+/*
+**	Chained list function
+*/
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
@@ -38,3 +60,17 @@ void				ft_lstpushback(t_list **alst, t_list *new);
 size_t				ft_lstlen(t_list *lst);
 void				*ft_lsttotab(t_list *node, size_t ts, size_t *len);
 void				ft_lstcfree(void *vec, size_t s);
+
+/*
+**	Block List function
+*/
+
+t_blst				*ft_blstnew(size_t csize, size_t bsize);
+void				ft_blststore(void *data);
+void				ft_blstnstore(int n, ...);
+void				*ft_blstget(size_t idx);
+void				*ft_blstiter(t_blit *iterator);
+t_blit				ft_blststart();
+
+
+#endif

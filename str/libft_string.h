@@ -6,11 +6,13 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:34:07 by qloubier          #+#    #+#             */
-/*   Updated: 2016/03/19 10:35:49 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/04/25 18:39:05 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mem/libft_memory.h"
+#ifndef LIBFT_STRING_H
+# define LIBFT_STRING_H
+# include "../mem/libft_memory.h"
 
 size_t				ft_strlen (const char *s);
 char				*ft_strdup (const char *s1);
@@ -49,3 +51,5 @@ int					ft_tolower(int c);
 int					ft_toupper(int c);
 size_t				ft_wrdcount(char const *s, int c);
 void				ft_ptabdel(void ***tptr);
+
+#endif
