@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 15:50:27 by qloubier          #+#    #+#              #
-#    Updated: 2016/04/07 19:26:31 by qloubier         ###   ########.fr        #
+#    Updated: 2016/04/26 20:58:32 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,15 @@ LSTOBJ=${LSTDIR}ft_lstadd.o\
 	${LSTDIR}ft_lstpush.o\
 	${LSTDIR}ft_lsttotab.o\
 	${LSTDIR}ft_lstcfree.o\
-	${LSTDIR}ft_lstpushback.o
+	${LSTDIR}ft_lstpushback.o\
+	${LSTDIR}ft_blstnew.o\
+	${LSTDIR}ft_blstlen.o\
+	${LSTDIR}ft_blststore.o\
+	${LSTDIR}ft_blstget.o\
+	${LSTDIR}ft_blstiter.o\
+	${LSTDIR}ft_blststart.o\
+	${LSTDIR}ft_blstfree.o\
+	${LSTDIR}ft_blsttotab.o
 
 FORMATOBJ=${FORMATDIR}ft_printf.o
 
@@ -154,7 +162,7 @@ fancy_mem:
 
 fancy_lst:
 	@printf "\e[1m\e[32m<<\e[34m[\e[33m__{\e[36m List Function \e[33m}__\e[34m]\e[32m>>\n\e[1m\e[32m<<\e[34m[\e[33m"
-	@printf "¤¤¤¤¤¤¤¤¤¤¤¤\e[34m]\e[32m>>\e[15D"
+	@printf "¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤\e[34m]\e[32m>>\e[23D"
 
 fancy_str:
 	@printf "\e[1m\e[32m<<\e[34m[\e[33m__{\e[36m String Function \e[33m}__\e[34m]\e[32m>>\n\e[1m\e[32m<<\e[34m[\e[33m"

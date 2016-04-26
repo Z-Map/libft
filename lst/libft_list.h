@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:28:45 by qloubier          #+#    #+#             */
-/*   Updated: 2016/04/25 21:29:47 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/04/26 19:53:34 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,14 @@ void				ft_lstcfree(void *vec, size_t s);
 **	Block List function
 */
 
-t_blst				*ft_blstnew(size_t csize, size_t bsize);
-void				ft_blststore(void *data);
-void				ft_blstnstore(int n, ...);
-void				*ft_blstget(size_t idx);
+t_blst				*ft_blstnew(size_t csize, const size_t bsize);
+size_t				ft_blstlen(t_blst *blst);
+void				ft_blststore(t_blst *blst, void *data);
+void				ft_blstnstore(t_blst *blst, int n, ...);
+void				*ft_blstget(t_blst *blst, size_t idx);
 void				*ft_blstiter(t_blit *iterator);
-t_blit				ft_blststart();
-
+t_blit				ft_blststart(t_blst *blst);
+void				ft_blstfree(t_blst *blst);
+void				*ft_blsttotab(t_blst *blst);
 
 #endif
