@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 15:50:27 by qloubier          #+#    #+#              #
-#    Updated: 2016/04/26 20:58:32 by qloubier         ###   ########.fr        #
+#    Updated: 2016/04/26 21:12:54 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -181,12 +181,20 @@ fancy_mix:
 	@$(CC) -o $@ -c $< $(CFLAGS) -I$(INCDIR)
 	@printf "\e[1D#"
 
+clean: fancy_msg
+	@printf "\e[1m\e[32m<<\e[34m[\e[31m__{\e[36m Clean object files \e[31m}__\e[34m]\e[32m>>\e(B\e[m\n"
+	@rm -rf $(ALLOBJ)
+
+fclean: clean
+	@printf "\e[1m\e[32m<<\e[34m[\e[31m__{\e[36m Clean $(NAME) file \e[31m}__\e[34m]\e[32m>>\e(B\e[m\n"
+	@rm -rf $(NAME)
+
 else
 
 fancy_msg:
 
-$(NAME): $(OBJ)
-	ar -rcs $(NAME) $(OBJ)
+$(NAME): $(ALLOBJ)
+	ar -rcs $(NAME) $(ALLOBJ)
 
 %.o: %.c
 	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCDIR)
@@ -201,14 +209,12 @@ fancy_format:
 
 fancy_mix:
 
-endif
-
 clean: fancy_msg
-	@printf "\e[1m\e[32m<<\e[34m[\e[31m__{\e[36m Clean object files \e[31m}__\e[34m]\e[32m>>\e(B\e[m\n"
-	@rm -rf $(ALLOBJ)
+	rm -rf $(ALLOBJ)
 
 fclean: clean
-	@printf "\e[1m\e[32m<<\e[34m[\e[31m__{\e[36m Clean $(NAME) file \e[31m}__\e[34m]\e[32m>>\e(B\e[m\n"
-	@rm -rf $(NAME)
+	rm -rf $(NAME)
+
+endif
 
 re: fclean all
