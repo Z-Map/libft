@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:28:45 by qloubier          #+#    #+#             */
-/*   Updated: 2016/04/26 19:53:34 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/04/27 01:17:08 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void				ft_blstnstore(t_blst *blst, int n, ...);
 void				*ft_blstget(t_blst *blst, size_t idx);
 void				*ft_blstiter(t_blit *iterator);
 t_blit				ft_blststart(t_blst *blst);
-void				ft_blstfree(t_blst *blst);
-void				*ft_blsttotab(t_blst *blst);
+void				ft_blstfree(t_blst **blst);
+void				*ft_blsttotab(t_blst *blst, size_t *len);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 18:39:30 by qloubier          #+#    #+#             */
-/*   Updated: 2016/04/26 20:54:53 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/04/27 05:26:45 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void		ft_blststore(t_blst *blst, void *data)
 {
+
 	if (!blst || !data)
 		return ;
 	while (blst->next && (blst->len == blst->bsize))
@@ -23,5 +24,6 @@ void		ft_blststore(t_blst *blst, void *data)
 		blst->next = ft_blstnew(blst->csize, blst->bsize);
 		blst = blst->next;
 	}
-	ft_memcpy(blst->data + (blst->len)++, data, blst->csize);
+	ft_memcpy(blst->data + (blst->len * blst->csize), data, blst->csize);
+	blst->len += 1;
 }

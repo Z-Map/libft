@@ -6,12 +6,19 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 15:50:27 by qloubier          #+#    #+#              #
-#    Updated: 2016/04/26 21:12:54 by qloubier         ###   ########.fr        #
+#    Updated: 2016/05/02 23:29:19 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=gcc
 CFLAGS=-Wall -Werror -Wextra
+ifdef DEBUG
+	CFLAGS+=-g
+endif
+ifdef OPTI
+	CFLAGS+=-Ofast
+endif
+CHECK_MODE=off
 NAME=libft.a
 INCDIR=./
 FANCY_OUT=on
@@ -114,7 +121,7 @@ ALLOBJ=$(MEMOBJ) $(LSTOBJ) $(STROBJ) $(MIXOBJ) $(FORMATOBJ)
 	fancy_msg fancy_mem fancy_lst fancy_str fancy_format fancy_mix\
 
 all: fancy_msg  mem str lst format mix
-	@make --no-print-directory $(NAME)
+	@make -s $(NAME)
 
 mem: fancy_mem $(MEMOBJ)
 	$(eval $OBJ += $(MEMOBJ))
@@ -193,11 +200,23 @@ else
 
 fancy_msg:
 
+ifeq ($(CHECK_MODE),on)
+
+$(NAME): $(ALLOBJ)
+	rm -rf $(NAME)
+
+%.o: %.c
+	rm -f $@
+
+else
+
 $(NAME): $(ALLOBJ)
 	ar -rcs $(NAME) $(ALLOBJ)
 
 %.o: %.c
 	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCDIR)
+
+endif
 
 fancy_mem:
 
