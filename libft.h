@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:05:20 by qloubier          #+#    #+#             */
-/*   Updated: 2016/04/03 16:58:23 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/05 01:44:31 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # endif
 
 typedef unsigned int	t_idx;
+typedef unsigned int	t_ui;
 
 typedef struct			s_gnl_buffer
 {
