@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 01:22:08 by qloubier          #+#    #+#             */
-/*   Updated: 2016/03/20 02:18:30 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/07 14:09:54 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@ void	ft_bzero(void *s, size_t n)
 	if (!n)
 		return ;
 	while (n--)
-		*((char *)s++) = '\0';
+		((char *)s)[n] = '\0';
 }

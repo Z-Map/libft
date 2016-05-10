@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/04 13:51:15 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/05 01:10:29 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/10 19:06:58 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ size_t		ft_int128_len(int128_t i)
 	register size_t	len;
 
 	len = (i < 0) ? 2 : 1;
-	i = (i < 0) ? -i : i;
 	while ((i /= 10) != 0)
 		++len;
 	return (len);

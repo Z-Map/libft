@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_float_len.c                                     :+:      :+:    :+:   */
+/*   ft_int_len_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/05 01:18:17 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/10 19:03:51 by qloubier         ###   ########.fr       */
+/*   Created: 2016/05/10 19:02:47 by qloubier          #+#    #+#             */
+/*   Updated: 2016/05/10 19:10:52 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-size_t		ft_float_len(double i, t_ui prec)
+size_t		ft_int_len_base(register long i, unsigned char base)
 {
 	register size_t	len;
 
-	len = (i < 0) ? 3 : 2;
-	i = (i < 0) ? -i : i;
-	while ((i > 10) && ((i /= 10) <= 10))
+	len = (i < 0) ? 2 : 1;
+	while ((i /= base) != 0)
 		++len;
-	prec += (t_ui)len;
-	while ((i -= (int)i) && (len < prec))
-	{
-		i *= 10;
-		++len;
-	}
 	return (len);
 }

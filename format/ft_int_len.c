@@ -6,18 +6,19 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/04 13:51:04 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/04 14:18:27 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/10 19:09:40 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-size_t		ft_int_len(int i)
+size_t		ft_int_len(int num)
 {
-	register size_t	len;
+	register size_t			len;
+	register unsigned int	i;
 
-	len = (i < 0) ? 1 : 0;
-	i = (i < 0) ? -i : i;
+	len = (num < 0) ? 1 : 0;
+	i = (unsigned int)((num < 0) ? -num : num);
 	if (i < 10)
 		return (len + 1);
 	else if (i < 100)

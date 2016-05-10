@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_float_len.c                                     :+:      :+:    :+:   */
+/*   ft_strparse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/05 01:18:17 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/10 19:03:51 by qloubier         ###   ########.fr       */
+/*   Created: 2016/05/10 23:47:10 by qloubier          #+#    #+#             */
+/*   Updated: 2016/05/10 23:54:46 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft_string.h"
 
-size_t		ft_float_len(double i, t_ui prec)
+char		*ft_strparse(char *str, char s, int (**parser)(char *, void *),
+				void *param)
 {
-	register size_t	len;
+	while (*str && *str != s)
+		++str;
+	if (*str == s)
+		while (parser[*()](*str))
 
-	len = (i < 0) ? 3 : 2;
-	i = (i < 0) ? -i : i;
-	while ((i > 10) && ((i /= 10) <= 10))
-		++len;
-	prec += (t_ui)len;
-	while ((i -= (int)i) && (len < prec))
-	{
-		i *= 10;
-		++len;
-	}
-	return (len);
 }
