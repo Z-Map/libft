@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_float_len.c                                     :+:      :+:    :+:   */
+/*   ft_floatlen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/05 01:18:17 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/10 19:03:51 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/13 14:55:57 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-size_t		ft_float_len(double i, t_ui prec)
+size_t		ft_floatlen(double i, t_ui prec)
 {
 	register size_t	len;
 

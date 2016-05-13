@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_int_len.c                                       :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/04 13:51:04 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/10 19:09:40 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/13 14:49:00 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-size_t		ft_int_len(int num)
+size_t		ft_nbrlen(int nbr)
 {
 	register size_t			len;
 	register unsigned int	i;
 
-	len = (num < 0) ? 1 : 0;
-	i = (unsigned int)((num < 0) ? -num : num);
+	len = (nbr < 0) ? 1 : 0;
+	i = (unsigned int)((nbr < 0) ? -nbr : nbr);
 	if (i < 10)
 		return (len + 1);
 	else if (i < 100)

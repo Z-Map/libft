@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:05:20 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/05 01:44:31 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/13 14:48:26 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 # define LIBFT_H
 
 # include <string.h>
+# include <inttypes.h>
 # include <stdarg.h>
 # include "mem/libft_memory.h"
 # include "str/libft_string.h"
 # include "lst/libft_list.h"
 
 # ifndef BUFF_SIZE
-#  define BUFF_SIZE 64
+#  define BUFF_SIZE 80
 # endif
 
 # if BUFF_SIZE < 64
@@ -81,17 +82,19 @@ enum					e_pf_flag
 typedef struct			s_printf_convert
 {
 	enum e_pf_flag		flag;
-	int					precision;
+	t_ui				precision;
 	int					minwidth;
-	unsigned long long	arg;
+	int					b_len;
+	uintmax_t			arg;
 }						t_ptfc;
 
-int						ft_snbrlen(short nbr);
-int						ft_nbrlen(int nbr);
-int						ft_lnbrlen(long nbr);
+size_t					ft_snbrlen(short nbr);
+size_t					ft_nbrlen(int nbr);
+size_t					ft_lnbrlen(long nbr);
+size_t					ft_jnbrlen(intmax_t nbr);
+size_t					ft_nbrlen_base(register long i, char base);
 
-int						ft_floatlen(float nbr, int pre);
-int						ft_doublelen(double nbr, int pre);
+size_t					ft_floatlen(double i, t_ui pre);
 
 int						ft_printf(const char *fstr, ...);
 int						ft_printf_fd(int fd, const char *fstr, ...);

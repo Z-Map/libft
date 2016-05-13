@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_int_len_base.c                                  :+:      :+:    :+:   */
+/*   ft_jnbrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/10 19:02:47 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/10 19:10:52 by qloubier         ###   ########.fr       */
+/*   Created: 2016/05/04 13:51:15 by qloubier          #+#    #+#             */
+/*   Updated: 2016/05/13 14:45:44 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-size_t		ft_int_len_base(register long i, unsigned char base)
+size_t		ft_jnbrlen(intmax_t i)
 {
 	register size_t	len;
 
 	len = (i < 0) ? 2 : 1;
-	while ((i /= base) != 0)
+	while ((i /= 10) != 0)
 		++len;
 	return (len);
 }
