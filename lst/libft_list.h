@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:28:45 by qloubier          #+#    #+#             */
-/*   Updated: 2016/04/27 01:17:08 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/14 18:21:18 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ typedef struct		s_blist_iter
 	size_t			idx;
 }					t_blit;
 
+typedef struct		s_cbuf
+{
+	size_t			bsize;
+	size_t			len;
+	void			*data;
+	struct s_cbuf	*next;
+}					t_cbuf;
+
 /*
 **	Chained list function
 */
@@ -74,5 +82,14 @@ void				*ft_blstiter(t_blit *iterator);
 t_blit				ft_blststart(t_blst *blst);
 void				ft_blstfree(t_blst **blst);
 void				*ft_blsttotab(t_blst *blst, size_t *len);
+
+/*
+** Stack Buffer Function
+*/
+
+int					ft_sbuf(int (*cb)(t_cbuf *b, void *p), void *p);
+int					ft_sbufn(int n, int (*cb)(t_cbuf *b, void *p), void *p);
+int					ft_sbufpush(char c, int (*cb)(t_cbuf *b, void *p), void *p);
+char				ft_sbufget(t_cbuf *b, size_t idx);
 
 #endif

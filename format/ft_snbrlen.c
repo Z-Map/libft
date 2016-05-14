@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
+/*   ft_snbrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/04 13:51:04 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/14 18:04:42 by qloubier         ###   ########.fr       */
+/*   Created: 2016/05/14 17:12:38 by qloubier          #+#    #+#             */
+/*   Updated: 2016/05/14 17:37:41 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-size_t		ft_nbrlen(int nbr)
+size_t					ft_snbrlen(short nbr)
 {
 	register size_t			len;
 	register unsigned int	i;
@@ -27,15 +27,5 @@ size_t		ft_nbrlen(int nbr)
 		return (len + 3);
 	else if (i < 10000)
 		return (len + 4);
-	else if (i < 100000)
-		return (len + 5);
-	else if (i < 1000000)
-		return (len + 6);
-	else if (i < 10000000)
-		return (len + 7);
-	else if (i < 100000000)
-		return (len + 8);
-	else if (i < 1000000000)
-		return (len + 9);
-	return (len + 10);
+	return (len + 5);
 }
