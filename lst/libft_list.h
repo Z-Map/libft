@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:28:45 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/14 18:21:18 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/14 19:28:26 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct		s_cbuf
 {
 	size_t			bsize;
 	size_t			len;
-	void			*data;
+	char			*data;
 	struct s_cbuf	*next;
 }					t_cbuf;
 
@@ -84,12 +84,23 @@ void				ft_blstfree(t_blst **blst);
 void				*ft_blsttotab(t_blst *blst, size_t *len);
 
 /*
+** Character Buffer Function
+*/
+
+t_cbuf				*ft_cbufnew(size_t bsize);
+int					ft_cbufpush(t_cbuf *b, char c);
+int					ft_cbufspush(t_cbuf *b, const char *c);
+int					ft_cbufsnpush(t_cbuf *b, const char *c, size_t n);
+int					ft_cbufsbpush(t_cbuf *b, const char *c, size_t bsize);
+char				ft_cbufget(t_cbuf *b, size_t idx);
+int					ft_cbufwrite(t_cbuf *b, int fd);
+
+/*
 ** Stack Buffer Function
 */
 
 int					ft_sbuf(int (*cb)(t_cbuf *b, void *p), void *p);
 int					ft_sbufn(int n, int (*cb)(t_cbuf *b, void *p), void *p);
 int					ft_sbufpush(char c, int (*cb)(t_cbuf *b, void *p), void *p);
-char				ft_sbufget(t_cbuf *b, size_t idx);
 
 #endif
