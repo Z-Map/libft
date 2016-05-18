@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:38:40 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/17 20:49:48 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/18 15:47:05 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		ft_process_arg(const char **fstr, va_list ap, t_ptfc *arg)
 {
-	
+
 }
 
 static t_list	*ft_parse_arg(const char **fstr, va_list ap, int blen)
@@ -24,6 +24,11 @@ static t_list	*ft_parse_arg(const char **fstr, va_list ap, int blen)
 
 	arg = (ptfc){ 0, 6, 0, blen, 0};
 	*fstr += 1;
+	while (**fstr)
+	{
+
+		*fstr += 1;
+	}
 
 	return (ret);
 }

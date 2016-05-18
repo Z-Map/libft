@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/17 20:24:03 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/18 19:55:30 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ enum					e_pf_type
 	PFT_CHAR = 1 << 4,
 	PFT_PTR = 1 << 5,
 	PFT_SPECHAR = 1 << 6,
-	PFT_STR = 1 << 7
+	PFT_STR = 1 << 7,
+	PFT_WSTR = 1 << 8
 };
 
 typedef struct			s_printf_convert
@@ -64,10 +65,22 @@ size_t					ft_nbrlen_base(register long i, char base);
 
 size_t					ft_floatlen(double i, t_ui pre);
 
+void					ft_parse_nbr(va_list ap, t_ptfc *arg);
+void					ft_parse_oct(va_list ap, t_ptfc *arg);
+void					ft_parse_char(va_list ap, t_ptfc *arg);
+void					ft_parse_str(va_list ap, t_ptfc *arg);
+void					ft_parse_wstr(va_list ap, t_ptfc *arg);
+void					ft_parse_float(va_list ap, t_ptfc *arg);
+void					ft_parse_ptr(va_list ap, t_ptfc *arg);
+void					ft_parse_spc(va_list ap, t_ptfc *arg);
+
 int						ft_printf(const char *fstr, ...);
 int						ft_printf_fd(int fd, const char *fstr, ...);
 int						ft_preform_count(const char *fstr, va_list ap,
 							t_list **args);
 int						ft_print_buff(const char *fstr, int len, t_list **args);
+
+void					**ft_gettypetab(int i);
+
 
 #endif
