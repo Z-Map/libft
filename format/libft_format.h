@@ -6,13 +6,15 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/18 19:55:30 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/19 16:55:27 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_FORMAT_H
 # define LIBFT_FORMAT_H
 # include "../lst/libft_list.h"
+
+# define PF_TYPE_STR "diocsSfpxu%"
 
 /*
 **	Declare public format function
@@ -37,7 +39,7 @@ enum					e_pf_flag
 enum					e_pf_type
 {
 	PFT_INT = 1,
-	PFT_OCTALE = 1 << 1,
+	PFT_OCT = 1 << 1,
 	PFT_UINT = 1 << 2,
 	PFT_HEXA = 1 << 3,
 	PFT_CHAR = 1 << 4,
@@ -45,6 +47,7 @@ enum					e_pf_type
 	PFT_SPECHAR = 1 << 6,
 	PFT_STR = 1 << 7,
 	PFT_WSTR = 1 << 8
+	PFT_FLOAT = 1 << 9,
 };
 
 typedef struct			s_printf_convert
@@ -66,7 +69,9 @@ size_t					ft_nbrlen_base(register long i, char base);
 size_t					ft_floatlen(double i, t_ui pre);
 
 void					ft_parse_nbr(va_list ap, t_ptfc *arg);
+void					ft_parse_unbr(va_list ap, t_ptfc *arg);
 void					ft_parse_oct(va_list ap, t_ptfc *arg);
+void					ft_parse_hexa(va_list ap, t_ptfc *arg);
 void					ft_parse_char(va_list ap, t_ptfc *arg);
 void					ft_parse_str(va_list ap, t_ptfc *arg);
 void					ft_parse_wstr(va_list ap, t_ptfc *arg);
@@ -81,6 +86,5 @@ int						ft_preform_count(const char *fstr, va_list ap,
 int						ft_print_buff(const char *fstr, int len, t_list **args);
 
 void					**ft_gettypetab(int i);
-
 
 #endif

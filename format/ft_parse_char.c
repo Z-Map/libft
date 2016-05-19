@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_oct.c                                     :+:      :+:    :+:   */
+/*   ft_parse_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/18 19:56:26 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/19 16:55:30 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/19 16:55:49 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_format.h"
 
-void			ft_parse_oct(va_list ap, t_ptfc *arg)
+void			ft_parse_char(va_list ap, t_ptfc *arg)
 {
-	arg->type = PFT_OCT;
-
+	arg->type = PFT_CHAR;
 }
