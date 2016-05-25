@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_hexa.c                                    :+:      :+:    :+:   */
+/*   ft_pfarg_wstr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/18 19:56:26 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/19 16:55:13 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/22 07:44:29 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_format.h"
 
-void			ft_parse_hexa(va_list ap, t_ptfc *arg)
+void			ft_pfarg_wstr(va_list ap, t_ptfc *arg)
 {
-	arg->type = PFT_HEXA;
+	arg->type = PFT_WSTR;
+	arg->arg = (uintmax_t)va_arg(ap, void *);
 }

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   libft_string.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:34:07 by qloubier          #+#    #+#             */
-/*   Updated: 2016/04/25 18:39:05 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/22 05:58:47 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_STRING_H
 # define LIBFT_STRING_H
-# include "../mem/libft_memory.h"
+# include "ft.h"
+# include "libft_memory.h"
 
 size_t				ft_strlen (const char *s);
 char				*ft_strdup (const char *s1);
@@ -24,7 +25,8 @@ size_t				ft_strlcat (char *dst, const char *src, size_t size);
 char				*ft_strchr (const char *s, int c);
 char				*ft_strrchr (const char *s, int c);
 char				*ft_strchrnot (const char *s, int c);
-char				*ft_strchrany (const char *s, const char *clst, char end);
+char				*ft_strchranpy (const char *s, const char *clst, char end);
+int					ft_stridx(const char *s, int c);
 char				*ft_strstr (const char *s1, const char *s2);
 char				*ft_strnstr (const char *s1, const char *s2, size_t n);
 int					ft_strcmp (const char *s1, const char *s2);

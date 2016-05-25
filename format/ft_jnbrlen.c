@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_jnbrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/04 13:51:15 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/13 14:45:44 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/22 07:29:37 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft_format.h"
 
 size_t		ft_jnbrlen(intmax_t i)
 {

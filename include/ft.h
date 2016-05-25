@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_unbr.c                                    :+:      :+:    :+:   */
+/*   ft.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/18 19:56:26 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/19 17:19:12 by qloubier         ###   ########.fr       */
+/*   Created: 2015/11/24 17:05:20 by qloubier          #+#    #+#             */
+/*   Updated: 2016/05/22 05:59:05 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_format.h"
+#ifndef FT_H
+# define FT_H
 
-void			ft_parse_nbr(va_list ap, t_ptfc *arg)
-{
-	arg->type = PFT_UINT;
+typedef unsigned int	t_idx;
+typedef unsigned int	t_ui;
 
-	
-}
+#endif

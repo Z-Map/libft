@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_gettypetab.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/18 19:15:42 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/19 16:52:10 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/22 07:30:45 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 static void			**ft_get_args_parse(void)
 {
-	return ((void *[]){ &ft_parse_nbr, &ft_parse_nbr, &ft_parse_oct,
-		&ft_parse_char, &ft_parse_str, &ft_parse_wstr, &ft_parse_float,
-		&ft_parse_ptr, &ft_parse_hexa, &ft_parse_unbr, &ft_parse_spc });
+	return ((void *[]){ &ft_pfarg_nbr, &ft_pfarg_nbr, &ft_pfarg_oct,
+		&ft_pfarg_char, &ft_pfarg_str, &ft_pfarg_wstr, &ft_pfarg_float,
+		&ft_pfarg_ptr, &ft_pfarg_hexa, &ft_pfarg_unbr, &ft_pfarg_spc });
 }
 
 void				**ft_gettypetab(int i)
 {
 	if (i == 1)
 		return (ft_get_args_parse());
+	else
+		return (NULL);
 }

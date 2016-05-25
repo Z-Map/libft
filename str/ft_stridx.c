@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchridx.c                                     :+:      :+:    :+:   */
+/*   ft_stridx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 05:04:09 by qloubier          #+#    #+#             */
-/*   Updated: 2016/01/10 05:22:10 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/21 23:41:38 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 int		ft_stridx(const char *s, int c)
 {
-	int		i;
+	register int	i;
+	register char	ch;
 
 	i = 0;
+	ch = (char)c;
 	while (s[i])
 	{
-		if (s[i] == (char)c)
+		if (s[i] == ch)
 			return (i);
 		++i;
 	}

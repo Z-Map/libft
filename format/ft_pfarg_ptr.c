@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_nbr.c                                     :+:      :+:    :+:   */
+/*   ft_pfarg_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/18 19:56:26 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/19 17:09:21 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/22 07:43:31 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_format.h"
 
-void			ft_parse_nbr(va_list ap, t_ptfc *arg)
+void			ft_pfarg_ptr(va_list ap, t_ptfc *arg)
 {
-	arg->type = PFT_INT;
-	
+	arg->type = PFT_PTR;
+	arg->arg = (uintmax_t)va_arg(ap, void *);
 }

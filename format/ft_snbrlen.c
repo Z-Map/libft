@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_snbrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/14 17:12:38 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/14 17:37:41 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/22 07:30:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft_format.h"
 
 size_t					ft_snbrlen(short nbr)
 {

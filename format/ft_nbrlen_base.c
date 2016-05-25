@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_nbrlen_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/10 19:02:47 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/13 14:44:15 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/22 07:29:54 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft_format.h"
 
 size_t		ft_nbrlen_base(register long i, char base)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:05:20 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/17 10:47:49 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/22 05:59:07 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 # include <string.h>
 # include <inttypes.h>
 # include <stdarg.h>
-# include "mem/libft_memory.h"
-# include "str/libft_string.h"
-# include "lst/libft_list.h"
-# include "format/libft_format.h"
+
+# include "ft.h"
+# include "libft_memory.h"
+# include "libft_string.h"
+# include "libft_list.h"
+# include "libft_format.h"
 
 # ifndef BUFF_SIZE
 #  define BUFF_SIZE 80
@@ -35,9 +37,6 @@
 # else
 #  define START_SIZE 128
 # endif
-
-typedef unsigned int	t_idx;
-typedef unsigned int	t_ui;
 
 typedef struct			s_gnl_buffer
 {

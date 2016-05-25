@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_list.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:28:45 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/14 19:28:26 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/05/22 05:57:59 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define LIBFT_LIST_H
 # include <stdarg.h>
 # include <string.h>
-# include "../mem/libft_memory.h"
+# include "ft.h"
+# include "libft_memory.h"
 
 typedef struct		s_list
 {
