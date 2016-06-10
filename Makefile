@@ -82,16 +82,16 @@ else
 endif
 ifeq ($(shell printf "$(NAME)" | tail -c2),.a)
 	I_MSG_COMPILE=$(MSG_COMPILE_LIB)
-	I_MSG_CLEAN=$(MSG_COMPILE_LIB)
+	I_MSG_CLEAN=$(MSG_CLEAN_LIB)
 	BUILDTYPE=lib
-	I_REAL_NAME=$(shell printf "$(NAME)" | tail -c-2)
+	I_REAL_NAME=$(NAME:.a=)
 else
 	I_MSG_COMPILE=$(MSG_COMPILE_EXE)
-	I_MSG_CLEAN=$(MSG_COMPILE_EXE)
+	I_MSG_CLEAN=$(MSG_CLEAN_EXE)
 	BUILDTYPE=exe
 	I_REAL_NAME=$(NAME)
 endif
-ifeq (RENDERDIR,)
+ifeq ($(strip $(RENDERDIR)),)
 	RENDERDIR=$(BUILDIR)/$(I_REAL_NAME)
 endif
 I_DATE=$(shell date "+%Y/%m/%d")
@@ -121,7 +121,7 @@ I_MKFLIB=$(shell for lib in $(MKLIBS); do dirname "$(LIBSDIR)$$lib" | xargs -0 p
 I_MKNSLIB=
 # ALLDEP=$(ALLOBJ:.o=.d)
 
-RENDER_SUBDIRS=$(shell for dir in $(OBBUDIRS); do printf "$(RENDERDIR)/$$dir "; done)
+RENDER_SUBDIRS=$(shell for dir in $(SOURCES) $(HEADERS); do printf "$(RENDERDIR)/$$dir "; done)
 RENDER_SRC=$(shell for cname in $(ALLSRC); do printf "$(RENDERDIR)/$$cname "; done)
 RENDER_HEADERS=$(shell for hname in $(ALLHEADER); do printf "$(RENDERDIR)/$$hname "; done)
 
@@ -153,7 +153,7 @@ ifeq ($(FANCY_OUT),on)
 endif
 	$(SILENT)rm -rf $(NAME)
 ifeq ($(FANCY_OUT),on)
-	@printf "$(I_MSG_START_OK)         $(I_MSG_END_OK)" "\e[31m$(MSG_CLEAN_OBJECTS) \e[mfor \e[1m\e[35m$(NAME)"
+	@printf "$(I_MSG_START_OK)         $(I_MSG_END_OK)" "\e[31m$(I_MSG_CLEAN) \e[mfor \e[1m\e[35m$(NAME)"
 endif
 
 re: fclean all
@@ -257,6 +257,7 @@ endif
 endif
 
 render: $(RENDERDIR)/Makefile
+	@#echo "$(RENDERDIR)"
 
 $(RENDERDIR)/Makefile: $(RENDER_SUBDIRS) $(RENDER_HEADERS) $(RENDER_SRC)
 	@printf "# **************************************************************************** #\n\
@@ -264,14 +265,14 @@ $(RENDERDIR)/Makefile: $(RENDER_SUBDIRS) $(RENDER_HEADERS) $(RENDER_SRC)
 #                                                         :::      ::::::::    #\n\
 #    Makefile                                           :+:      :+:    :+:    #\n\
 #                                                     +:+ +:+         +:+      #\n\
-#    By: %-43.43s+#+  +:+       +#+         #\n\
+#    By: %-42.42s +#+  +:+       +#+         #\n\
 #                                                 +#+#+#+#+#+   +#+            #\n\
-#    Created: %-41.41s#+#    #+#              #\n\
-#    Updated: %-40.40s###   ########.fr        #\n\
+#    Created: %-39.39s  #+#    #+#              #\n\
+#    Updated: %-39.39s ###   ########.fr        #\n\
 #                                                                              #\n\
-# **************************************************************************** #\n\n"\
+# **************************************************************************** #\n\n" \
 "$(RENDER_BY) <$(RENDER_EMAIL)>" "$(I_DATE) $(I_TIME) by $(RENDER_BY)" \
-"$(I_DATE) $(I_TIME) by $(RENDER_BY)" > $(RENDERDIR)/Makefile
+"$(I_DATE) $(I_TIME) by $(RENDER_BY)"  > $(RENDERDIR)/Makefile
 
 
 $(RENDER_SRC): $(RENDERDIR)/%.c: %.c
