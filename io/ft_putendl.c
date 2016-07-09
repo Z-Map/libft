@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putendl_fd.c                                       :+:      :+:    :+:   */
+/*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 20:42:58 by qloubier          #+#    #+#             */
-/*   Updated: 2015/12/22 14:44:14 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/09 19:41:42 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_io.h"
 
-void	ft_putendl_fd(char const *s, int fd)
+void	ft_putendl(char const *s)
 {
 	if (s)
 	{
-		ft_putstr_fd(s, fd);
-		ft_putchar_fd('\n', fd);
+		ft_putstr(s);
+		ft_putchar('\n');
 	}
 }

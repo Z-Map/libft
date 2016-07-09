@@ -18,7 +18,7 @@
 # Project var
 NAME=libft.a
 HEADERS=include
-SOURCES=mem lst str format
+SOURCES=mem lst str format parse io
 MKLIBS= #libft/libft.a libdraw/libdraw.a minilibx/libmlx.a
 LIBSHEADERS=
 LIBS= #m bsd

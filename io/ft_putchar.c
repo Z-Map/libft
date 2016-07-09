@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putstr.c                                           :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 00:44:25 by qloubier          #+#    #+#             */
-/*   Updated: 2015/12/22 14:42:45 by qloubier         ###   ########.fr       */
+/*   Created: 2015/11/24 19:11:27 by qloubier          #+#    #+#             */
+/*   Updated: 2016/07/09 19:41:32 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <unistd.h>
+#include "libft_io.h"
 
-void	ft_putstr_fd(char const *s, int fd)
+void	ft_putchar(char c)
 {
-	if (s)
-		write(fd, s, ft_strlen(s));
+	write(1, &c, 1);
 }

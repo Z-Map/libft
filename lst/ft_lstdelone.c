@@ -6,12 +6,12 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 02:28:05 by qloubier          #+#    #+#             */
-/*   Updated: 2016/03/20 02:16:15 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/09 19:25:08 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_list.h"
 #include <stdlib.h>
+#include "libft_list.h"
 
 void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
 {

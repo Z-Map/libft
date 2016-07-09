@@ -6,12 +6,12 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 19:58:15 by qloubier          #+#    #+#             */
-/*   Updated: 2016/04/27 05:34:39 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/09 19:24:37 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_list.h"
 #include <stdlib.h>
+#include "libft_list.h"
 
 void		*ft_blsttotab(t_blst *blst, size_t *len)
 {

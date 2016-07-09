@@ -6,7 +6,7 @@
 /*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/22 06:57:05 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/09 19:43:20 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,9 @@ size_t					ft_nbrlen(int nbr);
 size_t					ft_lnbrlen(long nbr);
 size_t					ft_jnbrlen(intmax_t nbr);
 size_t					ft_nbrlen_base(register long i, char base);
-
 size_t					ft_floatlen(double i, t_ui pre);
+
+char					*ft_itoa(int n);
 
 void					ft_pfarg_nbr(va_list ap, t_ptfc *arg);
 void					ft_pfarg_unbr(va_list ap, t_ptfc *arg);

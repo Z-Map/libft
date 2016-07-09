@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putstr.c                                           :+:      :+:    :+:   */
+/*   libft_parse.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 00:44:25 by qloubier          #+#    #+#             */
-/*   Updated: 2015/12/22 14:42:12 by qloubier         ###   ########.fr       */
+/*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
+/*   Updated: 2016/07/09 19:58:55 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
+#ifndef LIBFT_PARSE_H
+#define LIBFT_PARSE_H
 
-void	ft_putstr(char const *s)
-{
-	if (s)
-		write(1, s, ft_strlen(s));
-}
+# include <string.h>
+# include <stdarg.h>
+# include "libft_string.h"
+# include "libft_memory.h"
+# include "libft_list.h"
+
+int						ft_atoi (const char *str);
+
+#endif

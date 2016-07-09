@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putendl.c                                          :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/09 20:42:58 by qloubier          #+#    #+#             */
-/*   Updated: 2015/12/22 14:47:26 by qloubier         ###   ########.fr       */
+/*   Created: 2015/11/25 00:44:25 by qloubier          #+#    #+#             */
+/*   Updated: 2016/07/09 19:41:59 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
+#include "libft_io.h"
 
-void	ft_putendl(char const *s)
+void	ft_putstr_fd(char const *s, int fd)
 {
 	if (s)
-	{
-		ft_putstr(s);
-		ft_putchar('\n');
-	}
+		write(fd, s, ft_strlen(s));
 }

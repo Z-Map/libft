@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cbufnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/14 19:24:47 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/22 07:25:49 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/09 19:24:42 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_list.h"
 #include <stdlib.h>
+#include "libft_list.h"
 
 t_cbuf		*ft_cbufnew(size_t bsize)
 {

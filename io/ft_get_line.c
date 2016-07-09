@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 19:15:20 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/20 23:22:58 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/09 19:41:17 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/types.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "libft.h"
+#include "libft_io.h"
 
 static char		*gnl_buffer_append(t_gnlb *gnlb, char *rbuf, int *err)
 {
