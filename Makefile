@@ -19,9 +19,9 @@
 NAME=libft.a
 HEADERS=include
 SOURCES=mem lst str format
-MKLIBS=libft/libft.a libdraw/libdraw.a minilibx/libmlx.a
+MKLIBS= #libft/libft.a libdraw/libdraw.a minilibx/libmlx.a
 LIBSHEADERS=
-LIBS=m bsd
+LIBS= #m bsd
 LIBSDIRS=
 
 # Environnement var
@@ -115,7 +115,7 @@ ALLSRC=$(shell find *.c -type f 2> /dev/null; for dir in $(SOURCES); do find $$d
 ALLOBJ=$(shell for oname in $(ALLSRC:.c=.o); do printf "$(OBBUDIR)/$$oname "; done)
 ALLLIBSDIRS=$(shell for lib in $(MKLIBS); do dirname "$(LIBSDIR)$$lib"; done) $(LIBSDIRS)
 ALLLIBS=$(shell for lib in $(MKLIBS); do basename "$$lib" | head -c-3 | tail -c+4; printf " "; done)$(LIBS)
-LIBSFLAGS=$(shell echo "-L$(ALLLIBSDIRS)" | sed "s/ \(.\)/ -L\1/g") $(shell echo "-l$(ALLLIBS)" | sed "s/ \(.\)/ -l\1/g")
+LIBSFLAGS=$(shell echo "-L$(ALLLIBSDIRS)" | sed "s/ \(.\)/ -L\1/g" | sed "s/^-L *$$/ /g") $(shell echo "-l$(ALLLIBS)" | sed "s/ \(.\)/ -l\1/g" | sed "s/^-l *$$/ /g")
 ALLCFLAGS=$(CFLAGS) $(INCFLAGS)
 I_MKFLIB=$(shell for lib in $(MKLIBS); do dirname "$(LIBSDIR)$$lib" | xargs -0 printf "%s/ "; done)
 I_MKNSLIB=
@@ -124,6 +124,7 @@ I_MKNSLIB=
 RENDER_SUBDIRS=$(shell for dir in $(SOURCES) $(HEADERS); do printf "$(RENDERDIR)/$$dir "; done)
 RENDER_SRC=$(shell for cname in $(ALLSRC); do printf "$(RENDERDIR)/$$cname "; done)
 RENDER_HEADERS=$(shell for hname in $(ALLHEADER); do printf "$(RENDERDIR)/$$hname "; done)
+RENDER_OBVAR=$(shell for oname in $(ALLOBJ); do basename $$oname; done)
 
 #------------------------------------------------------------------------------#
 #                             Compile Rules                                    #
@@ -131,7 +132,7 @@ RENDER_HEADERS=$(shell for hname in $(ALLHEADER); do printf "$(RENDERDIR)/$$hnam
 
 # PHONY rules
 .PHONY: neutronstar all clean fclean re \
-		norme render
+		norme render $(RENDERDIR)/Makefile
 
 # Generic rules
 all: $(NAME)
@@ -192,7 +193,8 @@ neutronstar:
 	printf "\e[15D\e[1;30m[\e[m\e[1;36m*\e[0;33m}\e[36m---=\e[m\e[1m*\e[0m\e[36m=---\e[33m{\e[1;36m*\e[1;30m]\e[m"; sleep 0.1; \
 	printf "\e[15D\e[1;30m[\e[m\e[36m*\e[0;33m}\e[36m----\e[m*\e[0;36m----\e[33m{\e[36m*\e[1;30m]\e[m"; sleep 0.1; \
 	c=$$(echo "$$c + 1" | bc);\
-	done'
+	done;\
+	printf "\n\n\t[Neutron Star Created]\n"'
 
 # Compilation rules
 $(NAME): $(OBBUDIRS) $(ALLOBJ)
@@ -255,11 +257,23 @@ else
 endif
 
 endif
+unrender:
+ifeq ($(FANCY_OUT),on)
+	@printf "$(I_MSG_START_WIP)       $(I_MSG_END_WIP)" "\e[33mDelete\e[m \e[1m\e[35m$(RENDERDIR)"
+endif
+	$(SILENT)rm -rf $(RENDERDIR)
+ifeq ($(FANCY_OUT),on)
+	@printf "$(I_MSG_START_OK)         $(I_MSG_END_OK)" "\e[31mDelete\e[m \e[1m\e[35m$(RENDERDIR)"
+endif
+
 
 render: $(RENDERDIR)/Makefile
 	@#echo "$(RENDERDIR)"
 
 $(RENDERDIR)/Makefile: $(RENDER_SUBDIRS) $(RENDER_HEADERS) $(RENDER_SRC)
+ifeq ($(FANCY_OUT),on)
+	@printf "$(I_MSG_START_WIP)    $(I_MSG_END_WIP)" "\e[33mStart rendering \e[37m\e[1m$@"
+endif
 	@printf "# **************************************************************************** #\n\
 #                                                                              #\n\
 #                                                         :::      ::::::::    #\n\
@@ -270,13 +284,43 @@ $(RENDERDIR)/Makefile: $(RENDER_SUBDIRS) $(RENDER_HEADERS) $(RENDER_SRC)
 #    Created: %-39.39s  #+#    #+#              #\n\
 #    Updated: %-39.39s ###   ########.fr        #\n\
 #                                                                              #\n\
-# **************************************************************************** #\n\n" \
+# **************************************************************************** #\n\n\
+NAME=$(NAME)\n\
+CC=$(CC)\n\
+CFLAGS=$(CFLAGS)\n\
+INCFLAGS=$(INCFLAGS)\n\
+LIBFLAGS=$(LIBSFLAGS)\n\
+OBJ=" \
 "$(RENDER_BY) <$(RENDER_EMAIL)>" "$(I_DATE) $(I_TIME) by $(RENDER_BY)" \
 "$(I_DATE) $(I_TIME) by $(RENDER_BY)"  > $(RENDERDIR)/Makefile
-
+	@sh -c 'for oname in $(RENDER_OBVAR); do echo "$$oname \\" >> $(RENDERDIR)/Makefile; done'
+	@printf "\n\n.PHONY: all clean fclean re\n\nall: \$$(NAME)\n\n" >> $(RENDERDIR)/Makefile
+	@sh -c 'for oname in $(ALLSRC); do $(CC) -MM $$oname $(ALLCFLAGS) $(LIBSFLAGS) >> $(RENDERDIR)/Makefile;\
+echo "	\$$(CC) -o \$$@ -c \$$< \$$(CFLAGS) \$$(INCFLAGS)" >> $(RENDERDIR)/Makefile; done'
+ifeq ($(BUILDTYPE),lib)
+	@printf "\n\$$(NAME): \$$(OBJ)\n\t$(LC) $(LFLAGS) \$$(NAME) \$$(OBJ)" >> $(RENDERDIR)/Makefile
+else
+	@printf "\n\$$(NAME): \$$(OBJ)\n\t\$$(CC) \$$(OBJ) -o \$$@ \$$(CFLAGS) \$$(INCFLAGS) \$$(LIBFLAGS)" >> $(RENDERDIR)/Makefile
+endif
+	@printf "\n\nclean:\n\trm -rf \$$(OBJ)\n\nfclean: clean\n\trm -rf \$$(NAME)\n\nre: fclean all\n\n" >> $(RENDERDIR)/Makefile
+ifeq ($(FANCY_OUT),on)
+	@printf "$(I_MSG_START_OK)  $(I_MSG_END_OK)" "\e[1;36m$@ \e[mrendered !"
+endif
 
 $(RENDER_SRC): $(RENDERDIR)/%.c: %.c
+ifeq ($(FANCY_OUT),on)
+	@printf "$(I_MSG_START_WIP)$(I_MSG_END_WIP)" "\e[35m$< \e[33mbeing copied"
+endif
 	$(SILENT)cp $< $@
+ifeq ($(FANCY_OUT),on)
+	@printf "$(I_MSG_START_OK)$(I_MSG_END_OK)" "\e[36m$< \e[mCopied !"
+endif
 
 $(RENDER_HEADERS): $(RENDERDIR)/%.h: %.h
+ifeq ($(FANCY_OUT),on)
+	@printf "$(I_MSG_START_WIP)$(I_MSG_END_WIP)" "\e[35m$< \e[33mbeing copied"
+endif
 	$(SILENT)cp $< $@
+ifeq ($(FANCY_OUT),on)
+	@printf "$(I_MSG_START_OK)$(I_MSG_END_OK)" "\e[36m$< \e[mcopied !"
+endif
