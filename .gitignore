@@ -1,0 +1,7 @@
+.clang_complete
+*.o
+**/*.o
+*.old
+**/*.old
+*.tmp
+**/*.tmp
