@@ -6,7 +6,7 @@
 /*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/09 19:43:20 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/09 21:36:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,12 @@ int						ft_preform_count(const char *fstr, va_list ap,
 int						ft_print_buff(const char *fstr, int len, t_list **args);
 
 void					**ft_gettypetab(int i);
+
+/*
+**	TO DO
+*/
+
+char					*ft_dtoa(double n, t_ui prec);
+char					*ft_ftoa(float n, t_ui prec);
 
 #endif

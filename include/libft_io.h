@@ -6,7 +6,7 @@
 /*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:28:46 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/09 19:57:46 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/09 20:27:52 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,17 @@ void					ft_putchar_fd(char c, int fd);
 void					ft_putstr_fd(char const *s, int fd);
 void					ft_putendl_fd(char const *s, int fd);
 void					ft_putnbr_fd(int n, int fd);
+
+/*
+** TO DO
+*/
+
+void				ft_putull(unsigned long long n);
+void				ft_putfloat(float nb);
+void				ft_putptr(void *ptr);
+void				ft_putstab(const char **tab);
+void				ft_putbits(void *data, size_t size);
+void				ft_putmem(void *data, size_t size);
+void				ft_puthex(void *data, size_t size);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:34:07 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/22 05:58:47 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/09 21:46:02 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,21 @@ int					ft_tolower(int c);
 int					ft_toupper(int c);
 size_t				ft_wrdcount(char const *s, int c);
 void				ft_ptabdel(void ***tptr);
+
+/*
+** TO DO
+*/
+
+char				*ft_strunsplit(const char **tab, char separator);
+char				*ft_strmjoin(const size_t n, ...);
+char				*ft_strreplace(char *s, char what, char by);
+size_t				ft_strcount(const char *str, char c);
+int					ft_strncount(char *str, char c, unsigned int n);
+char				*ft_strrev(char *str);
+char				*ft_strnrev(char *str, size_t n);
+char				*ft_strup(char *s);
+char				*ft_strupdup(const char *s);
+char				*ft_strlow(char *s);
+char				*ft_strlowdup(const char *s);
 
 #endif
