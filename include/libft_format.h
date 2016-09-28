@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_format.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/09 21:36:04 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/09/28 20:56:59 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include "ft.h"
 # include "libft_list.h"
 # include "libft_string.h"
+
+# ifndef FT_PRINF_BUFSIZE
+#  define FT_PRINF_BUFSIZE 2048
+# endif
 
 # define PF_TYPE_STR "diocsSfpxu%"
 # define PF_FLAG_STR "#+0- "
@@ -59,6 +63,7 @@ enum					e_pf_type
 
 typedef struct			s_printf_convert
 {
+	char				buffer[FT_PF_BUFSIZE];
 	enum e_pf_flag		flag;
 	enum e_pf_type		type;
 	t_ui				precision;
