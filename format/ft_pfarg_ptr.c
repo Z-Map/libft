@@ -12,7 +12,7 @@
 
 #include "libft_format.h"
 
-void			ft_pfarg_ptr(va_list ap, t_ptfc *arg)
+void			ft_pfarg_ptr(va_list ap, t_pfc *arg)
 {
 	arg->type = PFT_PTR;
 	arg->arg = (uintmax_t)va_arg(ap, void *);

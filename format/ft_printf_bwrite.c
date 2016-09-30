@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bwrite.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/22 02:37:49 by qloubier          #+#    #+#             */
-/*   Updated: 2016/09/30 00:21:11 by qloubier         ###   ########.fr       */
+/*   Created: 2016/09/29 23:52:14 by qloubier          #+#    #+#             */
+/*   Updated: 2016/09/30 00:33:18 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "libft_format.h"
 
-static void		init_printf(t_pfb *buf)
+int				ft_printf_bwrite(t_pfb *b, const char *c, size_t len)
 {
-	buf->len = 0;
-	buf->blen = 0;
-	buf->fd = 1;
-	buf->c = buf->buffer;
-	(buf->c)[0] = '\0';
-	(buf->c)[FT_PF_BUFSIZE] = '\0';
-}
+	int			i;
 
-int				ft_printf(const char *fstr, ...)
-{
-	t_pfb		buf;
-
-	if (!fstr)
-		return (-1);
-	init_printf(&buf);
-	va_start(buf.ap, fstr);
-	ft_printf_loop(fstr, &buf);
-	va_end(buf.ap);
-	// ft_print_buff(fstr, len, &args);
-	return (buf.len);
+	if (!len)
+		return (0);
+	if (len >= FT_PF_BUFSIZE)
+	{
+		ft_printf_bflush(b);
+		b->len += write(b->fd, c, len);
+		return (2);
+	}
+	i = 0;
+	while (len)
+	{
+		if (b->blen >= FT_PF_BUFSIZE && ++i)
+			ft_printf_bflush(b);
+		*(b->c) = *c;
+		++(b->c);
+		++(b->blen);
+		++c;
+		--len;
+	}
+	return (i);
 }

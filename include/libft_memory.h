@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_memory.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:24:59 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/22 05:57:41 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/09/29 23:28:31 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,9 @@ int					ft_memcmp (const void *s1, const void *s2, size_t n);
 void				*ft_memdup (const void *s1, size_t n);
 void				*ft_memalloc (size_t size);
 void				ft_memdel (void **ap);
+
+/*
+** TO-DO : Buffer tools
+*/
 
 #endif

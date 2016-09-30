@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_pfflag_more.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/22 02:37:49 by qloubier          #+#    #+#             */
-/*   Updated: 2016/09/30 00:21:11 by qloubier         ###   ########.fr       */
+/*   Created: 2016/09/30 02:20:47 by qloubier          #+#    #+#             */
+/*   Updated: 2016/09/30 05:14:48 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_format.h"
 
-static void		init_printf(t_pfb *buf)
+const char			*ft_pfflag_more(const char *c, t_pfb *b)
 {
-	buf->len = 0;
-	buf->blen = 0;
-	buf->fd = 1;
-	buf->c = buf->buffer;
-	(buf->c)[0] = '\0';
-	(buf->c)[FT_PF_BUFSIZE] = '\0';
-}
-
-int				ft_printf(const char *fstr, ...)
-{
-	t_pfb		buf;
-
-	if (!fstr)
-		return (-1);
-	init_printf(&buf);
-	va_start(buf.ap, fstr);
-	ft_printf_loop(fstr, &buf);
-	va_end(buf.ap);
-	// ft_print_buff(fstr, len, &args);
-	return (buf.len);
+	b->arg.flag |= FORCE_SIGN;
+	return (c + 1);
 }

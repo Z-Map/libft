@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pfarg_char.c                                    :+:      :+:    :+:   */
+/*   ft_parse_digit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/18 19:56:26 by qloubier          #+#    #+#             */
-/*   Updated: 2016/09/30 07:29:55 by qloubier         ###   ########.fr       */
+/*   Created: 2016/09/30 03:53:28 by qloubier          #+#    #+#             */
+/*   Updated: 2016/09/30 04:29:19 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_format.h"
+#include "libft_parse.h"
 
-void			ft_pfarg_char(va_list ap, t_pfc *arg)
+const char			*ft_parse_digit(const char *str, unsigned int *num)
 {
-	arg->type = PFT_CHAR;
-	arg->arg = va_arg(ap, int);
+	*num = 0;
+	while (ft_isdigit((int)(*str)))
+		*num = ((*num * 10) + (unsigned int)(*(str++) - '0'));
+	return (str);
 }
