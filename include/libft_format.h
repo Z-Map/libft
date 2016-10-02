@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_format.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/09/30 08:02:20 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/02 05:47:33 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,19 @@
 # include <string.h>
 # include <stdarg.h>
 # include <inttypes.h>
+# include <unistd.h>
 # include "ft.h"
 # include "libft_list.h"
 # include "libft_string.h"
 # include "libft_parse.h"
 
 # ifndef FT_PF_BUFSIZE
-#  define FT_PF_BUFSIZE 2048
+#  define FT_PF_BUFSIZE 4096
 # endif
 
-# define PF_TYPE_STR "dDioOcCsSfFpxXuU%"
+# define FT_MX_FLOATLEN 310
+
+# define PF_TYPE_STR "dDioOcCsSfFpxXuUn%"
 # define PF_FLAG_STR "#+0- .lhjz*"
 
 /*
@@ -46,7 +49,7 @@ enum					e_pf_flag
 	SIZE_T = 1 << 15,
 	CAPITAL = 1 << 16,
 	PREC_SET = 1 << 17,
-	MXW_SET = 1 << 18,
+	MNW_SET = 1 << 18,
 	END = (int)(1u << 31)
 };
 
@@ -61,7 +64,8 @@ enum					e_pf_type
 	PFT_SPECHAR = 1 << 6,
 	PFT_STR = 1 << 7,
 	PFT_WSTR = 1 << 8,
-	PFT_FLOAT = 1 << 9
+	PFT_FLOAT = 1 << 9,
+	PFT_N = 1 << 9
 };
 
 typedef struct			s_printf_convert
@@ -96,6 +100,7 @@ int						ft_printf_bflush(t_pfb *b);
 
 int						ft_printf_loop(const char *fstr, t_pfb *pfb);
 const char				*ft_printf_parse(const char *fstr, t_pfb *pfb);
+int						ft_printf_convert(int tid, t_pfc *arg, t_pfb *pfb);
 const char				*ft_forf(const char *c, const char *s, size_t *len);
 
 size_t					ft_snbrlen(short nbr);
@@ -129,6 +134,7 @@ void					ft_pfarg_wstr(va_list ap, t_pfc *arg);
 void					ft_pfarg_float(va_list ap, t_pfc *arg);
 void					ft_pfarg_ptr(va_list ap, t_pfc *arg);
 void					ft_pfarg_spc(va_list ap, t_pfc *arg);
+void					ft_pfarg_n(va_list ap, t_pfc *arg);
 
 int						ft_printf(const char *fstr,
 	...) __attribute__((format(printf,1,2)));
@@ -139,23 +145,25 @@ int						ft_print_buff(const char *fstr, int len, t_list **args);
 
 void					**ft_gettypetab(int i);
 
-const t_pftab			g_pf_flag_tab[] = {
-						(t_pftab){&ft_pfflag_alt, &ft_pfarg_nbr},
-						(t_pftab){&ft_pfflag_zero, &ft_pfarg_nbr},
-						(t_pftab){&ft_pfflag_dot, &ft_pfarg_nbr},
-						(t_pftab){&ft_pfflag_l, &ft_pfarg_oct},
-						(t_pftab){&ft_pfflag_h, &ft_pfarg_oct},
-						(t_pftab){&ft_pfflag_j, &ft_pfarg_char},
-						(t_pftab){&ft_pfflag_z, &ft_pfarg_char},
-						(t_pftab){&ft_pfflag_width, &ft_pfarg_str},
-						(t_pftab){&ft_pfflag_more, &ft_pfarg_str},
-						(t_pftab){&ft_pfflag_less, &ft_pfarg_float},
-						(t_pftab){&ft_pfflag_space, &ft_pfarg_float},
-						(t_pftab){NULL, &ft_pfarg_ptr},
-						(t_pftab){NULL, &ft_pfarg_hexa},
-						(t_pftab){NULL, &ft_pfarg_hexa},
-						(t_pftab){NULL, &ft_pfarg_unbr},
-						(t_pftab){NULL, &ft_pfarg_unbr}
+const static t_pftab	g_pf_flag_tab[] = {
+	(t_pftab){&ft_pfflag_alt, &ft_pfarg_nbr},
+	(t_pftab){&ft_pfflag_zero, &ft_pfarg_nbr},
+	(t_pftab){&ft_pfflag_dot, &ft_pfarg_nbr},
+	(t_pftab){&ft_pfflag_l, &ft_pfarg_oct},
+	(t_pftab){&ft_pfflag_h, &ft_pfarg_oct},
+	(t_pftab){&ft_pfflag_j, &ft_pfarg_char},
+	(t_pftab){&ft_pfflag_z, &ft_pfarg_char},
+	(t_pftab){&ft_pfflag_width, &ft_pfarg_str},
+	(t_pftab){&ft_pfflag_more, &ft_pfarg_str},
+	(t_pftab){&ft_pfflag_less, &ft_pfarg_float},
+	(t_pftab){&ft_pfflag_space, &ft_pfarg_float},
+	(t_pftab){NULL, &ft_pfarg_ptr},
+	(t_pftab){NULL, &ft_pfarg_hexa},
+	(t_pftab){NULL, &ft_pfarg_hexa},
+	(t_pftab){NULL, &ft_pfarg_unbr},
+	(t_pftab){NULL, &ft_pfarg_unbr},
+	(t_pftab){NULL, &ft_pfarg_n},
+	(t_pftab){NULL, &ft_pfarg_spc}
 };
 
 /*

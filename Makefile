@@ -159,6 +159,9 @@ endif
 
 re: fclean all
 
+neutronstar-check:
+	echo "ns"
+
 neutronstar:
 	@sh -c 'printf "\t[Creating Neutron Star]\n\n\t   \e[1;30m[\e[mo\e[1;30m}         {\e[mo\e[1;30m]\e[m"; sleep 1; \
 	printf "\e[15D\e[1;30m[\e[m\e[1mo\e[1;30m}         {\e[m\e[1mo\e[1;30m]\e[m"; sleep 0.8; \

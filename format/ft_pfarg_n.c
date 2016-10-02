@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bflush.c                                 :+:      :+:    :+:   */
+/*   ft_pfarg_n.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/29 23:29:51 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/01 03:54:47 by qloubier         ###   ########.fr       */
+/*   Created: 2016/10/01 01:47:47 by qloubier          #+#    #+#             */
+/*   Updated: 2016/10/01 01:49:35 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft_format.h"
 
-int				ft_printf_bflush(t_pfb *b)
+void			ft_pfarg_n(va_list ap, t_pfc *arg)
 {
-	ssize_t		i;
-
-	if (!(b->blen))
-		return (0);
-	i = write(b->fd, b->buffer, b->blen);
-	if (i < 0)
-		return (i);
-	b->len += i;
-	b->blen = 0;
-	b->c = b->buffer;
-	return (i);
+	arg->type = PFT_N;
+	arg->arg = (uintmax_t)va_arg(ap, void *);
 }
