@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pfconv_nbr.c                                    :+:      :+:    :+:   */
+/*   ft_pfconv_unbr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 19:54:57 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/05 00:21:54 by map              ###   ########.fr       */
+/*   Updated: 2016/10/04 22:57:20 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_format.h"
 
-void			ft_pfconv_nbr(t_pfb *b, t_pfc *arg, size_t len)
+void			ft_pfconv_unbr(t_pfb *b, t_pfc *arg, size_t len)
 {
 	char		buf[40];
 	int			i;
 	uintmax_t	a;
 
-	if ((intmax_t)(b->arg.arg) > 0)
-	{
-		ft_printf_bwritec(b, '-', 1);
-		b->arg.arg = (uintmax_t)(-(intmax_t)(b->arg.arg));
-	}
-	else if (b->arg.flag & FORCE_SIGN)
-		ft_printf_bwritec(b, '+', 1);
-	else if (b->arg.flag & SPACE)
-		ft_printf_bwritec(b, ' ', 1);
+	if (((arg->flag & ALTERNTE) && (arg->type == PFT_HEXA))
+		|| (arg->type == PFT_PTR))
+		ft_printf_bwrite(b, "0x", 2);
 	i = (int)len - (int)(b->arg.b_len);
 	if (i > 0)
 		ft_printf_bwritec(b, '0', (size_t)i);

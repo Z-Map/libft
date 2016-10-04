@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/04 21:53:57 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/04 22:47:33 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct			s_printf_cftab
 	const char			*(*flag)(const char *, t_pfb *);
 	void				(*getarg)(va_list, t_pfc*);
 	int					(*getlen)(t_pfc*);
-	void				(*convert)(t_pfb*, size_t);
+	void				(*convert)(t_pfb*, t_pfc*, size_t);
 }						t_pftab;
 
 int						ft_printf_bwrite(t_pfb *b, const char *c, size_t len);
@@ -150,12 +150,12 @@ int						ft_pflen_char(t_pfc *arg);
 int						ft_pflen_float(t_pfc *arg);
 int						ft_pflen_n(t_pfc *arg);
 
-void					ft_pfconv_nbr(t_pfb *b, size_t len);
-void					ft_pfconv_unbr(t_pfb *b, size_t len);
-void					ft_pfconv_str(t_pfb *b, size_t len);
-void					ft_pfconv_char(t_pfb *b, size_t len);
-void					ft_pfconv_float(t_pfb *b, size_t len);
-void					ft_pfconv_n(t_pfb *b, size_t len);
+void					ft_pfconv_nbr(t_pfb *b, t_pfc *arg, size_t len);
+void					ft_pfconv_unbr(t_pfb *b, t_pfc *arg, size_t len);
+void					ft_pfconv_str(t_pfb *b, t_pfc *arg, size_t len);
+void					ft_pfconv_char(t_pfb *b, t_pfc *arg, size_t len);
+void					ft_pfconv_float(t_pfb *b, t_pfc *arg, size_t len);
+void					ft_pfconv_n(t_pfb *b, t_pfc *arg, size_t len);
 
 int						ft_printf(const char *fstr,
 	...) __attribute__((format(printf,1,2)));
