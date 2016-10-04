@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_string.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:34:07 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/09 21:46:02 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/04 17:25:03 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
+int					ft_islower(int c);
+int					ft_isupper(int c);
 size_t				ft_wrdcount(char const *s, int c);
 void				ft_ptabdel(void ***tptr);
 

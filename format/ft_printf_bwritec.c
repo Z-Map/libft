@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pflen_float.c                                   :+:      :+:    :+:   */
+/*   ft_printf_bwritec.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/04 17:13:44 by qloubier         ###   ########.fr       */
+/*   Created: 2016/09/29 23:52:14 by qloubier          #+#    #+#             */
+/*   Updated: 2016/10/04 18:27:42 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "libft_format.h"
 
-int		ft_pflen_float(t_pfc *arg)
+int				ft_printf_bwritec(t_pfb *b, char c, size_t len)
 {
-	size_t	len;
+	ssize_t		i;
 
-	len = ft_floatlen(*((double *)(&(arg->arg))), arg->precision);
-	return ((int)len);
+	if (!len)
+		return (0);
+	i = 0;
+	while (len)
+	{
+		if (b->blen >= FT_PF_BUFSIZE && i++)
+			ft_printf_bflush(b);
+		*(b->c) = c;
+		++(b->c);
+		++(b->blen);
+		--len;
+	}
+	return (i);
 }

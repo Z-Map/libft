@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pflen_float.c                                   :+:      :+:    :+:   */
+/*   ft_pflen_n.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/04 17:13:44 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/04 19:30:03 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_format.h"
 
-int		ft_pflen_float(t_pfc *arg)
+int		ft_pflen_n(t_pfc *arg)
 {
-	size_t	len;
-
-	len = ft_floatlen(*((double *)(&(arg->arg))), arg->precision);
-	return ((int)len);
+	arg->b_len = 0;
+	arg->minwidth = 0;
+	return (0);
 }

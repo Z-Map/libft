@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_bwrite.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 23:52:14 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/01 03:56:31 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/04 18:27:12 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int				ft_printf_bwrite(t_pfb *b, const char *c, size_t len)
 	i = 0;
 	while (len)
 	{
-		if (b->blen >= FT_PF_BUFSIZE && ++i)
+		if (b->blen >= FT_PF_BUFSIZE && i++)
 			ft_printf_bflush(b);
 		*(b->c) = *c;
 		++(b->c);

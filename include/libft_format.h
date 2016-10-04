@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_format.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/04 13:05:43 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/04 21:53:57 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,12 @@ typedef struct			s_printf_cftab
 {
 	const char			*(*flag)(const char *, t_pfb *);
 	void				(*getarg)(va_list, t_pfc*);
+	int					(*getlen)(t_pfc*);
+	void				(*convert)(t_pfb*, size_t);
 }						t_pftab;
 
 int						ft_printf_bwrite(t_pfb *b, const char *c, size_t len);
+int						ft_printf_bwritec(t_pfb *b, char c, size_t len);
 int						ft_printf_bflush(t_pfb *b);
 
 int						ft_printf_loop(const char *fstr, t_pfb *pfb);
@@ -114,6 +117,7 @@ size_t					ft_ujdigitlen(uintmax_t i, unsigned int base);
 size_t					ft_floatlen(double i, t_ui pre);
 
 char					*ft_itoa(int n);
+char					*ft_ujtobuf(char *b, uintmax_t n);
 
 const char				*ft_pfflag_alt(const char *c, t_pfb *b);
 const char				*ft_pfflag_zero(const char *c, t_pfb *b);
@@ -139,6 +143,20 @@ void					ft_pfarg_ptr(va_list ap, t_pfc *arg);
 void					ft_pfarg_spc(va_list ap, t_pfc *arg);
 void					ft_pfarg_n(va_list ap, t_pfc *arg);
 
+int						ft_pflen_nbr(t_pfc *arg);
+int						ft_pflen_unbr(t_pfc *arg);
+int						ft_pflen_str(t_pfc *arg);
+int						ft_pflen_char(t_pfc *arg);
+int						ft_pflen_float(t_pfc *arg);
+int						ft_pflen_n(t_pfc *arg);
+
+void					ft_pfconv_nbr(t_pfb *b, size_t len);
+void					ft_pfconv_unbr(t_pfb *b, size_t len);
+void					ft_pfconv_str(t_pfb *b, size_t len);
+void					ft_pfconv_char(t_pfb *b, size_t len);
+void					ft_pfconv_float(t_pfb *b, size_t len);
+void					ft_pfconv_n(t_pfb *b, size_t len);
+
 int						ft_printf(const char *fstr,
 	...) __attribute__((format(printf,1,2)));
 int						ft_printf_fd(int fd, const char *fstr, ...);
@@ -148,25 +166,28 @@ int						ft_print_buff(const char *fstr, int len, t_list **args);
 
 void					**ft_gettypetab(int i);
 
+const static char		*g_pf_nullstr = "(null)";
 const static t_pftab	g_pf_flag_tab[] = {
-	(t_pftab){&ft_pfflag_alt, &ft_pfarg_nbr},
-	(t_pftab){&ft_pfflag_zero, &ft_pfarg_nbr},
-	(t_pftab){&ft_pfflag_dot, &ft_pfarg_nbr},
-	(t_pftab){&ft_pfflag_l, &ft_pfarg_oct},
-	(t_pftab){&ft_pfflag_h, &ft_pfarg_oct},
-	(t_pftab){&ft_pfflag_j, &ft_pfarg_char},
-	(t_pftab){&ft_pfflag_z, &ft_pfarg_char},
-	(t_pftab){&ft_pfflag_width, &ft_pfarg_str},
-	(t_pftab){&ft_pfflag_more, &ft_pfarg_str},
-	(t_pftab){&ft_pfflag_less, &ft_pfarg_float},
-	(t_pftab){&ft_pfflag_space, &ft_pfarg_float},
-	(t_pftab){NULL, &ft_pfarg_ptr},
-	(t_pftab){NULL, &ft_pfarg_hexa},
-	(t_pftab){NULL, &ft_pfarg_hexa},
-	(t_pftab){NULL, &ft_pfarg_unbr},
-	(t_pftab){NULL, &ft_pfarg_unbr},
-	(t_pftab){NULL, &ft_pfarg_n},
-	(t_pftab){NULL, &ft_pfarg_spc}
+	(t_pftab){&ft_pfflag_alt, &ft_pfarg_nbr, &ft_pflen_nbr, &ft_pfconv_nbr},
+	(t_pftab){&ft_pfflag_zero, &ft_pfarg_nbr, &ft_pflen_nbr, &ft_pfconv_nbr},
+	(t_pftab){&ft_pfflag_dot, &ft_pfarg_nbr, &ft_pflen_nbr, &ft_pfconv_nbr},
+	(t_pftab){&ft_pfflag_l, &ft_pfarg_oct, &ft_pflen_unbr, &ft_pfconv_unbr},
+	(t_pftab){&ft_pfflag_h, &ft_pfarg_oct, &ft_pflen_unbr, &ft_pfconv_unbr},
+	(t_pftab){&ft_pfflag_j, &ft_pfarg_char, &ft_pflen_char, &ft_pfconv_char},
+	(t_pftab){&ft_pfflag_z, &ft_pfarg_char, &ft_pflen_char, &ft_pfconv_char},
+	(t_pftab){&ft_pfflag_width, &ft_pfarg_str, &ft_pflen_str, &ft_pfconv_str},
+	(t_pftab){&ft_pfflag_more, &ft_pfarg_str, &ft_pflen_str, &ft_pfconv_str},
+	(t_pftab){&ft_pfflag_less, &ft_pfarg_float, &ft_pflen_float,
+		&ft_pfconv_float},
+	(t_pftab){&ft_pfflag_space, &ft_pfarg_float, &ft_pflen_float,
+		&ft_pfconv_float},
+	(t_pftab){NULL, &ft_pfarg_ptr, &ft_pflen_unbr, &ft_pfconv_unbr},
+	(t_pftab){NULL, &ft_pfarg_hexa, &ft_pflen_unbr, &ft_pfconv_unbr},
+	(t_pftab){NULL, &ft_pfarg_hexa, &ft_pflen_unbr, &ft_pfconv_unbr},
+	(t_pftab){NULL, &ft_pfarg_unbr, &ft_pflen_unbr, &ft_pfconv_unbr},
+	(t_pftab){NULL, &ft_pfarg_unbr, &ft_pflen_unbr, &ft_pfconv_unbr},
+	(t_pftab){NULL, &ft_pfarg_n, &ft_pflen_n, &ft_pfconv_n},
+	(t_pftab){NULL, &ft_pfarg_spc, &ft_pflen_str, &ft_pfconv_str}
 };
 
 /*

@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pflen_float.c                                   :+:      :+:    :+:   */
+/*   ft_islower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/04 17:13:44 by qloubier         ###   ########.fr       */
+/*   Created: 2015/11/30 17:53:11 by qloubier          #+#    #+#             */
+/*   Updated: 2016/10/04 17:22:42 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_format.h"
+#include "libft_string.h"
 
-int		ft_pflen_float(t_pfc *arg)
+int		ft_islower(int c)
 {
-	size_t	len;
-
-	len = ft_floatlen(*((double *)(&(arg->arg))), arg->precision);
-	return ((int)len);
+	if (c >= 'a' && c <= 'z')
+		return (1);
+	return (0);
 }
