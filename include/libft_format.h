@@ -6,7 +6,7 @@
 /*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/02 05:47:33 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/04 13:05:43 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,16 @@ enum					e_pf_flag
 enum					e_pf_type
 {
 	PFT_INT = 1,
-	PFT_OCT = 1 << 1,
-	PFT_UINT = 1 << 2,
-	PFT_HEXA = 1 << 3,
-	PFT_CHAR = 1 << 4,
-	PFT_PTR = 1 << 5,
-	PFT_SPECHAR = 1 << 6,
-	PFT_STR = 1 << 7,
-	PFT_WSTR = 1 << 8,
-	PFT_FLOAT = 1 << 9,
-	PFT_N = 1 << 9
+	PFT_OCT = 8,
+	PFT_UINT = 10,
+	PFT_HEXA = 16,
+	PFT_CHAR = 2,
+	PFT_PTR = 3,
+	PFT_SPECHAR = 4,
+	PFT_STR = 5,
+	PFT_WSTR = 6,
+	PFT_FLOAT = 7,
+	PFT_N = 9
 };
 
 typedef struct			s_printf_convert
@@ -107,7 +107,10 @@ size_t					ft_snbrlen(short nbr);
 size_t					ft_nbrlen(int nbr);
 size_t					ft_lnbrlen(long nbr);
 size_t					ft_jnbrlen(intmax_t nbr);
+size_t					ft_jdigitlen(intmax_t i);
 size_t					ft_nbrlen_base(register long i, char base);
+size_t					ft_ujnbrlen(uintmax_t nbr, unsigned int base);
+size_t					ft_ujdigitlen(uintmax_t i, unsigned int base);
 size_t					ft_floatlen(double i, t_ui pre);
 
 char					*ft_itoa(int n);
