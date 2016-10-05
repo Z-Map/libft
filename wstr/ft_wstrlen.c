@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_loop.c                                   :+:      :+:    :+:   */
+/*   ft_wstrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/29 22:13:30 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/05 01:04:02 by qloubier         ###   ########.fr       */
+/*   Created: 2015/11/25 01:09:51 by qloubier          #+#    #+#             */
+/*   Updated: 2016/10/05 03:41:16 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_format.h"
+#include "libft_wstring.h"
 
-int					ft_printf_loop(const char *fstr, t_pfb *pfb)
+size_t	ft_wstrlen(const wchar_t *s)
 {
-	const char		*c;
-	size_t			len;
+	size_t len;
 
-	while ((c = ft_forf(fstr, "%", &len)))
-	{
-		ft_printf_bwrite(pfb, fstr, len);
-		fstr = ft_printf_parse(c + 1, pfb);
-	}
-	if (len)
-		ft_printf_bwrite(pfb, fstr, len);
-	ft_printf_bflush(pfb);
-	return (0);
+	len = 0;
+	while (*(s++))
+		len++;
+	return (len);
 }

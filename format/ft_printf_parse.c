@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 05:19:52 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/04 17:25:15 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/05 01:12:34 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ const char				*ft_printf_parse(const char *fstr, t_pfb *pfb)
 			c = g_pf_flag_tab[i].flag(c, pfb);
 		else if (ft_isdigit((int)(*c)))
 			c = ft_pfflag_width(c, pfb);
+		else
+			c++;
 	}
 	if (*c && i != -1)
 	{

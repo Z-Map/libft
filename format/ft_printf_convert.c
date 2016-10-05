@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_convert.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 05:17:31 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/04 21:57:37 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/05 00:27:11 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int				ft_printf_convert(int tid, t_pfc *arg, t_pfb *pfb)
 	i = (int)(arg->minwidth) - len;
 	if (!(arg->flag & LEFT_ALIGN) && (i > 0))
 		ft_printf_bwritec(pfb, ' ', (size_t)i);
-	g_pf_flag_tab[tid].convert(pfb, (size_t)len);
+	g_pf_flag_tab[tid].convert(pfb, arg, (size_t)len);
 	if ((arg->flag & LEFT_ALIGN) && (i > 0))
 		ft_printf_bwritec(pfb, ' ', (size_t)i);
 	return (0);

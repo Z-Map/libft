@@ -16,7 +16,7 @@
 #------------------------------------------------------------------------------#
 
 # Project var
-NAME=libft.a
+NAME=libftprintf.a
 HEADERS=include
 SOURCES=mem lst str format parse io
 MKLIBS= #libft/libft.a libdraw/libdraw.a minilibx/libmlx.a
@@ -25,6 +25,7 @@ LIBS= #m bsd
 LIBSDIRS=
 
 # Environnement var
+SEARCH_CURRENTDIR=off
 LIBSDIR=libs/
 OPSYS=$(shell uname -s)
 FANCY_OUT=on
@@ -110,8 +111,13 @@ OBBUWC=$(shell echo "$(OBBUDIR)/" | wc -c)
 OBBUDIRS=$(BUILDIR) $(OBBUDIR) $(shell for dir in $(SOURCES); do printf "$(OBBUDIR)/$$dir "; done)
 ALLINC=$(HEADERS) $(LIBSHEADERS)
 INCFLAGS=$(shell echo "-I$(ALLINC)" | sed "s/ \(.\)/ -I\1/g")
-ALLHEADER=$(shell find *.h -type f 2> /dev/null; for dir in $(HEADERS); do find $$dir/*.h -type f 2> /dev/null; done)
-ALLSRC=$(shell find *.c -type f 2> /dev/null; for dir in $(SOURCES); do find $$dir/*.c -type f 2> /dev/null; done)
+ifeq ($(SEARCH_CURRENTDIR),on)
+	ALLHEADER=$(shell find *.h -type f 2> /dev/null; for dir in $(HEADERS); do find $$dir/*.h -type f 2> /dev/null; done)
+	ALLSRC=$(shell find *.c -type f 2> /dev/null; for dir in $(SOURCES); do find $$dir/*.c -type f 2> /dev/null; done)
+else
+	ALLHEADER=$(shell for dir in $(HEADERS); do find $$dir/*.h -type f 2> /dev/null; done)
+	ALLSRC=$(shell for dir in $(SOURCES); do find $$dir/*.c -type f 2> /dev/null; done)
+endif
 ALLOBJ=$(shell for oname in $(ALLSRC:.c=.o); do printf "$(OBBUDIR)/$$oname "; done)
 ALLLIBSDIRS=$(shell for lib in $(MKLIBS); do dirname "$(LIBSDIR)$$lib"; done) $(LIBSDIRS)
 ALLLIBS=$(shell for lib in $(MKLIBS); do basename "$$lib" | head -c-3 | tail -c+4; printf " "; done)$(LIBS)

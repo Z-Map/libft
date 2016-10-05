@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pfconv_nbr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 19:54:57 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/05 00:21:54 by map              ###   ########.fr       */
+/*   Updated: 2016/10/05 00:35:13 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,24 @@ void			ft_pfconv_nbr(t_pfb *b, t_pfc *arg, size_t len)
 	int			i;
 	uintmax_t	a;
 
-	if ((intmax_t)(b->arg.arg) > 0)
+	if ((intmax_t)(arg->arg) < 0)
 	{
 		ft_printf_bwritec(b, '-', 1);
-		b->arg.arg = (uintmax_t)(-(intmax_t)(b->arg.arg));
+		arg->arg = (uintmax_t)(-(intmax_t)(arg->arg));
 	}
-	else if (b->arg.flag & FORCE_SIGN)
+	else if (arg->flag & FORCE_SIGN)
 		ft_printf_bwritec(b, '+', 1);
-	else if (b->arg.flag & SPACE)
+	else if (arg->flag & SPACE)
 		ft_printf_bwritec(b, ' ', 1);
-	i = (int)len - (int)(b->arg.b_len);
+	i = (int)len - (int)(arg->b_len);
 	if (i > 0)
 		ft_printf_bwritec(b, '0', (size_t)i);
-	len = b->arg.b_len;
-	a = b->arg.arg;
+	len = arg->b_len;
+	a = arg->arg;
 	while (len)
 	{
 		buf[--len] = '0' + (char)(a % 10);
 		a /= 10;
 	}
-	ft_printf_bwrite(b, buf, (size_t)(b->arg.b_len));
+	ft_printf_bwrite(b, buf, (size_t)(arg->b_len));
 }

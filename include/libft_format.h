@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_format.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/04 22:47:33 by map              ###   ########.fr       */
+/*   Updated: 2016/10/05 03:41:50 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 # include <string.h>
 # include <stdarg.h>
 # include <inttypes.h>
+# include <wchar.h>
 # include <unistd.h>
 # include "ft.h"
 # include "libft_list.h"
 # include "libft_string.h"
+# include "libft_wstring.h"
 # include "libft_parse.h"
 
 # ifndef FT_PF_BUFSIZE
@@ -28,7 +30,7 @@
 # define FT_MX_FLOATLEN 310
 
 # define PF_TYPE_STR "dDioOcCsSfFpxXuUn%"
-# define PF_FLAG_STR "#+0- .lhjz*"
+# define PF_FLAG_STR "#+0- .hljz*"
 
 /*
 **	Declare public format function
@@ -169,17 +171,17 @@ void					**ft_gettypetab(int i);
 const static char		*g_pf_nullstr = "(null)";
 const static t_pftab	g_pf_flag_tab[] = {
 	(t_pftab){&ft_pfflag_alt, &ft_pfarg_nbr, &ft_pflen_nbr, &ft_pfconv_nbr},
+	(t_pftab){&ft_pfflag_more, &ft_pfarg_nbr, &ft_pflen_nbr, &ft_pfconv_nbr},
 	(t_pftab){&ft_pfflag_zero, &ft_pfarg_nbr, &ft_pflen_nbr, &ft_pfconv_nbr},
-	(t_pftab){&ft_pfflag_dot, &ft_pfarg_nbr, &ft_pflen_nbr, &ft_pfconv_nbr},
-	(t_pftab){&ft_pfflag_l, &ft_pfarg_oct, &ft_pflen_unbr, &ft_pfconv_unbr},
-	(t_pftab){&ft_pfflag_h, &ft_pfarg_oct, &ft_pflen_unbr, &ft_pfconv_unbr},
-	(t_pftab){&ft_pfflag_j, &ft_pfarg_char, &ft_pflen_char, &ft_pfconv_char},
-	(t_pftab){&ft_pfflag_z, &ft_pfarg_char, &ft_pflen_char, &ft_pfconv_char},
-	(t_pftab){&ft_pfflag_width, &ft_pfarg_str, &ft_pflen_str, &ft_pfconv_str},
-	(t_pftab){&ft_pfflag_more, &ft_pfarg_str, &ft_pflen_str, &ft_pfconv_str},
-	(t_pftab){&ft_pfflag_less, &ft_pfarg_float, &ft_pflen_float,
+	(t_pftab){&ft_pfflag_less, &ft_pfarg_oct, &ft_pflen_unbr, &ft_pfconv_unbr},
+	(t_pftab){&ft_pfflag_space, &ft_pfarg_oct, &ft_pflen_unbr, &ft_pfconv_unbr},
+	(t_pftab){&ft_pfflag_dot, &ft_pfarg_char, &ft_pflen_char, &ft_pfconv_char},
+	(t_pftab){&ft_pfflag_h, &ft_pfarg_char, &ft_pflen_char, &ft_pfconv_char},
+	(t_pftab){&ft_pfflag_l, &ft_pfarg_str, &ft_pflen_str, &ft_pfconv_str},
+	(t_pftab){&ft_pfflag_j, &ft_pfarg_str, &ft_pflen_str, &ft_pfconv_str},
+	(t_pftab){&ft_pfflag_z, &ft_pfarg_float, &ft_pflen_float,
 		&ft_pfconv_float},
-	(t_pftab){&ft_pfflag_space, &ft_pfarg_float, &ft_pflen_float,
+	(t_pftab){&ft_pfflag_width, &ft_pfarg_float, &ft_pflen_float,
 		&ft_pfconv_float},
 	(t_pftab){NULL, &ft_pfarg_ptr, &ft_pflen_unbr, &ft_pfconv_unbr},
 	(t_pftab){NULL, &ft_pfarg_hexa, &ft_pflen_unbr, &ft_pfconv_unbr},
@@ -187,7 +189,7 @@ const static t_pftab	g_pf_flag_tab[] = {
 	(t_pftab){NULL, &ft_pfarg_unbr, &ft_pflen_unbr, &ft_pfconv_unbr},
 	(t_pftab){NULL, &ft_pfarg_unbr, &ft_pflen_unbr, &ft_pfconv_unbr},
 	(t_pftab){NULL, &ft_pfarg_n, &ft_pflen_n, &ft_pfconv_n},
-	(t_pftab){NULL, &ft_pfarg_spc, &ft_pflen_str, &ft_pfconv_str}
+	(t_pftab){NULL, &ft_pfarg_spc, &ft_pflen_char, &ft_pfconv_char}
 };
 
 /*
