@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 05:19:52 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/05 01:12:34 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/05 21:14:42 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void				init_pfarg(t_pfc *arg)
 	arg->arg = 0;
 	arg->b_len = 0;
 	arg->minwidth = 0;
-	arg->precision = 6;
+	arg->precision = 0;
 	arg->flag = 0;
 	arg->type = 0;
 }
@@ -36,15 +36,16 @@ const char				*ft_printf_parse(const char *fstr, t_pfb *pfb)
 		else if (ft_isdigit((int)(*c)))
 			c = ft_pfflag_width(c, pfb);
 		else
-			c++;
+			break ;
 	}
-	if (*c && i != -1)
-	{
-		if (ft_isupper((int)(*c)))
-			pfb->arg.flag |= CAPITAL;
-		g_pf_flag_tab[i].getarg(pfb->ap, &(pfb->arg));
-		ft_printf_convert(i, &(pfb->arg), pfb);
-		return (c + 1);
-	}
-	return (c);
+	if (!*c)
+		return (c);
+	if (ft_isupper((int)(*c)))
+		pfb->arg.flag |= CAPITAL;
+	if (i == -1)
+		i = ft_pfarg_spc(-(int)(*c), pfb->ap, &(pfb->arg));
+	else
+		i = g_pf_flag_tab[i].getarg(i, pfb->ap, &(pfb->arg));
+	ft_printf_convert(i, &(pfb->arg), pfb);
+	return (c + 1);
 }

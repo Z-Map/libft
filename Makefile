@@ -18,7 +18,7 @@
 # Project var
 NAME=libftprintf.a
 HEADERS=include
-SOURCES=mem lst str format parse io
+SOURCES=mem lst str format parse io wstr
 MKLIBS= #libft/libft.a libdraw/libdraw.a minilibx/libmlx.a
 LIBSHEADERS=
 LIBS= #m bsd
@@ -28,7 +28,7 @@ LIBSDIRS=
 SEARCH_CURRENTDIR=off
 LIBSDIR=libs/
 OPSYS=$(shell uname -s)
-FANCY_OUT=on
+FANCY_OUT=off
 CHRONOS_NAZI_MODE=off
 ifndef config
 	config=release

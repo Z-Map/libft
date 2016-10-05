@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 23:52:14 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/04 18:27:42 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/05 20:28:22 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int				ft_printf_bwritec(t_pfb *b, char c, size_t len)
 
 	if (!len)
 		return (0);
-	i = 0;
+	i = (int)len;
 	while (len)
 	{
-		if (b->blen >= FT_PF_BUFSIZE && i++)
+		if (b->blen >= FT_PF_BUFSIZE)
 			ft_printf_bflush(b);
 		*(b->c) = c;
 		++(b->c);

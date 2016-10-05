@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pfconv_unbr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 19:54:57 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/05 01:39:35 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/05 21:21:01 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,18 @@ void			ft_pfconv_unbr(t_pfb *b, t_pfc *arg, size_t len)
 	int			i;
 	uintmax_t	a;
 
-	if (((arg->flag & ALTERNTE) && (arg->type == PFT_HEXA)))
-		ft_printf_bwrite(b, "0x", 2);
-	i = (int)len - (int)(b->arg.b_len);
+	if ((arg->type == PFT_HEXA) && (arg->flag & ALTERNTE)
+		&& (arg->arg || arg->flag & PFF_PTR))
+		len -= ft_printf_bwrite(b, ((arg->flag & CAPITAL) ? "0X" : "0x"), 2);
+	i = (int)len - (int)(arg->b_len);
 	if (i > 0)
 		ft_printf_bwritec(b, '0', (size_t)i);
-	len = b->arg.b_len;
-	a = b->arg.arg;
+	len = arg->b_len;
+	a = arg->arg;
 	while (len)
 	{
 		buf[--len] = cmap[(int)(a % arg->type)];
 		a /= arg->type;
 	}
-	ft_printf_bwrite(b, buf, (size_t)(b->arg.b_len));
+	ft_printf_bwrite(b, buf, (size_t)(arg->b_len));
 }

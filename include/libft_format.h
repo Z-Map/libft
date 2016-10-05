@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_format.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/05 03:41:50 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/05 22:05:07 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "libft_string.h"
 # include "libft_wstring.h"
 # include "libft_parse.h"
+# include "libft_io.h"
 
 # ifndef FT_PF_BUFSIZE
 #  define FT_PF_BUFSIZE 4096
@@ -31,6 +32,9 @@
 
 # define PF_TYPE_STR "dDioOcCsSfFpxXuUn%"
 # define PF_FLAG_STR "#+0- .hljz*"
+
+# define PF_UCHAR 0xFF
+# define PF_USHORT 0xFFFF
 
 /*
 **	Declare public format function
@@ -52,6 +56,7 @@ enum					e_pf_flag
 	CAPITAL = 1 << 16,
 	PREC_SET = 1 << 17,
 	MNW_SET = 1 << 18,
+	PFF_PTR = 1 << 19,
 	END = (int)(1u << 31)
 };
 
@@ -94,7 +99,7 @@ typedef struct			s_printf_buffer
 typedef struct			s_printf_cftab
 {
 	const char			*(*flag)(const char *, t_pfb *);
-	void				(*getarg)(va_list, t_pfc*);
+	int					(*getarg)(int, va_list, t_pfc*);
 	int					(*getlen)(t_pfc*);
 	void				(*convert)(t_pfb*, t_pfc*, size_t);
 }						t_pftab;
@@ -133,17 +138,17 @@ const char				*ft_pfflag_more(const char *c, t_pfb *b);
 const char				*ft_pfflag_less(const char *c, t_pfb *b);
 const char				*ft_pfflag_space(const char *c, t_pfb *b);
 
-void					ft_pfarg_nbr(va_list ap, t_pfc *arg);
-void					ft_pfarg_unbr(va_list ap, t_pfc *arg);
-void					ft_pfarg_oct(va_list ap, t_pfc *arg);
-void					ft_pfarg_hexa(va_list ap, t_pfc *arg);
-void					ft_pfarg_char(va_list ap, t_pfc *arg);
-void					ft_pfarg_str(va_list ap, t_pfc *arg);
-void					ft_pfarg_wstr(va_list ap, t_pfc *arg);
-void					ft_pfarg_float(va_list ap, t_pfc *arg);
-void					ft_pfarg_ptr(va_list ap, t_pfc *arg);
-void					ft_pfarg_spc(va_list ap, t_pfc *arg);
-void					ft_pfarg_n(va_list ap, t_pfc *arg);
+int						ft_pfarg_nbr(int cc, va_list ap, t_pfc *arg);
+int						ft_pfarg_unbr(int cc, va_list ap, t_pfc *arg);
+int						ft_pfarg_oct(int cc, va_list ap, t_pfc *arg);
+int						ft_pfarg_hexa(int cc, va_list ap, t_pfc *arg);
+int						ft_pfarg_char(int cc, va_list ap, t_pfc *arg);
+int						ft_pfarg_str(int cc, va_list ap, t_pfc *arg);
+int						ft_pfarg_wstr(int cc, va_list ap, t_pfc *arg);
+int						ft_pfarg_float(int cc, va_list ap, t_pfc *arg);
+int						ft_pfarg_ptr(int cc, va_list ap, t_pfc *arg);
+int						ft_pfarg_spc(int cc, va_list ap, t_pfc *arg);
+int						ft_pfarg_n(int cc, va_list ap, t_pfc *arg);
 
 int						ft_pflen_nbr(t_pfc *arg);
 int						ft_pflen_unbr(t_pfc *arg);
