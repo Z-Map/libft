@@ -6,13 +6,13 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:34:07 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/06 01:42:11 by map              ###   ########.fr       */
+/*   Updated: 2016/10/06 23:57:14 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBft_wcsING_H
-# define LIBft_wcsING_H
-#include <wchar.h>
+#ifndef LIBFT_WSTRING_H
+# define LIBFT_WSTRING_H
+# include <wchar.h>
 # include "ft.h"
 # include "libft_memory.h"
 

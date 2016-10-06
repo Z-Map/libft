@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 18:39:30 by qloubier          #+#    #+#             */
-/*   Updated: 2016/04/27 05:26:45 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/06 23:58:00 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void		ft_blststore(t_blst *blst, void *data)
 {
-
 	if (!blst || !data)
 		return ;
 	while (blst->next && (blst->len == blst->bsize))

@@ -3,23 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_preform_count.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:38:40 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/22 07:50:11 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/06 23:59:30 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_format.h"
 
-// static void		process_arg(const char **fstr, va_list ap, t_pfc *arg)
-// {
-//
-// }
-
 static t_list	*parse_arg(const char **fstr, va_list ap, int blen)
 {
-	// t_list		*ret;
 	t_pfc		arg;
 
 	arg = (t_pfc){ 0, 6, 0, blen, 0, 0};
@@ -29,8 +23,6 @@ static t_list	*parse_arg(const char **fstr, va_list ap, int blen)
 		while ((blen = ft_stridx(PF_FLAG_STR, (int)(*((*fstr)++)))) >= 0)
 			arg.flag |= 1 << blen;
 		arg.arg = (uintmax_t)ap;
-		// if (ft_isdigit((int)(**fstr)))
-		// 	;
 		*fstr += 1;
 	}
 	return (ft_lstnew(&arg, sizeof(t_pfc)));

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 19:15:45 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/09 19:24:49 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/06 23:58:35 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 void		ft_lstcfree(void *vec, size_t s)
 {
-	if(s)
+	if (s)
 		free(vec);
 }
