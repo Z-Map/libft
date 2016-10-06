@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_unicode.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: map <marvin@student.42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/06 01:35:21 by map               #+#    #+#             */
-/*   Updated: 2016/10/06 02:33:06 by map              ###   ########.fr       */
+/*   Updated: 2016/10/06 04:21:12 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 int			ft_utf8wcsize(const wchar_t c);
 int			ft_utf8csize(const wchar_t c);
 size_t		ft_utf8wcslen(const wchar_t *s);
+size_t		ft_utf8wcsalign(const wchar_t *s, size_t mxlen);
 size_t		ft_utf8strlen(const wchar_t *s);
 
 int			ft_utf8fromwc(const wchar_t c, t_ui *b);

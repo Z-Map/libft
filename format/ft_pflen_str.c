@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pflen_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/06 02:34:44 by map              ###   ########.fr       */
+/*   Updated: 2016/10/06 04:20:30 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int		ft_pflen_str(t_pfc *arg)
 	else
 		len = 6;
 	if ((arg->flag & PREC_SET) && (len > arg->precision))
-		len = arg->precision;
+		len = (arg->type == PFT_WSTR) ? ft_utf8wcsalign(
+			(wchar_t *)(arg->arg), arg->precision) : arg->precision;
 	arg->b_len = (int)len;
 	if ((arg->flag & ZERO_FILL) && !(arg->flag & LEFT_ALIGN)
 		&& (len < arg->minwidth))

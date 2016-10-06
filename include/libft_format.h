@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_format.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/06 03:05:42 by map              ###   ########.fr       */
+/*   Updated: 2016/10/06 04:05:13 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ const static t_pftab	g_pf_flag_tab[] = {
 	(t_pftab){&ft_pfflag_dot, &ft_pfarg_char, &ft_pflen_char, &ft_pfconv_char},
 	(t_pftab){&ft_pfflag_h, &ft_pfarg_char, &ft_pflen_char, &ft_pfconv_char},
 	(t_pftab){&ft_pfflag_l, &ft_pfarg_str, &ft_pflen_str, &ft_pfconv_str},
-	(t_pftab){&ft_pfflag_j, &ft_pfarg_str, &ft_pflen_str, &ft_pfconv_str},
+	(t_pftab){&ft_pfflag_j, &ft_pfarg_wstr, &ft_pflen_str, &ft_pfconv_str},
 	(t_pftab){&ft_pfflag_z, &ft_pfarg_float, &ft_pflen_float,
 		&ft_pfconv_float},
 	(t_pftab){&ft_pfflag_width, &ft_pfarg_float, &ft_pflen_float,

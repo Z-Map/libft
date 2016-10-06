@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pfarg_wstr.c                                    :+:      :+:    :+:   */
+/*   ft_utf8wcsalign.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: map <marvin@student.42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/18 19:56:26 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/06 04:04:39 by qloubier         ###   ########.fr       */
+/*   Created: 2016/10/06 01:31:57 by map               #+#    #+#             */
+/*   Updated: 2016/10/06 04:17:29 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_format.h"
+#include "libft_unicode.h"
 
-int			ft_pfarg_wstr(int cc, va_list ap, t_pfc *arg)
+size_t		ft_utf8wcsalign(const wchar_t *s, size_t mxlen)
 {
-	arg->type = PFT_WSTR;
-	arg->arg = (uintmax_t)(va_arg(ap, wchar_t *));
-	return (cc);
+	size_t	len;
+	size_t	i;
+
+	len = 0;
+	while (*s && (len < mxlen))
+	{
+		i = len + ft_utf8wcsize(*(s++));
+		if (i > mxlen)
+			break ;
+		len = i;
+	}
+	return (len);
 }

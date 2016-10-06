@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   libft_memory.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:24:59 by qloubier          #+#    #+#             */
-/*   Updated: 2016/09/29 23:28:31 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/06 03:56:41 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_MEMORY_H
 # define LIBFT_MEMORY_H
 # include <string.h>
+# include "ft.h"
 
 void				ft_bzero (void *s, size_t n);
 void				*ft_memset (void *b, int c, size_t len);
@@ -24,6 +25,7 @@ int					ft_memcmp (const void *s1, const void *s2, size_t n);
 void				*ft_memdup (const void *s1, size_t n);
 void				*ft_memalloc (size_t size);
 void				ft_memdel (void **ap);
+t_ui				ft_memalign(t_ui i);
 
 /*
 ** TO-DO : Buffer tools
