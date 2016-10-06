@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bflush.c                                 :+:      :+:    :+:   */
+/*   ft_utf8wcslen.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/29 23:29:51 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/06 02:50:22 by map              ###   ########.fr       */
+/*   Created: 2016/10/06 01:31:57 by map               #+#    #+#             */
+/*   Updated: 2016/10/06 01:50:28 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "libft_format.h"
+#include "libft_unicode.h"
 
-int				ft_printf_bflush(t_pfb *b)
+size_t		ft_utf8wcslen(const wchar_t *s)
 {
-	ssize_t		i;
+	size_t len;
 
-	if (!(b->blen))
-		return (0);
-	i = write(b->fd, b->buffer, b->blen);
-	if (i < 0)
-		return (i);
-	b->len += i;
-	b->blen = 0;
-	b->c = b->buffer;
-	return (i);
+	len = 0;
+	while (*s)
+		len += ft_utf8wcsize(*(s++));
+	return (len);
 }

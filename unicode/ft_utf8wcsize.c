@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bflush.c                                 :+:      :+:    :+:   */
+/*   ft_utf8wcsize.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/29 23:29:51 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/06 02:50:22 by map              ###   ########.fr       */
+/*   Created: 2016/10/06 01:34:50 by map               #+#    #+#             */
+/*   Updated: 2016/10/06 01:47:21 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "libft_format.h"
+#include "libft_unicode.h"
 
-int				ft_printf_bflush(t_pfb *b)
+int				ft_utf8wcsize(const wchar_t c)
 {
-	ssize_t		i;
-
-	if (!(b->blen))
+	if (c < 0)
 		return (0);
-	i = write(b->fd, b->buffer, b->blen);
-	if (i < 0)
-		return (i);
-	b->len += i;
-	b->blen = 0;
-	b->c = b->buffer;
-	return (i);
+	else if (c > 0xFFFF)
+		return (4);
+	else if (c > 0x7FF)
+		return (3);
+	else if (c > 0x7F)
+		return (2);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 23:52:14 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/05 20:28:30 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/06 02:40:09 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int				ft_printf_bwrite(t_pfb *b, const char *c, size_t len)
 		if ((ft_printf_bflush(b) < 0) || ((i = write(b->fd, c, len)) < 0))
 			return (-1);
 		b->len += i;
-		return (2);
+		return ((int)len);
 	}
 	i = (int)len;
 	while (len)

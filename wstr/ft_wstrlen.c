@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_wstrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 01:09:51 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/05 03:41:16 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/06 01:20:35 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_wstring.h"
 
-size_t	ft_wstrlen(const wchar_t *s)
+size_t	ft_wcslen(const wchar_t *s)
 {
 	size_t len;
 

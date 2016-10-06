@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/05 22:05:07 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/06 03:05:42 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "libft_list.h"
 # include "libft_string.h"
 # include "libft_wstring.h"
+# include "libft_unicode.h"
 # include "libft_parse.h"
 # include "libft_io.h"
 
@@ -105,6 +106,8 @@ typedef struct			s_printf_cftab
 }						t_pftab;
 
 int						ft_printf_bwrite(t_pfb *b, const char *c, size_t len);
+int						ft_printf_bwritew(t_pfb *b, const wchar_t *c,
+							size_t len);
 int						ft_printf_bwritec(t_pfb *b, char c, size_t len);
 int						ft_printf_bflush(t_pfb *b);
 

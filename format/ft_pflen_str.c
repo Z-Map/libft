@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/05 20:53:24 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/06 02:34:44 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_pflen_str(t_pfc *arg)
 	if (arg->arg)
 	{
 		if (arg->type == PFT_WSTR)
-			len = ft_wstrlen((wchar_t *)(arg->arg)) * sizeof(wchar_t);
+			len = ft_utf8wcslen((wchar_t *)(arg->arg));
 		else
 			len = ft_strlen((char *)(arg->arg));
 	}
