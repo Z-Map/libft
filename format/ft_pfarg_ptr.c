@@ -15,7 +15,7 @@
 int			ft_pfarg_ptr(int cc, va_list ap, t_pfc *arg)
 {
 	arg->type = PFT_HEXA;
-	arg->flag |= LONG | ALTERNTE | PFF_PTR;
+	arg->flag |= PFF_LONG | PFF_ALTERNTE | PFF_PTR;
 	arg->arg = (uintmax_t)va_arg(ap, void *);
 	return (cc);
 }

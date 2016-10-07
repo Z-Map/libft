@@ -20,12 +20,12 @@ const char			*ft_pfflag_width(const char *c, t_pfb *b)
 	{
 		i = va_arg(b->ap, int);
 		if (i < 0 && (i = -i))
-			b->arg.flag |= LEFT_ALIGN;
+			b->arg.flag |= PFF_LEFT_ALIGN;
 		b->arg.minwidth = (t_ui)i;
 		++c;
 	}
 	else
 		c = ft_parse_digit(c, &(b->arg.minwidth));
-	b->arg.flag |= MNW_SET;
+	b->arg.flag |= PFF_MNW_SET;
 	return (c);
 }

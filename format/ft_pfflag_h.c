@@ -16,10 +16,10 @@ const char			*ft_pfflag_h(const char *c, t_pfb *b)
 {
 	if (c[1] == 'h')
 	{
-		b->arg.flag |= SHORT_SHORT;
+		b->arg.flag |= PFF_SHORT_SHORT;
 		++c;
 	}
 	else
-		b->arg.flag |= SHORT;
+		b->arg.flag |= PFF_SHORT;
 	return (c + 1);
 }

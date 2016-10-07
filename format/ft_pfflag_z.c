@@ -14,6 +14,6 @@
 
 const char			*ft_pfflag_z(const char *c, t_pfb *b)
 {
-	b->arg.flag |= SIZE_T;
+	b->arg.flag |= PFF_SIZE_T;
 	return (c + 1);
 }

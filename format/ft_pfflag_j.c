@@ -14,6 +14,6 @@
 
 const char			*ft_pfflag_j(const char *c, t_pfb *b)
 {
-	b->arg.flag |= INTMAX;
+	b->arg.flag |= PFF_INTMAX;
 	return (c + 1);
 }

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/06 23:55:57 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/07 18:48:13 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define PF_FLAG_STR "#+0- .hljz*"
 
 # define PF_UCHAR 0xFF
-# define PF_USHORT 0xFFFF
+# define PF_UPFF_SHORT 0xFFFF
 
 /*
 **	Declare public format function
@@ -42,22 +42,23 @@
 
 enum					e_pf_flag
 {
-	ALTERNTE = 1,
-	FORCE_SIGN = 1 << 1,
-	ZERO_FILL = 1 << 2,
-	LEFT_ALIGN = 1 << 3,
-	SPACE = 1 << 4,
-	SHORT_SHORT = 1 << 10,
-	SHORT = 1 << 11,
-	LONG = 1 << 12,
-	LONG_LONG = 1 << 13,
-	INTMAX = 1 << 14,
-	SIZE_T = 1 << 15,
-	CAPITAL = 1 << 16,
-	PREC_SET = 1 << 17,
-	MNW_SET = 1 << 18,
+	PFF_ALTERNTE = 1,
+	PFF_FORCE_SIGN = 1 << 1,
+	PFF_ZERO_FILL = 1 << 2,
+	PFF_LEFT_ALIGN = 1 << 3,
+	PFF_SPACE = 1 << 4,
+	PFF_SHORT_SHORT = 1 << 10,
+	PFF_SHORT = 1 << 11,
+	PFF_LONG = 1 << 12,
+	PFF_LONG_LONG = 1 << 13,
+	PFF_INTMAX = 1 << 14,
+	PFF_SIZE_T = 1 << 15,
+	PFF_CAPITAL = 1 << 16,
+	PFF_PREC_SET = 1 << 17,
+	PFF_MNW_SET = 1 << 18,
 	PFF_PTR = 1 << 19,
-	END = (int)(1u << 31)
+	PFF_NEG = 1 << 19,
+	PFF_END = (int)(1u << 31)
 };
 
 enum					e_pf_type
@@ -82,18 +83,21 @@ typedef struct			s_printf_convert
 	t_ui				precision;
 	t_ui				minwidth;
 	int					b_len;
+	int					padding;
 	uintmax_t			arg;
+	char				*tmpb;
 }						t_pfc;
 
 typedef struct			s_printf_buffer
 {
-	ssize_t				len;
 	int					blen;
 	int					fd;
-	char				buffer[FT_PF_BUFSIZE + 1];
-	char				*c;
+	ssize_t				len;
 	va_list				ap;
 	t_pfc				arg;
+	char				*c;
+	char				buffer[FT_PF_BUFSIZE + 1];
+	char				tmp[FT_MX_FLOATLEN];
 }						t_pfb;
 
 typedef struct			s_printf_cftab
@@ -126,7 +130,10 @@ size_t					ft_ujdigitlen(uintmax_t i, unsigned int base);
 size_t					ft_floatlen(double i, t_ui pre);
 
 char					*ft_itoa(int n);
-char					*ft_ujtobuf(char *b, uintmax_t n);
+char					*ft_ujtobuf(uintmax_t n, char *b);
+char					*ft_ujfillbuf(uintmax_t n, char *b, int *len);
+char					*ft_ujfillbufbase(uintmax_t n, t_ui base, char *b,
+							int *len);
 
 const char				*ft_pfflag_alt(const char *c, t_pfb *b);
 const char				*ft_pfflag_zero(const char *c, t_pfb *b);

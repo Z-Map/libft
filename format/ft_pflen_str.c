@@ -26,11 +26,11 @@ int		ft_pflen_str(t_pfc *arg)
 	}
 	else
 		len = 6;
-	if ((arg->flag & PREC_SET) && (len > arg->precision))
+	if ((arg->flag & PFF_PREC_SET) && (len > arg->precision))
 		len = (arg->type == PFT_WSTR) ? ft_utf8wcsalign(
 			(wchar_t *)(arg->arg), arg->precision) : arg->precision;
 	arg->b_len = (int)len;
-	if ((arg->flag & ZERO_FILL) && !(arg->flag & LEFT_ALIGN)
+	if ((arg->flag & PFF_ZERO_FILL) && !(arg->flag & PFF_LEFT_ALIGN)
 		&& (len < arg->minwidth))
 		len = arg->minwidth;
 	return (len);

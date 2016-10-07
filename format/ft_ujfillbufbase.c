@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pfarg_char.c                                    :+:      :+:    :+:   */
+/*   ft_ujfillbufbase.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/18 19:56:26 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/06 04:41:00 by qloubier         ###   ########.fr       */
+/*   Created: 2016/10/04 21:38:32 by qloubier          #+#    #+#             */
+/*   Updated: 2016/10/07 18:47:43 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_format.h"
 
-int			ft_pfarg_char(int cc, va_list ap, t_pfc *arg)
+char			*ft_ujfillbufbase(uintmax_t n, t_ui base, char *b, int *len)
 {
-	arg->type = PFT_CHAR;
-	if (arg->flag & (PFF_LONG | PFF_LONG_LONG | PFF_CAPITAL))
-		arg->arg = (uintmax_t)((wchar_t)(va_arg(ap, int)));
-	else
-		arg->arg = (uintmax_t)((char)(va_arg(ap, int)));
-	return (cc);
+	const int	ln = *len;
+	int			l;
+
+	b += ln - 1;
+	*b = '0' + (char)(n % base);
+	l = 0;
+	while ((n /= base) && (++l < ln))
+		*(--b) = '0' + (char)(n % base);
+	*len = l;
+	return (b);
 }

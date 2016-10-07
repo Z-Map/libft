@@ -14,6 +14,6 @@
 
 const char			*ft_pfflag_zero(const char *c, t_pfb *b)
 {
-	b->arg.flag |= ZERO_FILL;
+	b->arg.flag |= PFF_ZERO_FILL;
 	return (c + 1);
 }

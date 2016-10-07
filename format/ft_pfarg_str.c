@@ -14,7 +14,7 @@
 
 int			ft_pfarg_str(int cc, va_list ap, t_pfc *arg)
 {
-	if (arg->flag & (LONG | LONG_LONG | CAPITAL))
+	if (arg->flag & (PFF_LONG | PFF_LONG_LONG | PFF_CAPITAL))
 		arg->type = PFT_WSTR;
 	else
 		arg->type = PFT_STR;

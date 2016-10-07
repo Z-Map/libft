@@ -6,26 +6,31 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/05 16:54:45 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/07 18:42:49 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_format.h"
 
-int			ft_pflen_nbr(t_pfc *arg)
+int					ft_pflen_nbr(t_pfc *arg)
 {
-	size_t	len;
+	const intmax_t	n = (intmax_t)(arg->arg);
+	const int		neg = (n < 0) ? 1 : 0;
+	int				len;
 
-	len = ft_jdigitlen((intmax_t)(arg->arg));
-	if ((arg->flag & PREC_SET) && (!arg->precision) && (!arg->arg))
+	len = FT_MX_FLOATLEN;
+	if ((arg->flag & PFF_PREC_SET) && (!arg->precision) && (!arg->arg))
 		len = 0;
-	arg->b_len = (int)len;
-	if ((arg->flag & PREC_SET) && (len < arg->precision))
+	else
+		arg->tmpb = ft_ujfillbuf((uintmax_t)((neg) ? -n : n), arg->tmpb, &len);
+	arg->b_len = len;
+	if ((arg->flag & PFF_PREC_SET) && (len < arg->precision))
 		len = arg->precision;
-	if ((arg->flag & (FORCE_SIGN | SPACE)) || (arg->arg & (1ul << 63)))
+	if ((arg->flag & (PFF_FORCE_SIGN | PFF_SPACE)) || (neg))
 		len++;
-	if ((arg->flag & ZERO_FILL) && !(arg->flag & (LEFT_ALIGN | PREC_SET))
+	if ((arg->flag & PFF_ZERO_FILL)
+		&& !(arg->flag & (PFF_LEFT_ALIGN | PFF_PREC_SET))
 		&& (len < arg->minwidth))
 		len = arg->minwidth;
-	return ((int)len);
+	return (len);
 }

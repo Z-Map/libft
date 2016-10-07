@@ -26,6 +26,6 @@ const char			*ft_pfflag_dot(const char *c, t_pfb *b)
 	else
 		c = ft_parse_digit(c + 1, &(b->arg.precision));
 	if (i >= 0)
-		b->arg.flag |= PREC_SET;
+		b->arg.flag |= PFF_PREC_SET;
 	return (c);
 }

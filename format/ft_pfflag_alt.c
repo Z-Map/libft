@@ -14,6 +14,6 @@
 
 const char			*ft_pfflag_alt(const char *c, t_pfb *b)
 {
-	b->arg.flag |= ALTERNTE;
+	b->arg.flag |= PFF_ALTERNTE;
 	return (c + 1);
 }

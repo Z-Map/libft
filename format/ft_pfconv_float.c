@@ -15,7 +15,7 @@
 void					ft_pfconv_float(t_pfb *b, t_pfc *arg, size_t len)
 {
 	len = 0;
-	if (arg->flag & ALTERNTE)
+	if (arg->flag & PFF_ALTERNTE)
 		ft_printf_bwrite(b, "[%#f]", 5);
 	else
 		ft_printf_bwrite(b, "[%f]", 4);

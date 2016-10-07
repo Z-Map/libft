@@ -16,10 +16,10 @@ const char			*ft_pfflag_l(const char *c, t_pfb *b)
 {
 	if (c[1] == 'l')
 	{
-		b->arg.flag |= LONG_LONG;
+		b->arg.flag |= PFF_LONG_LONG;
 		++c;
 	}
 	else
-		b->arg.flag |= LONG;
+		b->arg.flag |= PFF_LONG;
 	return (c + 1);
 }

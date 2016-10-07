@@ -14,6 +14,6 @@
 
 const char			*ft_pfflag_more(const char *c, t_pfb *b)
 {
-	b->arg.flag |= FORCE_SIGN;
+	b->arg.flag |= PFF_FORCE_SIGN;
 	return (c + 1);
 }

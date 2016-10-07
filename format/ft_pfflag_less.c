@@ -14,6 +14,6 @@
 
 const char			*ft_pfflag_less(const char *c, t_pfb *b)
 {
-	b->arg.flag |= LEFT_ALIGN;
+	b->arg.flag |= PFF_LEFT_ALIGN;
 	return (c + 1);
 }

@@ -18,7 +18,7 @@ void			ft_pfconv_char(t_pfb *b, t_pfc *arg, size_t len)
 
 	if ((int)len > arg->b_len)
 		ft_printf_bwritec(b, '0', len - (unsigned int)arg->b_len);
-	if (arg->flag & (LONG | LONG_LONG | CAPITAL))
+	if (arg->flag & (PFF_LONG | PFF_LONG_LONG | PFF_CAPITAL))
 	{
 		cb = (wchar_t)(arg->arg);
 		ft_printf_bwritew(b, &cb, arg->b_len);

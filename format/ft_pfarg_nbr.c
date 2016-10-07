@@ -14,17 +14,17 @@
 
 int			ft_pfarg_nbr(int cc, va_list ap, t_pfc *arg)
 {
-	if (arg->flag & INTMAX)
+	if (arg->flag & PFF_INTMAX)
 		arg->arg = (uintmax_t)(va_arg(ap, intmax_t));
-	else if (arg->flag & SIZE_T)
+	else if (arg->flag & PFF_SIZE_T)
 		arg->arg = (uintmax_t)(intmax_t)(va_arg(ap, size_t));
-	else if (arg->flag & LONG_LONG)
+	else if (arg->flag & PFF_LONG_LONG)
 		arg->arg = (uintmax_t)(intmax_t)(va_arg(ap, long long));
-	else if (arg->flag & (LONG | CAPITAL))
+	else if (arg->flag & (PFF_LONG | PFF_CAPITAL))
 		arg->arg = (uintmax_t)(intmax_t)(va_arg(ap, long));
-	else if (arg->flag & SHORT)
+	else if (arg->flag & PFF_SHORT)
 		arg->arg = (uintmax_t)(intmax_t)(short)(va_arg(ap, int));
-	else if (arg->flag & SHORT_SHORT)
+	else if (arg->flag & PFF_SHORT_SHORT)
 		arg->arg = (uintmax_t)(intmax_t)(char)(va_arg(ap, int));
 	else
 		arg->arg = (uintmax_t)(intmax_t)(va_arg(ap, int));

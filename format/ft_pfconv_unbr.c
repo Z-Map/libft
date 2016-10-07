@@ -14,14 +14,14 @@
 
 void			ft_pfconv_unbr(t_pfb *b, t_pfc *arg, size_t len)
 {
-	const char	*cmap = (arg->flag & CAPITAL) ? FT_DIGIT : FT_DIGIT_L;
+	const char	*cmap = (arg->flag & PFF_CAPITAL) ? FT_DIGIT : FT_DIGIT_L;
 	char		buf[40];
 	int			i;
 	uintmax_t	a;
 
-	if ((arg->type == PFT_HEXA) && (arg->flag & ALTERNTE)
+	if ((arg->type == PFT_HEXA) && (arg->flag & PFF_ALTERNTE)
 		&& (arg->arg || arg->flag & PFF_PTR))
-		len -= ft_printf_bwrite(b, ((arg->flag & CAPITAL) ? "0X" : "0x"), 2);
+		len -= ft_printf_bwrite(b, ((arg->flag & PFF_CAPITAL) ? "0X" : "0x"), 2);
 	i = (int)len - (int)(arg->b_len);
 	if (i > 0)
 		ft_printf_bwritec(b, '0', (size_t)i);

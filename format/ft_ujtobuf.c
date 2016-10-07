@@ -6,13 +6,13 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 21:38:32 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/04 21:58:07 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/07 04:26:53 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_format.h"
 
-char			*ft_ujtobuf(char *b, uintmax_t n)
+char			*ft_ujtobuf(uintmax_t n, char *b)
 {
 	uintmax_t	tn;
 	size_t		len;

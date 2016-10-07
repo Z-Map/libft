@@ -14,11 +14,11 @@
 
 int		ft_pflen_char(t_pfc *arg)
 {
-	if (arg->flag & (LONG | LONG_LONG | CAPITAL))
+	if (arg->flag & (PFF_LONG | PFF_LONG_LONG | PFF_CAPITAL))
 		arg->b_len = ft_utf8wcsize((wchar_t)arg->arg);
 	else
 		arg->b_len = 1;
-	if ((arg->flag & ZERO_FILL) && !(arg->flag & LEFT_ALIGN)
+	if ((arg->flag & PFF_ZERO_FILL) && !(arg->flag & PFF_LEFT_ALIGN)
 		&& (arg->minwidth))
 		return (arg->minwidth);
 	return (1);
