@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_preform_count.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:38:40 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/06 23:59:30 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/08 03:18:42 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_list	*parse_arg(const char **fstr, va_list ap, int blen)
 {
 	t_pfc		arg;
 
-	arg = (t_pfc){ 0, 6, 0, blen, 0, 0};
+	arg = (t_pfc){ 0, 6, 0, blen, 0, 0, 0, NULL};
 	*fstr += 1;
 	while (**fstr)
 	{
