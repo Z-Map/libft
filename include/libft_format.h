@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/07 18:48:13 by map              ###   ########.fr       */
+/*   Updated: 2016/10/08 21:35:47 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include "libft_parse.h"
 
 # ifndef FT_PF_BUFSIZE
-#  define FT_PF_BUFSIZE 4096
+#  define FT_PF_BUFSIZE 8192 * 8
 # endif
 
 # define FT_MX_FLOATLEN 310
@@ -35,6 +35,8 @@
 
 # define PF_UCHAR 0xFF
 # define PF_UPFF_SHORT 0xFFFF
+
+# define PF_COUCOU_LA_NORME ((arg->flag & PFF_CAPITAL) ? g_cmapup : g_cmaplow)
 
 /*
 **	Declare public format function
@@ -132,7 +134,7 @@ size_t					ft_floatlen(double i, t_ui pre);
 char					*ft_itoa(int n);
 char					*ft_ujtobuf(uintmax_t n, char *b);
 char					*ft_ujfillbuf(uintmax_t n, char *b, int *len);
-char					*ft_ujfillbufbase(uintmax_t n, t_ui base, char *b,
+char					*ft_ujfillbufbase(uintmax_t n, t_cmap cm, char *b,
 							int *len);
 
 const char				*ft_pfflag_alt(const char *c, t_pfb *b);

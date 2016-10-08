@@ -33,10 +33,18 @@ CHRONOS_NAZI_MODE=off
 ifndef config
 	config=release
 endif
+ifndef LOGNAME
+	LOGNAME=$USER
+endif
 
 # Compilation var
-CC=clang
-LC=ar
+ifndef CC
+	CC=clang
+endif
+
+ifndef LC
+	LC=ar
+endif
 ifeq ($(CHRONOS_NAZI_MODE),on)
 	CFLAGS=-Wextra -Werror -Weverything
 else
@@ -59,9 +67,9 @@ ifeq ($(config),opti)
 endif
 
 # Render var
-RPFF_ENDERDIR=
-RPFF_ENDER_BY=qloubier
-RPFF_ENDER_EMAIL=marvin@student.42.fr
+RENDERDIR=
+RENDER_BY=qloubier
+RENDER_EMAIL=marvin@student.42.fr
 
 # Messages
 
@@ -92,8 +100,8 @@ else
 	BUILDTYPE=exe
 	I_REAL_NAME=$(NAME)
 endif
-ifeq ($(strip $(RPFF_ENDERDIR)),)
-	RPFF_ENDERDIR=$(BUILDIR)/$(I_REAL_NAME)
+ifeq ($(strip $(RENDERDIR)),)
+	RENDERDIR=$(BUILDIR)/$(I_REAL_NAME)
 endif
 I_DATE=$(shell date "+%Y/%m/%d")
 I_TIME=$(shell date "+%H:%M:%S")
@@ -127,10 +135,10 @@ I_MKFLIB=$(shell for lib in $(MKLIBS); do dirname "$(LIBSDIR)$$lib" | xargs -0 p
 I_MKNSLIB=
 # ALLDEP=$(ALLOBJ:.o=.d)
 
-RPFF_ENDER_SUBDIRS=$(shell for dir in $(SOURCES) $(HEADERS); do printf "$(RPFF_ENDERDIR)/$$dir "; done)
-RPFF_ENDER_SRC=$(shell for cname in $(ALLSRC); do printf "$(RPFF_ENDERDIR)/$$cname "; done)
-RPFF_ENDER_HEADERS=$(shell for hname in $(ALLHEADER); do printf "$(RPFF_ENDERDIR)/$$hname "; done)
-RPFF_ENDER_OBVAR=$(shell for oname in $(ALLOBJ); do basename $$oname; done)
+RENDER_SUBDIRS=$(shell for dir in $(SOURCES) $(HEADERS); do printf "$(RENDERDIR)/$$dir "; done)
+RENDER_SRC=$(shell for cname in $(ALLSRC); do printf "$(RENDERDIR)/$$cname "; done)
+RENDER_HEADERS=$(shell for hname in $(ALLHEADER); do printf "$(RENDERDIR)/$$hname "; done)
+RENDER_OBVAR=$(shell for oname in $(ALLOBJ); do basename $$oname; done)
 
 #------------------------------------------------------------------------------#
 #                             Compile Rules                                    #
@@ -138,7 +146,7 @@ RPFF_ENDER_OBVAR=$(shell for oname in $(ALLOBJ); do basename $$oname; done)
 
 # PHONY rules
 .PHONY: neutronstar all clean fclean re \
-		norme render $(RPFF_ENDERDIR)/Makefile
+		norme render $(RENDERDIR)/Makefile
 
 # Generic rules
 all: $(NAME)
@@ -233,7 +241,7 @@ $(OBBUDIRS):
 
 # 42 target
 
-$(RPFF_ENDER_SUBDIRS):
+$(RENDER_SUBDIRS):
 	$(SILENT)mkdir -p $@
 
 ifeq ($(FANCY_OUT),on)
@@ -268,18 +276,21 @@ endif
 endif
 unrender:
 ifeq ($(FANCY_OUT),on)
-	@printf "$(I_MSG_START_WIP)       $(I_MSG_END_WIP)" "\e[33mDelete\e[m \e[1m\e[35m$(RPFF_ENDERDIR)"
+	@printf "$(I_MSG_START_WIP)       $(I_MSG_END_WIP)" "\e[33mDelete\e[m \e[1m\e[35m$(RENDERDIR)"
 endif
-	$(SILENT)rm -rf $(RPFF_ENDERDIR)
+	$(SILENT)rm -rf $(RENDERDIR)
 ifeq ($(FANCY_OUT),on)
-	@printf "$(I_MSG_START_OK)         $(I_MSG_END_OK)" "\e[31mDelete\e[m \e[1m\e[35m$(RPFF_ENDERDIR)"
+	@printf "$(I_MSG_START_OK)         $(I_MSG_END_OK)" "\e[31mDelete\e[m \e[1m\e[35m$(RENDERDIR)"
 endif
 
 
-render: $(RPFF_ENDERDIR)/Makefile
-	@#echo "$(RPFF_ENDERDIR)"
+render: $(RENDERDIR)/Makefile $(RENDERDIR)/auteur
+	@#echo "$(RENDERDIR)"
 
-$(RPFF_ENDERDIR)/Makefile: $(RPFF_ENDER_SUBDIRS) $(RPFF_ENDER_HEADERS) $(RPFF_ENDER_SRC)
+$(RENDERDIR)/auteur:
+	@echo "$(LOGNAME)" > $(RENDERDIR)/auteur
+
+$(RENDERDIR)/Makefile: $(RENDER_SUBDIRS) $(RENDER_HEADERS) $(RENDER_SRC)
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_WIP)    $(I_MSG_END_WIP)" "\e[33mStart rendering \e[37m\e[1m$@"
 endif
@@ -300,23 +311,25 @@ CFLAGS=$(CFLAGS)\n\
 INCFLAGS=$(INCFLAGS)\n\
 LIBFLAGS=$(LIBSFLAGS)\n\
 OBJ=" \
-"$(RPFF_ENDER_BY) <$(RPFF_ENDER_EMAIL)>" "$(I_DATE) $(I_TIME) by $(RPFF_ENDER_BY)" \
-"$(I_DATE) $(I_TIME) by $(RPFF_ENDER_BY)"  > $(RPFF_ENDERDIR)/Makefile
-	@sh -c 'for oname in $(RPFF_ENDER_OBVAR); do echo "$$oname \\" >> $(RPFF_ENDERDIR)/Makefile; done'
-	@printf "\n\n.PHONY: all clean fclean re\n\nall: \$$(NAME)\n\n" >> $(RPFF_ENDERDIR)/Makefile
-	@sh -c 'for oname in $(ALLSRC); do $(CC) -MM $$oname $(ALLCFLAGS) $(LIBSFLAGS) >> $(RPFF_ENDERDIR)/Makefile;\
-echo "	\$$(CC) -o \$$@ -c \$$< \$$(CFLAGS) \$$(INCFLAGS)" >> $(RPFF_ENDERDIR)/Makefile; done'
+"$(RENDER_BY) <$(RENDER_EMAIL)>" "$(I_DATE) $(I_TIME) by $(RENDER_BY)" \
+"$(I_DATE) $(I_TIME) by $(RENDER_BY)"  > $(RENDERDIR)/Makefile
+	@sh -c 'for oname in $(RENDER_OBVAR); do echo "$$oname \\" >> $(RENDERDIR)/Makefile; done'
+	@printf "\n\n.PHONY: all clean fclean re\n\nall: \$$(NAME)\n\n" >> $(RENDERDIR)/Makefile
+	@sh -c 'for oname in $(ALLSRC); do $(CC) -MM $$oname $(ALLCFLAGS) $(LIBSFLAGS) >> $(RENDERDIR)/Makefile;\
+echo "	\$$(CC) -o \$$@ -c \$$< \$$(CFLAGS) \$$(INCFLAGS)" >> $(RENDERDIR)/Makefile; done'
 ifeq ($(BUILDTYPE),lib)
-	@printf "\n\$$(NAME): \$$(OBJ)\n\t$(LC) $(LFLAGS) \$$(NAME) \$$(OBJ)" >> $(RPFF_ENDERDIR)/Makefile
+	@printf "\n\$$(NAME): \$$(OBJ)\n\t$(LC) $(LFLAGS) \$$(NAME) \$$(OBJ)" >> $(RENDERDIR)/Makefile
 else
-	@printf "\n\$$(NAME): \$$(OBJ)\n\t\$$(CC) \$$(OBJ) -o \$$@ \$$(CFLAGS) \$$(INCFLAGS) \$$(LIBFLAGS)" >> $(RPFF_ENDERDIR)/Makefile
+	@printf "\n\$$(NAME): \$$(OBJ)\n\t\$$(CC) \$$(OBJ) -o \$$@ \$$(CFLAGS) \$$(INCFLAGS) \$$(LIBFLAGS)" >> $(RENDERDIR)/Makefile
 endif
-	@printf "\n\nclean:\n\trm -rf \$$(OBJ)\n\nfclean: clean\n\trm -rf \$$(NAME)\n\nre: fclean all\n\n" >> $(RPFF_ENDERDIR)/Makefile
+	@printf "\n\nclean:\n\trm -rf \$$(OBJ)\n\nfclean: clean\n\trm -rf \$$(NAME)\n\nre: fclean all\n\n" >> $(RENDERDIR)/Makefile
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_OK)  $(I_MSG_END_OK)" "\e[1;36m$@ \e[mrendered !"
+else
+	@echo "Makefile rendered"
 endif
 
-$(RPFF_ENDER_SRC): $(RPFF_ENDERDIR)/%.c: %.c
+$(RENDER_SRC): $(RENDERDIR)/%.c: %.c
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_WIP)$(I_MSG_END_WIP)" "\e[35m$< \e[33mbeing copied"
 endif
@@ -325,7 +338,7 @@ ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_OK)$(I_MSG_END_OK)" "\e[36m$< \e[mCopied !"
 endif
 
-$(RPFF_ENDER_HEADERS): $(RPFF_ENDERDIR)/%.h: %.h
+$(RENDER_HEADERS): $(RENDERDIR)/%.h: %.h
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_WIP)$(I_MSG_END_WIP)" "\e[35m$< \e[33mbeing copied"
 endif

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:05:20 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/07 20:01:25 by map              ###   ########.fr       */
+/*   Updated: 2016/10/08 19:00:11 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,44 +21,45 @@ typedef unsigned int	t_ui;
 
 typedef struct			s_char_map
 {
-	const char			*cmap;
 	t_ui				base;
+	int					padding;
+	const char			*cmap;
 }						t_cmap;
 
 static const char		*g_digitupmap = FT_DIGIT;
 static const char		*g_digitlowmap = FT_DIGIT_L;
 static const t_cmap		g_cmapup[] = {
-	(t_cmap){FT_DIGIT, 2},
-	(t_cmap){FT_DIGIT, 3},
-	(t_cmap){FT_DIGIT, 4},
-	(t_cmap){FT_DIGIT, 5},
-	(t_cmap){FT_DIGIT, 6},
-	(t_cmap){FT_DIGIT, 7},
-	(t_cmap){FT_DIGIT, 8},
-	(t_cmap){FT_DIGIT, 9},
-	(t_cmap){FT_DIGIT, 10},
-	(t_cmap){FT_DIGIT, 11},
-	(t_cmap){FT_DIGIT, 12},
-	(t_cmap){FT_DIGIT, 13},
-	(t_cmap){FT_DIGIT, 14},
-	(t_cmap){FT_DIGIT, 15},
-	(t_cmap){FT_DIGIT, 16},
-	};
+	(t_cmap){2, 0, FT_DIGIT},
+	(t_cmap){3, 0, FT_DIGIT},
+	(t_cmap){4, 0, FT_DIGIT},
+	(t_cmap){5, 0, FT_DIGIT},
+	(t_cmap){6, 0, FT_DIGIT},
+	(t_cmap){7, 0, FT_DIGIT},
+	(t_cmap){8, 0, FT_DIGIT},
+	(t_cmap){9, 0, FT_DIGIT},
+	(t_cmap){10, 0, FT_DIGIT},
+	(t_cmap){11, 0, FT_DIGIT},
+	(t_cmap){12, 0, FT_DIGIT},
+	(t_cmap){13, 0, FT_DIGIT},
+	(t_cmap){14, 0, FT_DIGIT},
+	(t_cmap){15, 0, FT_DIGIT},
+	(t_cmap){16, 0, FT_DIGIT},
+};
 static const t_cmap		g_cmaplow[] = {
-	(t_cmap){FT_DIGIT_L, 2},
-	(t_cmap){FT_DIGIT_L, 3},
-	(t_cmap){FT_DIGIT_L, 4},
-	(t_cmap){FT_DIGIT_L, 5},
-	(t_cmap){FT_DIGIT_L, 6},
-	(t_cmap){FT_DIGIT_L, 7},
-	(t_cmap){FT_DIGIT_L, 8},
-	(t_cmap){FT_DIGIT_L, 9},
-	(t_cmap){FT_DIGIT_L, 10},
-	(t_cmap){FT_DIGIT_L, 11},
-	(t_cmap){FT_DIGIT_L, 12},
-	(t_cmap){FT_DIGIT_L, 13},
-	(t_cmap){FT_DIGIT_L, 14},
-	(t_cmap){FT_DIGIT_L, 15},
-	(t_cmap){FT_DIGIT_L, 16},
-	};
+	(t_cmap){2, 0, FT_DIGIT_L},
+	(t_cmap){3, 0, FT_DIGIT_L},
+	(t_cmap){4, 0, FT_DIGIT_L},
+	(t_cmap){5, 0, FT_DIGIT_L},
+	(t_cmap){6, 0, FT_DIGIT_L},
+	(t_cmap){7, 0, FT_DIGIT_L},
+	(t_cmap){8, 0, FT_DIGIT_L},
+	(t_cmap){9, 0, FT_DIGIT_L},
+	(t_cmap){10, 0, FT_DIGIT_L},
+	(t_cmap){11, 0, FT_DIGIT_L},
+	(t_cmap){12, 0, FT_DIGIT_L},
+	(t_cmap){13, 0, FT_DIGIT_L},
+	(t_cmap){14, 0, FT_DIGIT_L},
+	(t_cmap){15, 0, FT_DIGIT_L},
+	(t_cmap){16, 0, FT_DIGIT_L},
+};
 #endif

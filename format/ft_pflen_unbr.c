@@ -6,22 +6,23 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/07 19:00:38 by map              ###   ########.fr       */
+/*   Updated: 2016/10/08 20:34:05 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_format.h"
 
-int		ft_pflen_unbr(t_pfc *arg)
+int					ft_pflen_unbr(t_pfc *arg)
 {
-	int				len;
+	const t_cmap	cm = PF_COUCOU_LA_NORME[arg->type - 2];
+	t_ui			len;
 
 	len = FT_MX_FLOATLEN;
 	if ((arg->flag & PFF_PREC_SET) && (!arg->precision) && (!arg->arg))
 		len = 0;
 	else
-		arg->tmpb = ft_ujfillbufbase(arg->arg, arg->type, arg->tmpb, &len);
-	arg->b_len = len;
+		arg->tmpb = ft_ujfillbufbase(arg->arg, cm, arg->tmpb, (int *)&len);
+	arg->b_len = (int)len;
 	if ((arg->flag & PFF_PREC_SET) && (len < arg->precision))
 		len = arg->precision;
 	else if ((arg->flag & PFF_ALTERNTE) && (arg->type == PFT_OCT)
@@ -30,7 +31,8 @@ int		ft_pflen_unbr(t_pfc *arg)
 	if ((arg->flag & PFF_PTR) ||
 		((arg->flag & PFF_ALTERNTE) && (arg->type == PFT_HEXA) && arg->arg))
 		len += 2;
-	if ((arg->flag & PFF_ZERO_FILL) && !(arg->flag & (PFF_LEFT_ALIGN | PFF_PREC_SET))
+	if ((arg->flag & PFF_ZERO_FILL)
+		&& !(arg->flag & (PFF_LEFT_ALIGN | PFF_PREC_SET))
 		&& (len < arg->minwidth))
 		len = arg->minwidth;
 	return ((int)len);
