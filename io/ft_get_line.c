@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 19:15:20 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/09 19:41:17 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 22:33:06 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static char		*gnl_buffer_append(t_gnlb *gnlb, char *rbuf, int *err)
 {
 	char *tmp;
 
-	if ((*err = read(gnlb->fd, rbuf, BUFF_SIZE)) < 1)
+	if ((*err = (int)read(gnlb->fd, rbuf, BUFF_SIZE)) < 1)
 		return (NULL);
 	rbuf[*err] = '\0';
-	gnlb->cursor = ft_strlen(gnlb->strb);
-	if ((gnlb->cursor + *err) >= gnlb->buf_size)
+	gnlb->cursor = (t_idx)ft_strlen(gnlb->strb);
+	if ((gnlb->cursor + (t_idx)*err) >= gnlb->buf_size)
 	{
 		gnlb->buf_size += GROW_SIZE;
 		tmp = (char *)malloc(sizeof(char) * gnlb->buf_size);
@@ -78,15 +78,15 @@ static t_gnlb	*get_gnlb(int const fd, char *rbuf, t_list **gnlb_lst, int *err)
 		i = i->next;
 	if (i)
 		return ((t_gnlb *)(i->content));
-	*err = read(fd, rbuf, BUFF_SIZE);
+	*err = (int)read(fd, rbuf, BUFF_SIZE);
 	if ((*err < 1))
 		return (NULL);
 	rbuf[*err] = '\0';
-	ret = (t_gnlb){fd, START_SIZE + 1, 0,
+	ret = (t_gnlb){fd, START_SIZE + 1, 0, 0,
 		malloc((sizeof(char) * (START_SIZE + 1)))};
 	if (!(ret.strb) || !(i = ft_lstnew(&ret, sizeof(t_gnlb))))
 		return (gnl_free(fd, gnlb_lst, &ret));
-	ft_strncpy(ft_memset(ret.strb, 0, START_SIZE + 1), rbuf, *err);
+	ft_strncpy(ft_memset(ret.strb, 0, START_SIZE + 1), rbuf, (size_t)*err);
 	ft_lstadd(gnlb_lst, i);
 	return (i->content);
 }
@@ -110,9 +110,9 @@ int				ft_get_line(int const fd, char **line)
 	if (!gnlb->strb || (!cur && r == -1))
 		return (-1);
 	r = cur ? (int)(cur - gnlb->strb) : (int)ft_strlen(gnlb->strb);
-	if (!(*line = (char *)malloc(r + 1)))
+	if (!(*line = (char *)malloc((unsigned)(r + 1))))
 		return (-1);
-	ft_strncpy(*line, gnlb->strb, r)[r] = '\0';
+	ft_strncpy(*line, gnlb->strb, (size_t)r)[r] = '\0';
 	if (*(cur = (cur ? cur + 1 : gnlb->strb + r)))
 		ft_memmove(gnlb->strb, cur, ft_strlen(cur) + 1);
 	else

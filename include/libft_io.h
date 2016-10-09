@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:28:46 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/08 21:04:59 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 22:30:28 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct		s_gnl_buffer
 	int				fd;
 	t_idx			buf_size;
 	t_idx			cursor;
+	int				padding;
 	char			*strb;
 }					t_gnlb;
 

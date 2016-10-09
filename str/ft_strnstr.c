@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strstr.c                                           :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 16:27:08 by qloubier          #+#    #+#             */
-/*   Updated: 2015/12/22 17:14:57 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 21:49:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 
 	len = ft_strlen(s2);
 	if (!(*s2))
-		return ((char *)s1);
+		return ((char *)(unsigned long)s1);
 	while (*s1 && n-- >= len)
 	{
 		if (*s1 == *s2 && ft_strncmp(s1 + 1, s2 + 1, len - 1) == 0)
-			return ((char *)s1);
+			return ((char *)(unsigned long)s1);
 		s1++;
 	}
 	return (NULL);

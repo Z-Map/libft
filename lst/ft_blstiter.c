@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 19:21:59 by qloubier          #+#    #+#             */
-/*   Updated: 2016/04/26 19:42:30 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 21:42:52 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void			*ft_blstiter(t_blit *iterator)
 		iterator->idx = 0;
 		iterator->bloc = blst;
 	}
-	return (blst->data + (blst->csize * i));
+	return ((void *)((unsigned long)blst->data + (blst->csize * i)));
 }

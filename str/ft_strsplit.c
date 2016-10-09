@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strsplit.c                                         :+:      :+:    :+:   */
+/*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 01:21:18 by qloubier          #+#    #+#             */
-/*   Updated: 2016/01/10 05:59:07 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 21:52:54 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ char	**ft_strsplit(char const *s, char c)
 	{
 		cur = ft_strchr(s, (int)c);
 		cur = (cur) ? cur : ft_strchr(s, 0);
-		if (!(split[i] = ft_strnew(cur - s)))
+		if (!(split[i] = ft_strnew((size_t)(cur - s))))
 			break ;
-		split[i] = ft_strncpy(split[i], s, cur - s);
+		split[i] = ft_strncpy(split[i], s, (size_t)(cur - s));
 		++i;
 		s = (char const *)(ft_strchrnot(cur, (int)c));
 	}

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 19:54:57 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/08 21:20:13 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 22:13:16 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			ft_pfconv_unbr(t_pfb *b, t_pfc *arg, size_t len)
 
 	if ((arg->type == PFT_HEXA) && (arg->flag & PFF_ALTERNTE)
 		&& (arg->arg || arg->flag & PFF_PTR))
-		len -= ft_printf_bwrite(b,
+		len -= (size_t)ft_printf_bwrite(b,
 			((arg->flag & PFF_CAPITAL) ? "0X" : "0x"), 2);
 	i = (int)len - (int)(arg->b_len);
 	if (i > 0)

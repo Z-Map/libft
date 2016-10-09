@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/08 21:35:47 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 22:25:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 
 enum					e_pf_flag
 {
+	PFF_NONE = 0,
 	PFF_ALTERNTE = 1,
 	PFF_FORCE_SIGN = 1 << 1,
 	PFF_ZERO_FILL = 1 << 2,
@@ -59,12 +60,14 @@ enum					e_pf_flag
 	PFF_PREC_SET = 1 << 17,
 	PFF_MNW_SET = 1 << 18,
 	PFF_PTR = 1 << 19,
-	PFF_NEG = 1 << 19,
-	PFF_END = (int)(1u << 31)
+	PFF_NEG = 1 << 20,
+	PFF_PTRSET = PFF_LONG | PFF_ALTERNTE | PFF_PTR,
+	PFF_END = (int)(1u << 30)
 };
 
 enum					e_pf_type
 {
+	PFT_NONE = 0,
 	PFT_INT = 1,
 	PFT_OCT = 8,
 	PFT_UINT = 10,
@@ -95,11 +98,11 @@ typedef struct			s_printf_buffer
 	int					blen;
 	int					fd;
 	ssize_t				len;
+	char				*c;
 	va_list				ap;
 	t_pfc				arg;
-	char				*c;
-	char				buffer[FT_PF_BUFSIZE + 1];
-	char				tmp[FT_MX_FLOATLEN];
+	char				buffer[FT_PF_BUFSIZE + 8];
+	char				tmp[FT_MX_FLOATLEN + 2];
 }						t_pfb;
 
 typedef struct			s_printf_cftab

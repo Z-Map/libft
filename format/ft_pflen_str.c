@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pflen_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/06 04:20:30 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 22:15:35 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ int		ft_pflen_str(t_pfc *arg)
 	if ((arg->flag & PFF_ZERO_FILL) && !(arg->flag & PFF_LEFT_ALIGN)
 		&& (len < arg->minwidth))
 		len = arg->minwidth;
-	return (len);
+	return ((int)len);
 }

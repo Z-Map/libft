@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_floatlen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/05 01:18:17 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/22 07:29:44 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 21:55:16 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t		ft_floatlen(double i, t_ui prec)
 	while ((i > 10) && ((i /= 10) <= 10))
 		++len;
 	prec += (t_ui)len;
-	while ((i -= (int)i) && (len < prec))
+	while (((i -= (int)i) != 0.0) && (len < prec))
 	{
 		i *= 10;
 		++len;

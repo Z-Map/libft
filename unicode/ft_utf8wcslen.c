@@ -6,7 +6,7 @@
 /*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/06 01:31:57 by map               #+#    #+#             */
-/*   Updated: 2016/10/06 01:50:28 by map              ###   ########.fr       */
+/*   Updated: 2016/10/09 22:34:02 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ size_t		ft_utf8wcslen(const wchar_t *s)
 
 	len = 0;
 	while (*s)
-		len += ft_utf8wcsize(*(s++));
+		len += (size_t)ft_utf8wcsize(*(s++));
 	return (len);
 }

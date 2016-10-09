@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 02:37:49 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/07 00:00:42 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 22:16:13 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ int				ft_printf(const char *fstr, ...)
 	va_start(buf.ap, fstr);
 	ft_printf_loop(fstr, &buf);
 	va_end(buf.ap);
-	return (buf.len);
+	return ((int)buf.len);
 }

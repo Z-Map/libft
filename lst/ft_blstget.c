@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 19:07:35 by qloubier          #+#    #+#             */
-/*   Updated: 2016/04/26 19:20:16 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 21:40:41 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void			*ft_blstget(t_blst *blst, size_t idx)
 	}
 	if (bi)
 		return (NULL);
-	return (blst->data + (blst->csize * idx));
+	return ((void *)((unsigned long)(blst->data) + (blst->csize * idx)));
 }

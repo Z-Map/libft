@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 05:19:52 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/07 18:33:27 by map              ###   ########.fr       */
+/*   Updated: 2016/10/09 22:27:08 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ const char				*ft_printf_parse(const char *fstr, t_pfb *pfb)
 	const char			*c;
 	int					i;
 
+	i = 0;
 	c = fstr;
 	init_pfarg(&(pfb->arg), pfb);
 	while ((*c) && ((i = ft_stridx(PF_TYPE_STR, (int)(*c))) == -1))

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 23:52:14 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/05 20:28:22 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 22:18:36 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ int				ft_printf_bwritec(t_pfb *b, char c, size_t len)
 		++(b->blen);
 		--len;
 	}
-	return (i);
+	return ((int)i);
 }

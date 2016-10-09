@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strichr.c                                       :+:      :+:    :+:   */
+/*   ft_strchrnot.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 19:30:06 by qloubier          #+#    #+#             */
-/*   Updated: 2016/01/09 20:07:38 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 21:47:25 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ char	*ft_strchrnot(const char *s, int c)
 {
 	while (*s && *s == (char)c)
 		s++;
-	return ((*s && c) ? (char *)s : NULL);
+	return ((*s && c) ? (char *)(unsigned long)s : NULL);
 }

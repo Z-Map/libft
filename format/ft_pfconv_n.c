@@ -6,7 +6,7 @@
 /*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/05 00:03:05 by map               #+#    #+#             */
-/*   Updated: 2016/10/05 00:18:56 by map              ###   ########.fr       */
+/*   Updated: 2016/10/09 22:11:31 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void			ft_pfconv_n(t_pfb *b, t_pfc *arg, size_t len)
 {
 	len = 0;
 	if ((arg->type == PFT_N) && (arg->arg))
-		*((int *)(arg->arg)) = b->blen + b->len;
+		*((int *)(arg->arg)) = b->blen + (int)(b->len);
 }

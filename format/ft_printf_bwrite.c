@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 23:52:14 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/06 02:40:09 by map              ###   ########.fr       */
+/*   Updated: 2016/10/09 22:18:26 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ int				ft_printf_bwrite(t_pfb *b, const char *c, size_t len)
 		++c;
 		--len;
 	}
-	return (i);
+	return ((int)i);
 }

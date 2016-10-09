@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:34:07 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/04 17:25:03 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 21:50:05 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t				ft_strlcat (char *dst, const char *src, size_t size);
 char				*ft_strchr (const char *s, int c);
 char				*ft_strrchr (const char *s, int c);
 char				*ft_strchrnot (const char *s, int c);
-char				*ft_strchranpy (const char *s, const char *clst, char end);
+char				*ft_strchrany (const char *s, const char *clst, char end);
 int					ft_stridx(const char *s, int c);
 char				*ft_strstr (const char *s1, const char *s2);
 char				*ft_strnstr (const char *s1, const char *s2, size_t n);
@@ -55,6 +55,8 @@ int					ft_islower(int c);
 int					ft_isupper(int c);
 size_t				ft_wrdcount(char const *s, int c);
 void				ft_ptabdel(void ***tptr);
+int					ft_strparse(char *str, char s,
+						int (**parser)(char *, void *), void *param);
 
 /*
 ** TO DO

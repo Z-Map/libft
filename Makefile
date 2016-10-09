@@ -28,8 +28,8 @@ LIBSDIRS=
 SEARCH_CURRENTDIR=off
 LIBSDIR=libs/
 OPSYS=$(shell uname -s)
-FANCY_OUT=off
-CHRONOS_NAZI_MODE=off
+FANCY_OUT=on
+CHRONOS_NAZI_MODE=on
 ifndef config
 	config=release
 endif
@@ -146,7 +146,7 @@ RENDER_OBVAR=$(shell for oname in $(ALLOBJ); do basename $$oname; done)
 
 # PHONY rules
 .PHONY: neutronstar all clean fclean re \
-		norme render $(RENDERDIR)/Makefile
+		norme render
 
 # Generic rules
 all: $(NAME)
@@ -288,9 +288,9 @@ render: $(RENDERDIR)/Makefile $(RENDERDIR)/auteur
 	@#echo "$(RENDERDIR)"
 
 $(RENDERDIR)/auteur:
-	@echo "$(LOGNAME)" > $(RENDERDIR)/auteur
+	@echo "$(RENDER_BY)" > $(RENDERDIR)/auteur
 
-$(RENDERDIR)/Makefile: $(RENDER_SUBDIRS) $(RENDER_HEADERS) $(RENDER_SRC)
+$(RENDERDIR)/Makefile: $(RENDER_SUBDIRS) $(RENDER_HEADERS) $(RENDER_SRC) Makefile
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_WIP)    $(I_MSG_END_WIP)" "\e[33mStart rendering \e[37m\e[1m$@"
 endif

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 23:52:14 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/06 03:08:10 by map              ###   ########.fr       */
+/*   Updated: 2016/10/09 22:24:41 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ static int		ft_pf_buffer_to_small(t_pfb *b, const wchar_t *c, size_t len)
 		if ((t_ui)cl > len)
 			break ;
 		++c;
-		len -= cl;
-		cl = write(b->fd, &cb, (size_t)cl);
+		len -= (t_ui)cl;
+		cl = (int)write(b->fd, &cb, (size_t)cl);
 		if (cl < 0)
 			return (-1);
 		b->len += cl;
 	}
-	return (i - (int)len);
+	return ((int)i - (int)len);
 }
 
 int				ft_printf_bwritew(t_pfb *b, const wchar_t *c, size_t len)
@@ -45,7 +45,7 @@ int				ft_printf_bwritew(t_pfb *b, const wchar_t *c, size_t len)
 
 	if (!len)
 		return (0);
-	if (FT_PF_BUFSIZE < 4)
+	if (len >= FT_PF_BUFSIZE)
 		return (ft_pf_buffer_to_small(b, c, len));
 	i = (int)len;
 	while (len)
@@ -53,7 +53,7 @@ int				ft_printf_bwritew(t_pfb *b, const wchar_t *c, size_t len)
 		cl = (t_ui)ft_utf8fromwc(*c, &cb);
 		if (cl > len)
 			break ;
-		if ((b->blen + cl) > FT_PF_BUFSIZE)
+		if ((b->blen + (int)cl) > FT_PF_BUFSIZE)
 			ft_printf_bflush(b);
 		ft_memcpy(b->c, &cb, (size_t)cl);
 		b->c += cl;
@@ -61,5 +61,5 @@ int				ft_printf_bwritew(t_pfb *b, const wchar_t *c, size_t len)
 		++c;
 		len -= cl;
 	}
-	return (i - (int)len);
+	return ((int)i - (int)len);
 }
