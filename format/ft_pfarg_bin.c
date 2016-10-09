@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ujfillbuf.c                                     :+:      :+:    :+:   */
+/*   ft_pfarg_bin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/04 21:38:32 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/09 18:37:17 by qloubier         ###   ########.fr       */
+/*   Created: 2016/05/18 19:56:26 by qloubier          #+#    #+#             */
+/*   Updated: 2016/10/08 03:02:01 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_format.h"
 
-char			*ft_ujfillbuf(uintmax_t n, char *b, int *len)
+int			ft_pfarg_bin(int cc, va_list ap, t_pfc *arg)
 {
-	const int	ln = *len;
-	int			l;
-
-	b += ln - 1;
-	*b = '0' + (char)(n % 10);
-	l = 1;
-	while ((n /= 10) && (l < ln))
-	{
-		*(--b) = '0' + (char)(n % 10);
-		++l;
-	}
-	*len = l;
-	return (b);
+	arg->type = PFT_BIN;
+	return (ft_pfarg_unbr(cc, ap, arg));
 }

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/09 22:25:24 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 22:55:05 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 # define FT_MX_FLOATLEN 310
 
-# define PF_TYPE_STR "dDioOcCsSfFpxXuUn%"
+# define PF_TYPE_STR "dDioOcCsSfFpxXuUbn%"
 # define PF_FLAG_STR "#+0- .hljz*"
 
 # define PF_UCHAR 0xFF
@@ -69,10 +69,11 @@ enum					e_pf_type
 {
 	PFT_NONE = 0,
 	PFT_INT = 1,
+	PFT_BIN = 2,
 	PFT_OCT = 8,
 	PFT_UINT = 10,
 	PFT_HEXA = 16,
-	PFT_CHAR = 2,
+	PFT_CHAR = 11,
 	PFT_PTR = 3,
 	PFT_SPECHAR = 4,
 	PFT_STR = 5,
@@ -163,6 +164,8 @@ int						ft_pfarg_float(int cc, va_list ap, t_pfc *arg);
 int						ft_pfarg_ptr(int cc, va_list ap, t_pfc *arg);
 int						ft_pfarg_spc(int cc, va_list ap, t_pfc *arg);
 int						ft_pfarg_n(int cc, va_list ap, t_pfc *arg);
+int						ft_pfarg_bin(int cc, va_list ap, t_pfc *arg);
+
 
 int						ft_pflen_nbr(t_pfc *arg);
 int						ft_pflen_unbr(t_pfc *arg);
@@ -207,6 +210,7 @@ const static t_pftab	g_pf_flag_tab[] = {
 	(t_pftab){NULL, &ft_pfarg_hexa, &ft_pflen_unbr, &ft_pfconv_unbr},
 	(t_pftab){NULL, &ft_pfarg_unbr, &ft_pflen_unbr, &ft_pfconv_unbr},
 	(t_pftab){NULL, &ft_pfarg_unbr, &ft_pflen_unbr, &ft_pfconv_unbr},
+	(t_pftab){NULL, &ft_pfarg_bin, &ft_pflen_unbr, &ft_pfconv_unbr},
 	(t_pftab){NULL, &ft_pfarg_n, &ft_pflen_n, &ft_pfconv_n},
 	(t_pftab){NULL, &ft_pfarg_spc, &ft_pflen_char, &ft_pfconv_char}
 };
