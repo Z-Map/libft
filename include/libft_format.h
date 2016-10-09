@@ -6,7 +6,7 @@
 /*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/08 03:23:21 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 17:45:01 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include "libft_parse.h"
 
 # ifndef FT_PF_BUFSIZE
-#  define FT_PF_BUFSIZE 4096
+#  define FT_PF_BUFSIZE 8192 * 8
 # endif
 
 # define FT_MX_FLOATLEN 310
@@ -35,6 +35,8 @@
 
 # define PF_UCHAR 0xFF
 # define PF_UPFF_SHORT 0xFFFF
+
+# define PF_COUCOU_LA_NORME ((arg->flag & PFF_CAPITAL) ? g_cmapup : g_cmaplow)
 
 /*
 **	Declare public format function

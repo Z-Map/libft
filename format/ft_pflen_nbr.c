@@ -6,7 +6,7 @@
 /*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/08 03:08:41 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/09 18:38:58 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 int					ft_pflen_nbr(t_pfc *arg)
 {
-	const intmax_t	n = (intmax_t)(arg->arg);
-	const int		neg = (n < 0) ? 1 : 0;
+	const int		neg = (arg->arg & (1ul << 63)) ? 1 : 0;
+	const uintmax_t	n = (uintmax_t)((neg) ? -(intmax_t)arg->arg : arg->arg);
 	t_ui			len;
 
 	len = FT_MX_FLOATLEN;
 	if ((arg->flag & PFF_PREC_SET) && (!arg->precision) && (!arg->arg))
 		len = 0;
 	else
-		arg->tmpb = ft_ujfillbuf((uintmax_t)((neg) ? -n : n),
-			arg->tmpb, (int *)&len);
+		arg->tmpb = ft_ujfillbuf(n, arg->tmpb, (int *)&len);
 	arg->b_len = len;
 	if ((arg->flag & PFF_PREC_SET) && (len < arg->precision))
 		len = arg->precision;

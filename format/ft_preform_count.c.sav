@@ -6,7 +6,11 @@
 /*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:38:40 by qloubier          #+#    #+#             */
+<<<<<<< HEAD:format/ft_preform_count.c
 /*   Updated: 2016/10/08 03:18:42 by qloubier         ###   ########.fr       */
+=======
+/*   Updated: 2016/10/08 20:59:25 by qloubier         ###   ########.fr       */
+>>>>>>> 4dbf9253c84f19d0d2e1f4f66d04223020350b25:format/ft_preform_count.c.sav
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +20,11 @@ static t_list	*parse_arg(const char **fstr, va_list ap, int blen)
 {
 	t_pfc		arg;
 
+<<<<<<< HEAD:format/ft_preform_count.c
 	arg = (t_pfc){ 0, 6, 0, blen, 0, 0, 0, NULL};
+=======
+	arg = (t_pfc){ 0, 6, 0, 0, blen, 0, 0, NULL};
+>>>>>>> 4dbf9253c84f19d0d2e1f4f66d04223020350b25:format/ft_preform_count.c.sav
 	*fstr += 1;
 	while (**fstr)
 	{
