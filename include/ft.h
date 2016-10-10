@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:05:20 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/10 04:29:04 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/10 05:36:51 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define FT_DIGIT "0123456789ABCDEF"
 # define FT_DIGIT_L "0123456789abcdef"
+
+# define FT_MX_FLOATLEN 310
 
 typedef unsigned int	t_idx;
 typedef unsigned int	t_ui;
