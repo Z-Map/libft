@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 19:01:53 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/09 21:39:06 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/10 04:41:09 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void							*ft_memset(void *b, int c, size_t len)
 	register const unsigned long	ul = extchartolong((unsigned char)c);
 	register size_t					aln;
 
-	aln = len - (len % sizeof(long));
-	while ((aln--) > len)
-		((unsigned char *)b)[aln] = (unsigned char)c;
+	aln = len % sizeof(long);
+	while (aln-- && len--)
+		((unsigned char *)b)[len] = (unsigned char)c;
 	aln = len / sizeof(long);
 	while (aln--)
 		((unsigned long *)b)[aln] = ul;
