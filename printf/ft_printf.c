@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 17:09:18 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/10 23:48:04 by qloubier         ###   ########.fr       */
+/*   Created: 2016/03/22 02:37:49 by qloubier          #+#    #+#             */
+/*   Updated: 2016/10/09 22:16:13 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_memory.h"
+#include "libft_printf.h"
 
-void			*ft_memchr(const void *s, int c, size_t n)
+static void		init_printf(t_pfb *buf)
 {
-	register const unsigned char	*ic;
+	buf->len = 0;
+	buf->blen = 0;
+	buf->fd = 1;
+	buf->c = buf->buffer;
+	(buf->c)[0] = '\0';
+	(buf->c)[FT_PF_BUFSIZE] = '\0';
+}
 
-	ic = (const unsigned char*)s;
-	while (n--)
-	{
-		if (*ic == (unsigned char)c)
-			return ((void *)(unsigned long)ic);
-		ic++;
-	}
-	return (NULL);
+int				ft_printf(const char *fstr, ...)
+{
+	t_pfb		buf;
+
+	if (!fstr)
+		return (-1);
+	init_printf(&buf);
+	va_start(buf.ap, fstr);
+	ft_printf_loop(fstr, &buf);
+	va_end(buf.ap);
+	return ((int)buf.len);
 }

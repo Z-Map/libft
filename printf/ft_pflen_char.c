@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_pflen_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 17:09:18 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/10 23:48:04 by qloubier         ###   ########.fr       */
+/*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
+/*   Updated: 2016/10/09 22:13:48 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_memory.h"
+#include "libft_printf.h"
 
-void			*ft_memchr(const void *s, int c, size_t n)
+int		ft_pflen_char(t_pfc *arg)
 {
-	register const unsigned char	*ic;
-
-	ic = (const unsigned char*)s;
-	while (n--)
-	{
-		if (*ic == (unsigned char)c)
-			return ((void *)(unsigned long)ic);
-		ic++;
-	}
-	return (NULL);
+	if (arg->flag & (PFF_LONG | PFF_LONG_LONG | PFF_CAPITAL))
+		arg->b_len = ft_utf8wcsize((wchar_t)arg->arg);
+	else
+		arg->b_len = 1;
+	if ((arg->flag & PFF_ZERO_FILL) && !(arg->flag & PFF_LEFT_ALIGN)
+		&& (arg->minwidth))
+		return ((int)arg->minwidth);
+	return (1);
 }

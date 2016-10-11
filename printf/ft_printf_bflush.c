@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bflush.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 17:09:18 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/10 23:48:04 by qloubier         ###   ########.fr       */
+/*   Created: 2016/09/29 23:29:51 by qloubier          #+#    #+#             */
+/*   Updated: 2016/10/09 22:18:02 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_memory.h"
+#include <unistd.h>
+#include "libft_printf.h"
 
-void			*ft_memchr(const void *s, int c, size_t n)
+int				ft_printf_bflush(t_pfb *b)
 {
-	register const unsigned char	*ic;
+	ssize_t		i;
 
-	ic = (const unsigned char*)s;
-	while (n--)
-	{
-		if (*ic == (unsigned char)c)
-			return ((void *)(unsigned long)ic);
-		ic++;
-	}
-	return (NULL);
+	if (!(b->blen))
+		return (0);
+	i = write(b->fd, b->buffer, (size_t)b->blen);
+	if (i < 0)
+		return ((int)i);
+	b->len += i;
+	b->blen = 0;
+	b->c = b->buffer;
+	return ((int)i);
 }

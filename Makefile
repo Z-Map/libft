@@ -17,8 +17,8 @@
 
 # Project var
 NAME=libftprintf.a
-HEADERS=include
-SOURCES=mem lst str format parse io wstr unicode
+HEADERS=include includes
+SOURCES=mem lst str format parse io wstr unicode printf
 MKLIBS= #libft/libft.a libdraw/libdraw.a minilibx/libmlx.a
 LIBSHEADERS=
 LIBS= #m bsd
@@ -89,16 +89,25 @@ ifeq ($(FANCY_OUT),on)
 else
 	SILENT=
 endif
+I_CFLAGS_OBJS=
 ifeq ($(shell printf "$(NAME)" | tail -c2),.a)
 	I_MSG_COMPILE=$(MSG_COMPILE_LIB)
 	I_MSG_CLEAN=$(MSG_CLEAN_LIB)
 	BUILDTYPE=lib
-	I_REAL_NAME=$(NAME:.a=)
+	I_REAL_NAME=$(NAME:%.a=%)
+else
+ifeq ($(shell printf "$(NAME)" | tail -c3),.so)
+	I_MSG_COMPILE=$(MSG_COMPILE_LIB)
+	I_MSG_CLEAN=$(MSG_CLEAN_LIB)
+	BUILDTYPE=dynalib
+	I_REAL_NAME=$(NAME:%.so=%)
+	I_CFLAGS_OBJS+=-fPIC
 else
 	I_MSG_COMPILE=$(MSG_COMPILE_EXE)
 	I_MSG_CLEAN=$(MSG_CLEAN_EXE)
 	BUILDTYPE=exe
 	I_REAL_NAME=$(NAME)
+endif
 endif
 ifeq ($(strip $(RENDERDIR)),)
 	RENDERDIR=$(BUILDIR)/$(I_REAL_NAME)
@@ -145,8 +154,9 @@ RENDER_OBVAR=$(shell for oname in $(ALLOBJ); do basename $$oname; done)
 #------------------------------------------------------------------------------#
 
 # PHONY rules
-.PHONY: neutronstar all clean fclean re \
+.PHONY: neutronstar clean fclean re all\
 		norme render
+		$(SILENT)$(MAKE) clean
 
 # Generic rules
 all: $(NAME)
@@ -171,7 +181,8 @@ ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_OK)         $(I_MSG_END_OK)" "\e[31m$(I_MSG_CLEAN) \e[mfor \e[1m\e[35m$(NAME)"
 endif
 
-re: fclean all
+re: fclean
+	$(SILENT)$(MAKE) all
 
 neutronstar-check:
 	echo "ns"
@@ -214,14 +225,23 @@ neutronstar:
 	printf "\n\n\t[Neutron Star Created]\n"'
 
 # Compilation rules
-$(NAME): $(OBBUDIRS) $(ALLOBJ)
+$(NAME): $(OBBUDIRS)
+ifneq ($(SILENT),)
+	$(SILENT)$(MAKE) -s $(ALLOBJ)
+else
+	$(MAKE) $(ALLOBJ)
+endif
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_WIP)    $(I_MSG_END_WIP)" "\e[33m$(I_MSG_COMPILE) \e[1m\e[35m$(NAME)"
 endif
 ifeq ($(BUILDTYPE),lib)
 	$(SILENT)$(LC) $(LFLAGS) $(NAME) $(ALLOBJ)
 else
+ifeq ($(BUILDTYPE),dynalib)
+	$(SILENT)$(CC) $(ALLOBJ) -shared -o $@ $(ALLCFLAGS) $(LIBSFLAGS)
+else
 	$(SILENT)$(CC) $(ALLOBJ) -o $@ $(ALLCFLAGS) $(LIBSFLAGS)
+endif
 endif
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_OK)    $(I_MSG_END_OK)" "\e[1m\e[36m$(NAME)\e[m $(MSG_COMPILE_DONE)"
@@ -231,7 +251,7 @@ $(ALLOBJ): $(OBBUDIR)/%.o: %.c
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_WIP)$(I_MSG_END_WIP)" "\e[33m$(MSG_COMPILE_OBJ) \e[35m$<"
 endif
-	$(SILENT)$(CC) -o $@ -c $< $(ALLCFLAGS)
+	$(SILENT)$(CC) -o $@ -c $< $(ALLCFLAGS) $(I_CFLAGS_OBJS)
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_OK)$(I_MSG_END_OK)" "\e[36m$< \e[m$(MSG_COMPILE_DONE)"
 endif
@@ -308,19 +328,24 @@ endif
 NAME=$(NAME)\n\
 CC=$(CC)\n\
 CFLAGS=$(CFLAGS)\n\
+CFLAGS_OBJ=$(I_CFLAGS_OBJS)\n\
 INCFLAGS=$(INCFLAGS)\n\
 LIBFLAGS=$(LIBSFLAGS)\n\
 OBJ=" \
 "$(RENDER_BY) <$(RENDER_EMAIL)>" "$(I_DATE) $(I_TIME) by $(RENDER_BY)" \
 "$(I_DATE) $(I_TIME) by $(RENDER_BY)"  > $(RENDERDIR)/Makefile
 	@sh -c 'for oname in $(RENDER_OBVAR); do echo "$$oname \\" >> $(RENDERDIR)/Makefile; done'
-	@printf "\n\n.PHONY: all clean fclean re\n\nall: \$$(NAME)\n\n" >> $(RENDERDIR)/Makefile
+	@printf "\n\n.PHONY: clean fclean re all\n\t\$$(MAKE) clean\n\nall: \$$(NAME)\n\n" >> $(RENDERDIR)/Makefile
 	@sh -c 'for oname in $(ALLSRC); do $(CC) -MM $$oname $(ALLCFLAGS) $(LIBSFLAGS) >> $(RENDERDIR)/Makefile;\
-echo "	\$$(CC) -o \$$@ -c \$$< \$$(CFLAGS) \$$(INCFLAGS)" >> $(RENDERDIR)/Makefile; done'
+echo "	\$$(CC) -o \$$@ -c \$$< \$$(CFLAGS) \$$(CFLAGS_OBJ) \$$(INCFLAGS) " >> $(RENDERDIR)/Makefile; done'
 ifeq ($(BUILDTYPE),lib)
 	@printf "\n\$$(NAME): \$$(OBJ)\n\t$(LC) $(LFLAGS) \$$(NAME) \$$(OBJ)" >> $(RENDERDIR)/Makefile
 else
+ifeq ($(BUILDTYPE),dynalib)
+	@printf "\n\$$(NAME): \$$(OBJ)\n\t\$$(CC) \$$(OBJ) -shared -o \$$@ \$$(CFLAGS) \$$(INCFLAGS) \$$(LIBFLAGS)" >> $(RENDERDIR)/Makefile
+else
 	@printf "\n\$$(NAME): \$$(OBJ)\n\t\$$(CC) \$$(OBJ) -o \$$@ \$$(CFLAGS) \$$(INCFLAGS) \$$(LIBFLAGS)" >> $(RENDERDIR)/Makefile
+endif
 endif
 	@printf "\n\nclean:\n\trm -rf \$$(OBJ)\n\nfclean: clean\n\trm -rf \$$(NAME)\n\nre: fclean all\n\n" >> $(RENDERDIR)/Makefile
 ifeq ($(FANCY_OUT),on)

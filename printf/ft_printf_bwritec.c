@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bwritec.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 17:09:18 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/10 23:48:04 by qloubier         ###   ########.fr       */
+/*   Created: 2016/09/29 23:52:14 by qloubier          #+#    #+#             */
+/*   Updated: 2016/10/09 22:18:36 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_memory.h"
+#include <unistd.h>
+#include "libft_printf.h"
 
-void			*ft_memchr(const void *s, int c, size_t n)
+int				ft_printf_bwritec(t_pfb *b, char c, size_t len)
 {
-	register const unsigned char	*ic;
+	ssize_t		i;
 
-	ic = (const unsigned char*)s;
-	while (n--)
+	if (!len)
+		return (0);
+	i = (int)len;
+	while (len)
 	{
-		if (*ic == (unsigned char)c)
-			return ((void *)(unsigned long)ic);
-		ic++;
+		if (b->blen >= FT_PF_BUFSIZE)
+			ft_printf_bflush(b);
+		*(b->c) = c;
+		++(b->c);
+		++(b->blen);
+		--len;
 	}
-	return (NULL);
+	return ((int)i);
 }

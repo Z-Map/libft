@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_pfconv_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 17:09:18 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/10 23:48:04 by qloubier         ###   ########.fr       */
+/*   Created: 2016/10/04 19:44:05 by qloubier          #+#    #+#             */
+/*   Updated: 2016/10/09 22:12:53 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_memory.h"
+#include "libft_printf.h"
 
-void			*ft_memchr(const void *s, int c, size_t n)
+void			ft_pfconv_str(t_pfb *b, t_pfc *arg, size_t len)
 {
-	register const unsigned char	*ic;
+	int			i;
 
-	ic = (const unsigned char*)s;
-	while (n--)
+	i = (int)len - arg->b_len;
+	if (i > 0)
+		ft_printf_bwritec(b, '0', (size_t)i);
+	if (arg->arg)
 	{
-		if (*ic == (unsigned char)c)
-			return ((void *)(unsigned long)ic);
-		ic++;
+		if (arg->type == PFT_STR)
+			ft_printf_bwrite(b, (char *)(arg->arg), (size_t)arg->b_len);
+		else
+			ft_printf_bwritew(b, (wchar_t *)(arg->arg), (size_t)arg->b_len);
 	}
-	return (NULL);
+	else
+		ft_printf_bwrite(b, g_pf_nullstr, (size_t)arg->b_len);
 }

@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_pfarg_spc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 17:09:18 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/10 23:48:04 by qloubier         ###   ########.fr       */
+/*   Created: 2016/05/18 19:56:26 by qloubier          #+#    #+#             */
+/*   Updated: 2016/10/05 17:54:34 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_memory.h"
+#include "libft_printf.h"
 
-void			*ft_memchr(const void *s, int c, size_t n)
+int			ft_pfarg_spc(int cc, va_list ap, t_pfc *arg)
 {
-	register const unsigned char	*ic;
-
-	ic = (const unsigned char*)s;
-	while (n--)
+	(void)ap;
+	arg->type = PFT_SPECHAR;
+	if (cc < 0)
 	{
-		if (*ic == (unsigned char)c)
-			return ((void *)(unsigned long)ic);
-		ic++;
+		arg->arg = (uintmax_t)((char)(-cc));
+		return (17);
 	}
-	return (NULL);
+	arg->arg = (uintmax_t)('%');
+	return (cc);
 }

@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_pfarg_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 17:09:18 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/10 23:48:04 by qloubier         ###   ########.fr       */
+/*   Created: 2016/05/18 19:56:26 by qloubier          #+#    #+#             */
+/*   Updated: 2016/10/09 22:05:22 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_memory.h"
+#include "libft_printf.h"
 
-void			*ft_memchr(const void *s, int c, size_t n)
+int			ft_pfarg_ptr(int cc, va_list ap, t_pfc *arg)
 {
-	register const unsigned char	*ic;
-
-	ic = (const unsigned char*)s;
-	while (n--)
-	{
-		if (*ic == (unsigned char)c)
-			return ((void *)(unsigned long)ic);
-		ic++;
-	}
-	return (NULL);
+	arg->type = PFT_HEXA;
+	arg->flag |= PFF_PTRSET;
+	arg->arg = (uintmax_t)va_arg(ap, void *);
+	return (cc);
 }

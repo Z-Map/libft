@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_wstrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 17:09:18 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/10 23:48:04 by qloubier         ###   ########.fr       */
+/*   Created: 2015/11/25 01:09:51 by qloubier          #+#    #+#             */
+/*   Updated: 2016/10/11 00:35:37 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_memory.h"
+#include "libft_wstring.h"
 
-void			*ft_memchr(const void *s, int c, size_t n)
+size_t	ft_wcslen(const wchar_t *s)
 {
-	register const unsigned char	*ic;
+	size_t len;
 
-	ic = (const unsigned char*)s;
-	while (n--)
-	{
-		if (*ic == (unsigned char)c)
-			return ((void *)(unsigned long)ic);
-		ic++;
-	}
-	return (NULL);
+	len = 0;
+	while (*(s++))
+		len++;
+	return (len);
 }
