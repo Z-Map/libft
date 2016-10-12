@@ -136,6 +136,9 @@ else
 	ALLSRC=$(shell for dir in $(SOURCES); do find $$dir/*.c -type f 2> /dev/null; done)
 endif
 ALLOBJ=$(shell for oname in $(ALLSRC:.c=.o); do printf "$(OBBUDIR)/$$oname "; done)
+ifndef ALLOBJ_GUARD
+	ALLOBJ_GUARD=off
+endif
 ALLLIBSDIRS=$(shell for lib in $(MKLIBS); do dirname "$(LIBSDIR)$$lib"; done) $(LIBSDIRS)
 ALLLIBS=$(shell for lib in $(MKLIBS); do basename "$$lib" | head -c-3 | tail -c+4; printf " "; done)$(LIBS)
 LIBSFLAGS=$(shell echo "-L$(ALLLIBSDIRS)" | sed "s/ \(.\)/ -L\1/g" | sed "s/^-L *$$/ /g") $(shell echo "-l$(ALLLIBS)" | sed "s/ \(.\)/ -l\1/g" | sed "s/^-l *$$/ /g")
@@ -228,13 +231,17 @@ neutronstar:
 	done;\
 	printf "\n\n\t[Neutron Star Created]\n"'
 
+$(ALLSRC):
+
 # Compilation rules
-$(NAME): $(OBBUDIRS)
+$(NAME): $(OBBUDIRS) $(ALLOBJ)
+ifeq (ALLOBJ_GUARD,on)
 ifeq ($(SILENT),@)
-	$(SILENT)$(MAKE) -s $(ALLOBJ)
+	$(SILENT)$(MAKE) -s $(NAME) ALLOBJ_GUARD=off
 else
-	$(MAKE) $(ALLOBJ)
+	@$(MAKE) $(NAME) ALLOBJ_GUARD=off | grep "$(CC) -o"
 endif
+else
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_WIP)    $(I_MSG_END_WIP)" "\e[33m$(I_MSG_COMPILE) \e[1m\e[35m$(NAME)"
 endif
@@ -250,14 +257,17 @@ endif
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_OK)    $(I_MSG_END_OK)" "\e[1m\e[36m$(NAME)\e[m $(MSG_COMPILE_DONE)"
 endif
+endif
 
 $(ALLOBJ): $(OBBUDIR)/%.o: %.c
+ifeq ($(ALLOBJ_GUARD),off)
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_WIP)$(I_MSG_END_WIP)" "\e[33m$(MSG_COMPILE_OBJ) \e[35m$<"
 endif
 	$(SILENT)$(CC) -o $@ -c $< $(ALLCFLAGS) $(I_CFLAGS_OBJS)
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_OK)$(I_MSG_END_OK)" "\e[36m$< \e[m$(MSG_COMPILE_DONE)"
+endif
 endif
 
 $(OBBUDIRS):
@@ -298,6 +308,10 @@ else
 endif
 
 endif
+
+rerender: unrender
+	@$(MAKE) render SILENT=$(SILENT)
+
 unrender:
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_WIP)       $(I_MSG_END_WIP)" "\e[33mDelete\e[m \e[1m\e[35m$(RENDERDIR)"
@@ -306,7 +320,6 @@ endif
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_OK)         $(I_MSG_END_OK)" "\e[31mDelete\e[m \e[1m\e[35m$(RENDERDIR)"
 endif
-
 
 render: $(RENDERDIR)/Makefile $(RENDERDIR)/auteur
 	@#echo "$(RENDERDIR)"
