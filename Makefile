@@ -182,7 +182,11 @@ ifeq ($(FANCY_OUT),on)
 endif
 
 re: fclean
-	$(SILENT)$(MAKE) all
+ifeq ($(SILENT),@)
+	$(SILENT)$(MAKE) -s all
+else
+	$(MAKE) all
+endif
 
 neutronstar-check:
 	echo "ns"
@@ -226,7 +230,7 @@ neutronstar:
 
 # Compilation rules
 $(NAME): $(OBBUDIRS)
-ifneq ($(SILENT),)
+ifeq ($(SILENT),@)
 	$(SILENT)$(MAKE) -s $(ALLOBJ)
 else
 	$(MAKE) $(ALLOBJ)

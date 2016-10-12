@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_bwritec.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 23:52:14 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/09 22:18:36 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/12 01:58:00 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,18 @@ int				ft_printf_bwritec(t_pfb *b, char c, size_t len)
 	if (!len)
 		return (0);
 	i = (int)len;
-	while (len)
+	if ((b->blen + i) < FT_PF_BUFSIZE)
 	{
-		if (b->blen >= FT_PF_BUFSIZE)
-			ft_printf_bflush(b);
-		*(b->c) = c;
-		++(b->c);
-		++(b->blen);
-		--len;
+		ft_memset(b->c, (int)c, (size_t)i);
+		b->blen += i;
+		b->c += i;
 	}
-	return ((int)i);
+	else
+	{
+		ft_memset(b->c, (int)c, (size_t)(i = FT_PF_BUFSIZE - b->blen));
+		ft_printf_bflush(b);
+		if ((i = (int)len - i))
+			ft_printf_bwritec(b, c, (size_t)i);
+	}
+	return ((int)len);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_printf.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: map <marvin@student.42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/10 05:51:14 by map               #+#    #+#             */
-/*   Updated: 2016/10/11 19:21:51 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/12 01:55:53 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # ifndef FT_PF_BUFSIZE
 #  define FT_PF_BUFSIZE 8192 * 8
 # endif
+# define PF_BUFSIZE (FT_PF_BUFSIZE + 1 + (8 - ((FT_PF_BUFSIZE + 1) % 8)))
 
 # define PF_TYPE_STR "sdiuxcbDXUp%SCoOfFn"
 # define PF_FLAG_STR "#+0- .hljz*"
@@ -98,7 +99,7 @@ typedef struct			s_printf_buffer
 	char				*c;
 	va_list				ap;
 	t_pfc				arg;
-	char				buffer[FT_PF_BUFSIZE + 8];
+	char				buffer[PF_BUFSIZE];
 	char				tmp[FT_MX_FLOATLEN + 2];
 }						t_pfb;
 
