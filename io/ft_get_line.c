@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 19:15:20 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/09 22:33:06 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/13 17:47:40 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,17 @@ static t_gnlb	*get_gnlb(int const fd, char *rbuf, t_list **gnlb_lst, int *err)
 	return (i->content);
 }
 
+static int		valid_gnlb(t_list **gnlb_lst, t_gnlb *gnlb, char **line)
+{
+	if (line)
+		*line = NULL;
+	if (!gnlb)
+		return (0);
+	else if (!line)
+		return ((int)(unsigned long)(gnl_free(gnlb->fd, gnlb_lst, NULL)));
+	return (1);
+}
+
 int				ft_get_line(int const fd, char **line)
 {
 	static t_list	*gnlb_lst = NULL;
@@ -99,10 +110,8 @@ int				ft_get_line(int const fd, char **line)
 	t_gnlb			*gnlb;
 	int				r;
 
-	if (line)
-		*line = NULL;
 	gnlb = get_gnlb(fd, rbuf, &gnlb_lst, &r);
-	if (!line || !gnlb)
+	if (!valid_gnlb(&gnlb_lst, gnlb, line))
 		return (r < 1 ? r : -1);
 	cur = gnlb->strb;
 	while (cur && !(cur = ft_strchr(cur, (int)'\n')))
