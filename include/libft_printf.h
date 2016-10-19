@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   libft_printf.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: map <marvin@student.42.fr>                 +#+  +:+       +#+        */
+/*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/10 05:51:14 by map               #+#    #+#             */
-/*   Updated: 2016/10/12 01:55:53 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/19 17:45:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_PRINTF_H
-#define LIBFT_PRINTF_H
+# define LIBFT_PRINTF_H
 # include <string.h>
 # include <stdarg.h>
 # include <inttypes.h>
@@ -36,7 +36,6 @@
 # define PF_UCHAR 0xFF
 # define PF_UPFF_SHORT 0xFFFF
 
-# define PF_ATTR (format(printf,1,2))
 # define PF_COUCOU_LA_NORME ((arg->flag & PFF_CAPITAL) ? g_cmapup : g_cmaplow)
 
 enum					e_pf_flag
@@ -136,7 +135,6 @@ int						ft_pfarg_spc(int cc, va_list ap, t_pfc *arg);
 int						ft_pfarg_n(int cc, va_list ap, t_pfc *arg);
 int						ft_pfarg_bin(int cc, va_list ap, t_pfc *arg);
 
-
 int						ft_pflen_nbr(t_pfc *arg);
 int						ft_pflen_unbr(t_pfc *arg);
 int						ft_pflen_str(t_pfc *arg);
@@ -180,10 +178,9 @@ int						ft_printf_loop(const char *fstr, t_pfb *pfb);
 const char				*ft_printf_parse(const char *fstr, t_pfb *pfb);
 int						ft_printf_convert(int tid, t_pfc *arg, t_pfb *pfb);
 
-int						ft_printf(const char *fstr, ...) __attribute__(PF_ATTR);
+int						ft_printf(const char *fstr, ...);
 int						ft_printf_fd(int fd, const char *fstr, ...);
 int						ft_print_buff(const char *fstr, int len, t_list **args);
-
 
 const static char		*g_pf_nullstr = "(null)";
 const static t_pftab	g_pf_flag_tab[] = {

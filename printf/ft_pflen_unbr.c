@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pflen_unbr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/09 18:21:12 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/19 17:39:11 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int					ft_pflen_unbr(t_pfc *arg)
 		arg->tmpb = ft_ujfillbufbase(arg->arg, cm, arg->tmpb, (int *)&len);
 	arg->b_len = (int)len;
 	if (arg->type == PFT_BIN)
-		len =  ((len >> 2) + ((len % 4) ? 1 : 0)) << 2;
+		len = ((len >> 2) + ((len % 4) ? 1 : 0)) << 2;
 	if ((arg->flag & PFF_PREC_SET) && (len < arg->precision))
 		len = arg->precision;
 	else if ((arg->flag & PFF_ALTERNTE) && (arg->type == PFT_OCT)
