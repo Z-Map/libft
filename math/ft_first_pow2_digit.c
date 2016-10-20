@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pfconv_float.c                                  :+:      :+:    :+:   */
+/*   ft_first_pow2_digit.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/04 23:01:47 by map               #+#    #+#             */
-/*   Updated: 2016/10/20 20:20:22 by qloubier         ###   ########.fr       */
+/*   Created: 2016/10/20 17:58:13 by qloubier          #+#    #+#             */
+/*   Updated: 2016/10/20 23:27:55 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_printf.h"
+#include "libft_math.h"
 
-void					ft_pfconv_float(t_pfb *b, t_pfc *arg, size_t len)
+int			ft_first_pow2_digit(unsigned long num)
 {
-	len -= (size_t)arg->b_len;
-	ft_printf_bwrite(b, arg->tmpb, (size_t)(arg->b_len));
-	ft_printf_bwritec(b, '0', (size_t)len);
+	int				i;
+
+	if (!num)
+		return (0);
+	i = 1;
+	if (num & 1u)
+		i *= 2;
+	if (num & 2u)
+		i *= 4;
+	if (num & ~3ul)
+		i *= 6;
+	return (i % 10);
 }

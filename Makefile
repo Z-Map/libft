@@ -18,7 +18,7 @@
 # Project var
 NAME=libftprintf.a
 HEADERS=include includes
-SOURCES=mem lst str format parse io wstr unicode printf
+SOURCES=mem lst str format parse io wstr unicode printf math
 MKLIBS= #libft/libft.a libdraw/libdraw.a minilibx/libmlx.a
 LIBSHEADERS=
 LIBS= #m bsd
