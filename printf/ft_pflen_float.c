@@ -6,14 +6,14 @@
 /*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/12 03:53:15 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/20 01:10:34 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_printf.h"
 #include "libft_math.h"
 
-static double		float_trunc(const double *d)
+static double	float_trunc(const double *d)
 {
 	const unsigned long	ld = *((const unsigned long *)(d));
 	unsigned long		l;
@@ -33,7 +33,7 @@ static double		float_trunc(const double *d)
 	return (0.0);
 }
 
-static double		float_round(const double *d)
+static double	float_round(const double *d)
 {
 	const unsigned long	ld = *((const unsigned long *)(d));
 	unsigned long		l;
@@ -52,7 +52,7 @@ static double		float_round(const double *d)
 	return (0.0);
 }
 
-static double		float_mod(double *val, int base)
+static double	float_mod(double *val, int base)
 {
 	double			d;
 
@@ -63,11 +63,21 @@ static double		float_mod(double *val, int base)
 	return (d);
 }
 
-int					ft_pflen_float(t_pfc *arg)
+int				ft_pflen_float(t_pfc *arg)
 {
-	size_t	len;
+	const double	d = *((double *)(&(arg->arg)));
+	size_t			len;
 
-	len = ft_floatlen(*((double *)(&(arg->arg))), arg->precision);
+	len = (arg->arg & FT_D_EXP) >> 52;
+	if (len > 1022)
+	{
+		if (len < 1076)
+			len = ft_floatlen(d, arg->precision);
+		else
+			len = ft_float_biglen(d, arg->precision);
+	}
+	else
+		len = arg->precision + 2;
 	(void)float_mod;
 	(void)float_round;
 	return ((int)len);
