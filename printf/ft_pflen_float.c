@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pflen_float.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/20 20:55:47 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/21 04:47:33 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_printf.h"
 #include "libft_math.h"
+#include <math.h>
 
 static double	float_trunc(const double *d)
 {
@@ -49,6 +50,8 @@ static double	float_round(const double *d)
 	}
 	else if (l > 1076)
 		return (*d);
+	else if (l == 1022)
+		return (1.0);
 	return (0.0);
 }
 
@@ -95,7 +98,7 @@ static char		*pf_float_biglen(char *buf, double d, t_ui prec, int *len)
 	}
 	while (d > 18446744073709551615.0 && i < *len)
 	{
-		*(--c) = '0' + (char)ft_firstfloatdigit(d);
+		*(--c) = '0' + (char)ft_lastfdigit(d);
 		d /= 10.0;
 		i++;
 	}
@@ -112,6 +115,8 @@ int				ft_pflen_float(t_pfc *arg)
 	t_ui			len;
 
 	len = FT_MX_FLOATLEN;
+	if (!(arg->flag & PFF_PREC_SET))
+		arg->precision = 6;
 	l = (arg->arg & FT_D_EXP) >> 52;
 	if (l > 1022)
 	{

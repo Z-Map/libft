@@ -6,7 +6,7 @@
 /*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/12 04:19:35 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/12 04:20:21 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/21 04:46:58 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ double					ft_fround(const double *d)
 	}
 	else if (l > 1076)
 		return (*d);
+	else if (l == 1022)
+		return (1.0);
 	return (0.0);
 }
