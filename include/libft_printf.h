@@ -6,7 +6,7 @@
 /*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/10 05:51:14 by map               #+#    #+#             */
-/*   Updated: 2016/10/21 17:33:41 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/21 20:45:59 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,20 +164,6 @@ int						ft_printf_bwritew(t_pfb *b, const wchar_t *c,
 							size_t len);
 int						ft_printf_bwritec(t_pfb *b, char c, size_t len);
 int						ft_printf_bflush(t_pfb *b);
-
-int						ft_printf_loop(const char *fstr, t_pfb *pfb);
-const char				*ft_printf_parse(const char *fstr, t_pfb *pfb);
-int						ft_printf_convert(int tid, t_pfc *arg, t_pfb *pfb);
-
-int						ft_printf_bwrite(t_pfb *b, const char *c, size_t len);
-int						ft_printf_bwritew(t_pfb *b, const wchar_t *c,
-							size_t len);
-int						ft_printf_bwritec(t_pfb *b, char c, size_t len);
-int						ft_printf_bflush(t_pfb *b);
-
-int						ft_printf_loop(const char *fstr, t_pfb *pfb);
-const char				*ft_printf_parse(const char *fstr, t_pfb *pfb);
-int						ft_printf_convert(int tid, t_pfc *arg, t_pfb *pfb);
 
 int						ft_printf(const char *fstr, ...);
 int						ft_printf_fd(int fd, const char *fstr, ...);
