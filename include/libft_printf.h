@@ -6,7 +6,7 @@
 /*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/10 05:51:14 by map               #+#    #+#             */
-/*   Updated: 2016/10/19 17:45:04 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/21 17:33:41 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "libft_unicode.h"
 # include "libft_parse.h"
 # include "libft_format.h"
+# include "libft_math.h"
 
 # ifndef FT_PF_BUFSIZE
 #  define FT_PF_BUFSIZE 8192 * 8

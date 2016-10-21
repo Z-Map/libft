@@ -3,107 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pflen_float.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/21 04:47:33 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/21 18:38:53 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_printf.h"
-#include "libft_math.h"
-#include <math.h>
 
-static double	float_trunc(const double *d)
+static char		*pf_floattobuf(t_pfc *arg, double d, int *len)
 {
-	const unsigned long	ld = *((const unsigned long *)(d));
-	unsigned long		l;
-
-	l = (ld & FT_D_EXP) >> 52;
-	if ((l > 1022) && (l < 1076))
-	{
-		l = FT_D_MAN >> (l - 1023);
-		l = ld & (~l);
-		return (*((double *)&l));
-	}
-	else if (l > 1076)
-	{
-		l = (ld & ~FT_D_MAN) | ((ld & FT_D_MAN) - 1);
-		return (*((double *)&l));
-	}
-	return (0.0);
-}
-
-static double	float_round(const double *d)
-{
-	const unsigned long	ld = *((const unsigned long *)(d));
-	unsigned long		l;
-	double				od;
-
-	l = (ld & FT_D_EXP) >> 52;
-	if ((l > 1022) && (l < 1076))
-	{
-		l = FT_D_MAN >> (l - 1023);
-		od = ((ld & (l & (~l >> 1))) ? 1.0 : 0.0);
-		l = ld & (~l);
-		return (*((double *)&l) + od);
-	}
-	else if (l > 1076)
-		return (*d);
-	else if (l == 1022)
-		return (1.0);
-	return (0.0);
-}
-
-static double	float_mod(double *val, int base)
-{
-	double			d;
-
-	d = *val;
-	*val /= base;
-	if ((d = d - (float_trunc(val) * base)) > base)
-		d = float_mod(&d, base);
-	return (d);
-}
-
-static char		*pf_floattobuf(char *buf, double d, t_ui prec, int *len)
-{
-	int			i;
+	int				i;
+	unsigned long	l;
+	char			*c;
 
 	i = 0;
 	if (d < 0)
 		d = -d;
-	if (prec)
+	if (arg->precision || (arg->flag & PFF_ALTERNTE))
 	{
 		*len -= 1;
-		buf[*len] = '.';
+		arg->tmpb[*len] = '.';
 		i = 1;
 	}
-	buf = ft_ujfillbuf((unsigned long)d, buf, len);
+	l = (unsigned long)d;
+	c = ft_ujfillbuf(l, arg->tmpb, len);
+	d -= (double)l;
+	arg->arg = (uintmax_t)(*((unsigned long *)(&(d))));
 	*len += i;
-	return (buf);
+	return (c);
 }
 
-static char		*pf_float_biglen(char *buf, double d, t_ui prec, int *len)
+static char		*pf_float_biglen(t_pfc *arg, double d, int *len)
 {
 	int			i;
 	char		*c;
 
-	c = buf + *len;
+	c = arg->tmpb + *len;
 	i = 0;
-	if (prec)
+	if (arg->precision || (arg->flag & PFF_ALTERNTE))
 	{
 		*(--c) = '.';
 		i++;
 	}
-	while (d > 18446744073709551615.0 && i < *len)
+	while ((d > 18446744073709551615.0) && (i < *len))
 	{
 		*(--c) = '0' + (char)ft_lastfdigit(d);
 		d /= 10.0;
 		i++;
 	}
 	*len -= i;
-	c = ft_ujfillbuf((unsigned long)d, buf, len);
+	c = ft_ujfillbuf((unsigned long)d, arg->tmpb, len);
+	arg->arg = 0.0;
 	*len += i;
 	return (c);
 }
@@ -118,18 +70,18 @@ int				ft_pflen_float(t_pfc *arg)
 	if (!(arg->flag & PFF_PREC_SET))
 		arg->precision = 6;
 	l = (arg->arg & FT_D_EXP) >> 52;
-	if (l > 1022)
-	{
-		if (l < 1076)
-			arg->tmpb = pf_floattobuf(arg->tmpb, d, arg->precision, (int *)&len);
-		else
-			arg->tmpb = pf_float_biglen(arg->tmpb, d, arg->precision, (int *)&len);
-	}
+	if (l > 1075)
+		arg->tmpb = pf_float_biglen(arg, d, (int *)&len);
 	else
-		len = 2;
+		arg->tmpb = pf_floattobuf(arg, d, (int *)&len);
+	if ((d < 0.0) || (arg->flag & (PFF_FORCE_SIGN | PFF_SPACE)))
+	{
+		*(--(arg->tmpb)) = (arg->flag & PFF_FORCE_SIGN) ? '+' : ' ';
+		if (d < 0.0)
+			*(arg->tmpb) = '-';
+		++len;
+	}
 	arg->b_len = (int)len;
 	len += arg->precision;
-	(void)float_mod;
-	(void)float_round;
 	return ((int)len);
 }

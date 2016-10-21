@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_math.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/12 02:13:18 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/21 04:33:08 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/21 16:37:02 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@
 int					ft_lastpow2digit(unsigned long num);
 int					ft_lastfdigit(double d);
 double				ft_fround(const double *d);
+double				ft_ftrunc(const double *d);
 
 #endif
