@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 02:37:49 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/22 22:29:22 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/10/22 22:33:19 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int				ft_dprintf(int fd, const char *fstr, ...)
 
 	if (!fstr)
 		return (-1);
-	init_printf(&buf);
+	init_dprintf(&buf);
 	buf.fd = fd;
 	va_start(buf.ap, fstr);
 	ft_printf_loop(fstr, &buf);
