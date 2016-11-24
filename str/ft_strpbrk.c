@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_forf.c                                          :+:      :+:    :+:   */
+/*   ft_strpbrk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/29 18:12:32 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/05 20:27:33 by qloubier         ###   ########.fr       */
+/*   Created: 2016/01/10 04:46:59 by qloubier          #+#    #+#             */
+/*   Updated: 2016/11/22 18:22:23 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_format.h"
+#include "libft_string.h"
 
-const char				*ft_forf(const char *c, const char *s, size_t *len)
+char	*ft_strpbrk(const char *s, const char *stopset)
 {
-	const char			*sc;
-
-	if (!c || !s)
-		return (NULL);
-	*len = 0;
-	while (*c)
-	{
-		sc = s;
-		while (*sc)
-			if (*(sc++) == *c)
-				return (c);
-		(*len) += 1;
-		c++;
-	}
+	while (*s)
+		if (ft_strchr(stopset, (int)(*(s++))))
+			return ((char *)(unsigned long)(--s));
 	return (NULL);
 }

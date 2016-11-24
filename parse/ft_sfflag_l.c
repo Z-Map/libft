@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_digit.c                                   :+:      :+:    :+:   */
+/*   ft_sfflag_l.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/30 03:53:28 by qloubier          #+#    #+#             */
-/*   Updated: 2016/11/09 13:51:48 by map              ###   ########.fr       */
+/*   Created: 2016/09/30 02:23:55 by qloubier          #+#    #+#             */
+/*   Updated: 2016/11/24 01:00:57 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft_parse.h"
 
-const char			*ft_parse_digit(const char *str, unsigned int *num)
+const char			*ft_sfflag_l(const char *c, t_sfb *b)
 {
-	*num = 0;
-	while (ft_isdigit((int)(*str)))
-		*num = ((*num * 10) + (unsigned int)(*(str++) - '0'));
-	return (str);
+	if (c[1] == 'l')
+	{
+		b->arg.flag |= SFF_LONG_LONG;
+		++c;
+	}
+	else if (*c == 'L')
+		b->arg.flag |= SFF_LONG_LONG;
+	else
+		b->arg.flag |= SFF_LONG;
+	return (c + 1);
 }

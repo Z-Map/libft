@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_digit.c                                   :+:      :+:    :+:   */
+/*   ft_sfflag_width.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/30 03:53:28 by qloubier          #+#    #+#             */
-/*   Updated: 2016/11/09 13:51:48 by map              ###   ########.fr       */
+/*   Created: 2016/11/10 15:16:26 by map               #+#    #+#             */
+/*   Updated: 2016/11/24 01:37:12 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft_parse.h"
 
-const char			*ft_parse_digit(const char *str, unsigned int *num)
+const char			*ft_sfflag_width(const char *c, t_sfb *b)
 {
-	*num = 0;
-	while (ft_isdigit((int)(*str)))
-		*num = ((*num * 10) + (unsigned int)(*(str++) - '0'));
-	return (str);
+	c = ft_parse_digit(c, (t_ui *)&(b->arg.maxwidth));
+	b->arg.flag |= SFF_MXW_SET;
+	return (c);
 }

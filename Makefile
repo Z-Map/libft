@@ -16,7 +16,7 @@
 #------------------------------------------------------------------------------#
 
 # Project var
-NAME=libftprintf.a
+NAME=libft.a
 HEADERS=include includes
 SOURCES=mem lst str format parse io wstr unicode printf math
 MKLIBS= #libft/libft.a libdraw/libdraw.a minilibx/libmlx.a
@@ -143,8 +143,8 @@ ALLLIBSDIRS=$(shell for lib in $(MKLIBS); do dirname "$(LIBSDIR)$$lib"; done) $(
 ALLLIBS=$(shell for lib in $(MKLIBS); do basename "$$lib" | head -c-3 | tail -c+4; printf " "; done)$(LIBS)
 LIBSFLAGS=$(shell echo "-L$(ALLLIBSDIRS)" | sed "s/ \(.\)/ -L\1/g" | sed "s/^-L *$$/ /g") $(shell echo "-l$(ALLLIBS)" | sed "s/ \(.\)/ -l\1/g" | sed "s/^-l *$$/ /g")
 ALLCFLAGS=$(CFLAGS) $(INCFLAGS)
-I_MKFLIB=$(shell for lib in $(MKLIBS); do dirname "$(LIBSDIR)$$lib" | xargs -0 printf "%s/ "; done)
-I_MKNSLIB=
+I_MKFLIB=$(shell for lib in $(MKLIBS); do dirname "$(LIBSDIR)$$lib" | xargs -0 printf "%s"; done)
+I_MKNSLIB=$(shell for lib in $(MKLIBS); do make -si -C "$(LIBSDIR)$$lib" neutronstar-check | xargs -0 printf "%s"; done)
 # ALLDEP=$(ALLOBJ:.o=.d)
 
 RENDER_SUBDIRS=$(shell for dir in $(SOURCES) $(HEADERS); do printf "$(RENDERDIR)/$$dir "; done)
@@ -165,6 +165,7 @@ RENDER_OBVAR=$(shell for oname in $(ALLOBJ); do basename $$oname; done)
 all: $(NAME)
 
 install:
+	@echo "$(I_MKNSLIB)"
 
 clean:
 ifeq ($(FANCY_OUT),on)

@@ -14,7 +14,7 @@
 
 int					ft_pflen_unbr(t_pfc *arg)
 {
-	const t_cmap	cm = PF_COUCOU_LA_NORME[arg->type - 2];
+	t_cmap	cm = PF_COUCOU_LA_NORME[arg->type - 2];
 	t_ui			len;
 
 	len = FT_MX_FLOATLEN;

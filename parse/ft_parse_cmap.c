@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_digit.c                                   :+:      :+:    :+:   */
+/*   ft_parse_cmap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/30 03:53:28 by qloubier          #+#    #+#             */
-/*   Updated: 2016/11/09 13:51:48 by map              ###   ########.fr       */
+/*   Created: 2016/11/09 13:19:18 by map               #+#    #+#             */
+/*   Updated: 2016/11/09 14:40:36 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft_parse.h"
 
-const char			*ft_parse_digit(const char *str, unsigned int *num)
+const char	*ft_parse_cmap(const char *str, unsigned long *num, t_cmap cm,
+				int len)
 {
+	register int	i;
+
 	*num = 0;
-	while (ft_isdigit((int)(*str)))
-		*num = ((*num * 10) + (unsigned int)(*(str++) - '0'));
+	i = 0;
+	while ((*str) && (len-- > 0) &&
+		((i = ft_strnidx(cm.cmap, (int)(*str), (size_t)cm.base)) >= 0))
+	{
+		*num = (*num * (unsigned long)cm.base) + (unsigned long)(i);
+		str++;
+	}
 	return (str);
 }

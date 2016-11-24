@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_digit.c                                   :+:      :+:    :+:   */
+/*   ft_strspn.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/30 03:53:28 by qloubier          #+#    #+#             */
-/*   Updated: 2016/11/09 13:51:48 by map              ###   ########.fr       */
+/*   Created: 2016/01/10 04:46:59 by qloubier          #+#    #+#             */
+/*   Updated: 2016/11/24 13:38:23 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "libft_parse.h"
+#include "libft_string.h"
 
-const char			*ft_parse_digit(const char *str, unsigned int *num)
+int		ft_strspn(const char *s, const char *skipset)
 {
-	*num = 0;
-	while (ft_isdigit((int)(*str)))
-		*num = ((*num * 10) + (unsigned int)(*(str++) - '0'));
-	return (str);
+	int	i;
+
+	i = 0;
+	while ((*s) && (ft_strchr(skipset, (int)(*(s++)))))
+		++i;
+	return (i);
 }

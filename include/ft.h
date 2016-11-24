@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:05:20 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/10 05:36:51 by map              ###   ########.fr       */
+/*   Updated: 2016/11/23 23:41:05 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,53 +15,64 @@
 
 # define FT_DIGIT "0123456789ABCDEF"
 # define FT_DIGIT_L "0123456789abcdef"
+# define FT_DECIMAL_DIGIT "0123456789"
+# define FT_DECIMAL_C "+-0123456789"
+# define FT_OCTAL_C "01234567"
+# define FT_HEXA_C "+-0123456789ABCDEF"
+# define FT_HEXA_C_L "+-0123456789abcdef"
+
+# define FT_WHITESPACE " \t\n\r\v\f"
 
 # define FT_MX_FLOATLEN 310
 
 typedef unsigned int	t_idx;
+typedef unsigned char	t_uc;
+typedef unsigned short	t_us;
 typedef unsigned int	t_ui;
+typedef unsigned long	t_ul;
+typedef unsigned long	t_np;
 
-typedef struct			s_char_map
+typedef const struct	s_char_map
 {
 	t_ui				base;
 	int					padding;
 	const char			*cmap;
 }						t_cmap;
 
-static const char		*g_digitupmap = FT_DIGIT;
-static const char		*g_digitlowmap = FT_DIGIT_L;
-static const t_cmap		g_cmapup[] = {
-	(t_cmap){2, 0, FT_DIGIT},
-	(t_cmap){3, 0, FT_DIGIT},
-	(t_cmap){4, 0, FT_DIGIT},
-	(t_cmap){5, 0, FT_DIGIT},
-	(t_cmap){6, 0, FT_DIGIT},
-	(t_cmap){7, 0, FT_DIGIT},
-	(t_cmap){8, 0, FT_DIGIT},
-	(t_cmap){9, 0, FT_DIGIT},
-	(t_cmap){10, 0, FT_DIGIT},
-	(t_cmap){11, 0, FT_DIGIT},
-	(t_cmap){12, 0, FT_DIGIT},
-	(t_cmap){13, 0, FT_DIGIT},
-	(t_cmap){14, 0, FT_DIGIT},
-	(t_cmap){15, 0, FT_DIGIT},
-	(t_cmap){16, 0, FT_DIGIT},
+static const char		g_digitupmap[] = FT_DIGIT;
+static const char		g_digitlowmap[] = FT_DIGIT_L;
+static t_cmap		g_cmapup[] = {
+	(t_cmap){2, 0, g_digitupmap},
+	(t_cmap){3, 0, g_digitupmap},
+	(t_cmap){4, 0, g_digitupmap},
+	(t_cmap){5, 0, g_digitupmap},
+	(t_cmap){6, 0, g_digitupmap},
+	(t_cmap){7, 0, g_digitupmap},
+	(t_cmap){8, 0, g_digitupmap},
+	(t_cmap){9, 0, g_digitupmap},
+	(t_cmap){10, 0, g_digitupmap},
+	(t_cmap){11, 0, g_digitupmap},
+	(t_cmap){12, 0, g_digitupmap},
+	(t_cmap){13, 0, g_digitupmap},
+	(t_cmap){14, 0, g_digitupmap},
+	(t_cmap){15, 0, g_digitupmap},
+	(t_cmap){16, 0, g_digitupmap},
 };
-static const t_cmap		g_cmaplow[] = {
-	(t_cmap){2, 0, FT_DIGIT_L},
-	(t_cmap){3, 0, FT_DIGIT_L},
-	(t_cmap){4, 0, FT_DIGIT_L},
-	(t_cmap){5, 0, FT_DIGIT_L},
-	(t_cmap){6, 0, FT_DIGIT_L},
-	(t_cmap){7, 0, FT_DIGIT_L},
-	(t_cmap){8, 0, FT_DIGIT_L},
-	(t_cmap){9, 0, FT_DIGIT_L},
-	(t_cmap){10, 0, FT_DIGIT_L},
-	(t_cmap){11, 0, FT_DIGIT_L},
-	(t_cmap){12, 0, FT_DIGIT_L},
-	(t_cmap){13, 0, FT_DIGIT_L},
-	(t_cmap){14, 0, FT_DIGIT_L},
-	(t_cmap){15, 0, FT_DIGIT_L},
-	(t_cmap){16, 0, FT_DIGIT_L},
+static t_cmap		g_cmaplow[] = {
+	(t_cmap){2, 0, g_digitlowmap},
+	(t_cmap){3, 0, g_digitlowmap},
+	(t_cmap){4, 0, g_digitlowmap},
+	(t_cmap){5, 0, g_digitlowmap},
+	(t_cmap){6, 0, g_digitlowmap},
+	(t_cmap){7, 0, g_digitlowmap},
+	(t_cmap){8, 0, g_digitlowmap},
+	(t_cmap){9, 0, g_digitlowmap},
+	(t_cmap){10, 0, g_digitlowmap},
+	(t_cmap){11, 0, g_digitlowmap},
+	(t_cmap){12, 0, g_digitlowmap},
+	(t_cmap){13, 0, g_digitlowmap},
+	(t_cmap){14, 0, g_digitlowmap},
+	(t_cmap){15, 0, g_digitlowmap},
+	(t_cmap){16, 0, g_digitlowmap},
 };
 #endif

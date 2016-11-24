@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_digit.c                                   :+:      :+:    :+:   */
+/*   ft_sfbuftofarg.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/30 03:53:28 by qloubier          #+#    #+#             */
-/*   Updated: 2016/11/09 13:51:48 by map              ###   ########.fr       */
+/*   Created: 2016/11/23 23:29:36 by qloubier          #+#    #+#             */
+/*   Updated: 2016/11/24 00:57:35 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "libft_parse.h"
 
-const char			*ft_parse_digit(const char *str, unsigned int *num)
+int				ft_sfbuftofarg(t_sfb *b, t_sfc *arg, t_cmap cm)
 {
-	*num = 0;
-	while (ft_isdigit((int)(*str)))
-		*num = ((*num * 10) + (unsigned int)(*(str++) - '0'));
-	return (str);
+	const int	len = arg->maxwidth;
+
+	if (arg->flag & SFF_IGNORE)
+		ft_bufskipf(&(b->c), len, cm);
+	else if (arg->flag & SFF_LONG_LONG)
+		*(long double *)(arg->arg) = ft_buftold(&(b->c), len, cm);
+	else if (arg->flag & (SFF_LONG | SFF_CAPITAL))
+		*(double *)(arg->arg) = ft_buftod(&(b->c), len, cm);
+	else
+		*(float *)(arg->arg) = ft_buftof(&(b->c), len, cm);
+	return (0);
 }

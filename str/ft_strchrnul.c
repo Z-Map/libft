@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_digit.c                                   :+:      :+:    :+:   */
+/*   ft_strchrnul.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/30 03:53:28 by qloubier          #+#    #+#             */
-/*   Updated: 2016/11/09 13:51:48 by map              ###   ########.fr       */
+/*   Created: 2015/11/26 15:52:23 by qloubier          #+#    #+#             */
+/*   Updated: 2016/11/22 18:32:16 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "libft_parse.h"
+#include "libft_string.h"
 
-const char			*ft_parse_digit(const char *str, unsigned int *num)
+char	*ft_strchrnul(const char *s, int c)
 {
-	*num = 0;
-	while (ft_isdigit((int)(*str)))
-		*num = ((*num * 10) + (unsigned int)(*(str++) - '0'));
-	return (str);
+	while (*s)
+		if (*(s++) == (char)c)
+			return ((char *)(unsigned long)(--s));
+	return ((char *)(unsigned long)s);
 }
