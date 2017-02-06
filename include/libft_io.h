@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:28:46 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/09 22:30:28 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/02/07 00:15:52 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+size_t				ft_filename_ext(char *buf, const char *path,
+						const char *ext, size_t len);
 
 /*
 ** TO DO

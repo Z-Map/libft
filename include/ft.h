@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:05:20 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/10 05:36:51 by map              ###   ########.fr       */
+/*   Updated: 2017/01/28 16:50:25 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 typedef unsigned int	t_idx;
 typedef unsigned int	t_ui;
+typedef unsigned long	t_ul;
 
 typedef struct			s_char_map
 {
