@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ptabdel.c                                       :+:      :+:    :+:   */
+/*   ft_forf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/22 13:02:07 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/09 19:22:59 by qloubier         ###   ########.fr       */
+/*   Created: 2016/09/29 18:12:32 by qloubier          #+#    #+#             */
+/*   Updated: 2016/11/07 01:10:14 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft_string.h"
+#include "libft_parse.h"
 
-void	ft_ptabdel(void ***tptr)
+const char				*ft_forf(const char *c, const char *s, size_t *len)
 {
-	void	**tmpptr;
+	const char			*sc;
 
-	if (!tptr || !(*tptr))
-		return ;
-	tmpptr = *tptr;
-	while (*tmpptr)
-		free(*(tmpptr++));
-	free(*tptr);
-	*tptr = NULL;
+	if (!c || !s)
+		return (NULL);
+	*len = 0;
+	while (*c)
+	{
+		sc = s;
+		while (*sc)
+			if (*(sc++) == *c)
+				return (c);
+		(*len) += 1;
+		c++;
+	}
+	return (NULL);
 }

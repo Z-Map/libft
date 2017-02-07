@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/10 06:02:05 by map              ###   ########.fr       */
+/*   Updated: 2016/11/07 11:22:25 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,14 @@
 # include <string.h>
 # include <stdarg.h>
 # include <inttypes.h>
-# include <wchar.h>
 # include <unistd.h>
 # include "ft.h"
-# include "libft_list.h"
-# include "libft_string.h"
-# include "libft_wstring.h"
-# include "libft_unicode.h"
 # include "libft_parse.h"
+#include "libft_math.h"
 
 /*
 **	Declare public format function
 */
-
-const char				*ft_forf(const char *c, const char *s, size_t *len);
 
 size_t					ft_snbrlen(short nbr);
 size_t					ft_nbrlen(int nbr);
@@ -46,11 +40,11 @@ char					*ft_ujfillbuf(uintmax_t n, char *b, int *len);
 char					*ft_ujfillbufbase(uintmax_t n, t_cmap cm, char *b,
 							int *len);
 
+char					*ft_dtoa(double n, t_ui prec);
+char					*ft_ftoa(float n, t_ui prec);
+
 /*
 **	TO DO
 */
-
-char					*ft_dtoa(double n, t_ui prec);
-char					*ft_ftoa(float n, t_ui prec);
 
 #endif

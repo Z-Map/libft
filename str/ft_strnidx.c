@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_digit.c                                   :+:      :+:    :+:   */
+/*   ft_strnidx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/30 03:53:28 by qloubier          #+#    #+#             */
-/*   Updated: 2016/11/09 13:51:48 by map              ###   ########.fr       */
+/*   Created: 2016/01/10 05:04:09 by qloubier          #+#    #+#             */
+/*   Updated: 2016/11/09 13:46:07 by map              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "libft_parse.h"
+#include "libft_string.h"
 
-const char			*ft_parse_digit(const char *str, unsigned int *num)
+int		ft_strnidx(const char *s, int c, size_t n)
 {
-	*num = 0;
-	while (ft_isdigit((int)(*str)))
-		*num = ((*num * 10) + (unsigned int)(*(str++) - '0'));
-	return (str);
+	register int	i;
+	register char	ch;
+
+	i = 0;
+	ch = (char)c;
+	while ((s[i]) && (n--))
+	{
+		if (s[i] == ch)
+			return (i);
+		++i;
+	}
+	return ((c || s[i]) ? -1 : i);
 }

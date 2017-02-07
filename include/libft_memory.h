@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:24:59 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/06 23:01:43 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/11/22 18:00:07 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void			*ft_memdup (const void *s1, size_t n);
 void			*ft_memalloc (size_t size);
 void			ft_memdel (void **ap);
 t_ui			ft_memalign(t_ui i);
+void			ft_ptabdel(void ***tptr);
 
 /*
 ** TO-DO : Buffer tools
