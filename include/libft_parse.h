@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
-/*   Updated: 2016/11/24 01:12:51 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/02/14 20:53:19 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,15 @@ typedef struct			s_scanf_cftab
 	const char			*(*flag)(const char *, t_sfb *);
 	int					(*convert)(const char **, t_sfb*, t_sfc*);
 }						t_sftab;
+
+typedef struct			s_key_func
+{
+	const char			*key;
+	int					(*func)(const char *, const char *, void *);
+}						t_kf;
+
+int						ft_parse_assign(t_kf *a_table, const char *str,
+							void *arg);
 
 const char				*ft_parse_digit(const char *str, unsigned int *num);
 const char				*ft_parse_cmap(const char *str, unsigned long *num,
