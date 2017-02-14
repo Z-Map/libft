@@ -6,13 +6,13 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 20:41:25 by qloubier          #+#    #+#             */
-/*   Updated: 2017/02/14 23:52:12 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/02/15 00:04:56 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_parse.h"
 
-int			ft_parse_assign(t_kf *a_table, const char *str, void *arg)
+int			ft_parse_assign(const t_kf *a_table, const char *str, void *arg)
 {
 	int		len;
 	char	sym_name[256];

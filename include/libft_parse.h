@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
-/*   Updated: 2017/02/14 20:53:19 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/02/15 00:03:49 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct			s_key_func
 	int					(*func)(const char *, const char *, void *);
 }						t_kf;
 
-int						ft_parse_assign(t_kf *a_table, const char *str,
+int						ft_parse_assign(const t_kf *a_table, const char *str,
 							void *arg);
 
 const char				*ft_parse_digit(const char *str, unsigned int *num);
