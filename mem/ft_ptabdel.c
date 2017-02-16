@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchrany.c                                     :+:      :+:    :+:   */
+/*   ft_ptabdel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/10 04:46:59 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/09 21:46:15 by qloubier         ###   ########.fr       */
+/*   Created: 2015/12/22 13:02:07 by qloubier          #+#    #+#             */
+/*   Updated: 2016/11/24 14:31:03 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_string.h"
+#include <stdlib.h>
+#include "libft_memory.h"
 
-char	*ft_strchrany(const char *s, const char *clst, char end)
+void	ft_ptabdel(void ***tptr)
 {
-	while (*s)
-	{
-		if (ft_strchr(clst, (int)(*s)))
-			return ((char *)(unsigned long)s);
-		s++;
-	}
-	if (end)
-		return ((char *)(unsigned long)s);
-	return (NULL);
+	void	**tmpptr;
+
+	if (!tptr || !(*tptr))
+		return ;
+	tmpptr = *tptr;
+	while (*tmpptr)
+		free(*(tmpptr++));
+	free(*tptr);
+	*tptr = NULL;
 }

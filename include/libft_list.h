@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_list.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:28:45 by qloubier          #+#    #+#             */
-/*   Updated: 2016/05/22 05:57:59 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/02/10 16:13:11 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ typedef struct		s_cbuf
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
-void				ft_lstadd(t_list **alst, t_list *new);
+void				ft_lstadd(t_list **alst, t_list *elem);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lstlast(t_list *lst);
-void				ft_lstpush(t_list **alst, t_list *new);
-void				ft_lstpushback(t_list **alst, t_list *new);
+void				ft_lstpush(t_list **alst, t_list *elem);
+void				ft_lstpushback(t_list **alst, t_list *elem);
 size_t				ft_lstlen(t_list *lst);
 void				*ft_lsttotab(t_list *node, size_t ts, size_t *len);
 void				ft_lstcfree(void *vec, size_t s);
@@ -76,8 +76,8 @@ void				ft_lstcfree(void *vec, size_t s);
 
 t_blst				*ft_blstnew(size_t csize, const size_t bsize);
 size_t				ft_blstlen(t_blst *blst);
-void				ft_blststore(t_blst *blst, void *data);
-void				ft_blstnstore(t_blst *blst, int n, ...);
+void				*ft_blststore(t_blst *blst, void *data);
+void				*ft_blstnstore(t_blst *blst, int n, ...);
 void				*ft_blstget(t_blst *blst, size_t idx);
 void				*ft_blstiter(t_blit *iterator);
 t_blit				ft_blststart(t_blst *blst);

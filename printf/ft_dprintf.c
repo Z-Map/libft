@@ -6,13 +6,13 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 02:37:49 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/22 22:33:19 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/11/15 18:59:56 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_printf.h"
 
-static void		init_dprintf(t_pfb *buf)
+static void			init_dprintf(t_pfb *buf)
 {
 	buf->len = 0;
 	buf->blen = 0;

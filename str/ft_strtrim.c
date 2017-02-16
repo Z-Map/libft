@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strtrim.c                                          :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 17:01:32 by qloubier          #+#    #+#             */
-/*   Updated: 2015/12/20 17:34:25 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/11/22 18:28:06 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ char	*ft_strtrim(char const *s)
 	len = 0;
 	if (!s)
 		return (NULL);
-	while (*s && ft_strchr(" \n\t", (int)(*s)))
+	while (*s && ft_strchr(FT_WHITESPACE, (int)(*s)))
 		s++;
 	if (!(*s))
-		return (ft_memset(ft_memalloc(1), 0, 1));
+		return (ft_memalloc(1));
 	len = ft_strlen(s) - 1;
-	while (ft_strchr(" \n\t", (int)(s[len])))
-		len--;
+	while (ft_strchr(FT_WHITESPACE, (int)(s[len])))
+		--len;
 	if ((nstr = ft_strnew(len + 1)))
 		ft_strncpy(nstr, s, len + 1);
 	return (nstr);

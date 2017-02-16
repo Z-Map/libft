@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 19:21:59 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/09 21:42:52 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/02/15 00:57:34 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ void			*ft_blstiter(t_blit *iterator)
 
 	i = iterator->idx;
 	blst = iterator->bloc;
+	if (!blst || (i >= blst->len))
+		return (NULL);
 	++iterator->idx;
-	if (iterator->idx == blst->len)
+	if (iterator->idx >= blst->len)
 	{
-		if (!(blst->next))
-			return (NULL);
-		blst = blst->next;
 		iterator->idx = 0;
-		iterator->bloc = blst;
+		iterator->bloc = blst->next;
 	}
-	return ((void *)((unsigned long)blst->data + (blst->csize * i)));
+	return ((void *)((unsigned long)(blst->data) + (blst->csize * i)));
 }
