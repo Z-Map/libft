@@ -6,7 +6,7 @@
 /*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/10 05:51:14 by map               #+#    #+#             */
-/*   Updated: 2016/11/07 11:37:20 by map              ###   ########.fr       */
+/*   Updated: 2017/02/16 16:54:35 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ int						ft_printf_bwritec(t_pfb *b, char c, size_t len);
 int						ft_printf_bflush(t_pfb *b);
 
 int						ft_printf(const char *fstr, ...);
-int						ft_printf_fd(int fd, const char *fstr, ...);
+int						ft_dprintf(int fd, const char *fstr, ...);
 int						ft_print_buff(const char *fstr, int len, t_list **args);
 
 const static char		*g_pf_nullstr = "(null)";
