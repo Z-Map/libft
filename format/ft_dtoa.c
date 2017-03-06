@@ -6,16 +6,16 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/05 01:18:17 by qloubier          #+#    #+#             */
-/*   Updated: 2016/11/07 12:01:10 by map              ###   ########.fr       */
+/*   Updated: 2017/02/22 15:30:20 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft_format.h"
 
-static char		*is_special(double d)
+static char				*is_special(double d)
 {
-	const unsigned long		*l = (unsigned long *)&d;
+	const unsigned long	*l = (unsigned long *)&d;
 
 	if ((*l & (~FT_SM_L)) == FT_D_EXP)
 		return (ft_strdup((*l & FT_SM_L) ? "-inf" : "inf"));
@@ -24,11 +24,11 @@ static char		*is_special(double d)
 	return (NULL);
 }
 
-static char		*alloc_and_fill(double d, char *tb, int len, t_ui prec)
+static char				*alloc_and_fill(double d, char *tb, int len, t_ui prec)
 {
-	const unsigned long		*l = (unsigned long *)&d;
-	char		*c;
-	int			i;
+	const unsigned long	*l = (unsigned long *)&d;
+	char				*c;
+	int					i;
 
 	if (!(c = (char *)malloc(sizeof(char) * ((t_ui)len + prec + 1u))))
 		return (NULL);
@@ -53,12 +53,12 @@ static char		*alloc_and_fill(double d, char *tb, int len, t_ui prec)
 	return (c);
 }
 
-char			*ft_dtoa(double n, t_ui prec)
+char					*ft_dtoa(double n, t_ui prec)
 {
-	char		buf[FT_MX_FLOATLEN + 2];
-	char		*c;
-	int			len;
-	int			i;
+	char				buf[FT_MX_FLOATLEN + 2];
+	char				*c;
+	int					len;
+	int					i;
 
 	if ((c = is_special(n)))
 		return (c);

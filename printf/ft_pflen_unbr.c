@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/19 17:39:11 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/02/22 15:32:07 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int					ft_pflen_unbr(t_pfc *arg)
 {
-	t_cmap	cm = PF_COUCOU_LA_NORME[arg->type - 2];
+	const t_cmap	cm = PF_COUCOU_LA_NORME[arg->type - 2];
 	t_ui			len;
 
 	len = FT_MX_FLOATLEN;

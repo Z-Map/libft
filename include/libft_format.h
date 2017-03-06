@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 10:32:33 by qloubier          #+#    #+#             */
-/*   Updated: 2016/11/07 11:22:25 by map              ###   ########.fr       */
+/*   Updated: 2017/02/22 15:28:22 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include "ft.h"
 # include "libft_parse.h"
-#include "libft_math.h"
+# include "libft_math.h"
 
 /*
 **	Declare public format function

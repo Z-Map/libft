@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_scanf_convert.c                                 :+:      :+:    :+:   */
+/*   ft_sfflag_opt.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/30 05:17:31 by qloubier          #+#    #+#             */
-/*   Updated: 2016/11/23 01:01:37 by qloubier         ###   ########.fr       */
+/*   Created: 2016/11/10 15:25:44 by map               #+#    #+#             */
+/*   Updated: 2017/03/06 15:26:39 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_printf.h"
+#include "libft_parse.h"
 
-// const char		*ft_scanf_convert(const char *fstr, int i, t_sfb *sfb)
-// {
-// 	int			len;
-//
-//
-// 	return (fstr);
-// }
+const char		*ft_sfflag_nc(const char *c, t_sfb *b)
+{
+	if (!(b->arg.flag & SFF_IGNORE))
+		b->arg.flag |= SFF_OPTIONAL;
+	return (c + 1);
+}

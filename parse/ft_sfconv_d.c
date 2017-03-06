@@ -6,7 +6,7 @@
 /*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 16:15:29 by map               #+#    #+#             */
-/*   Updated: 2016/11/24 01:02:26 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/06 15:47:56 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static int			valid_num(const char *s, int len)
 int					ft_sfconv_d(const char **c, t_sfb *b, t_sfc *arg)
 {
 	b->c = ft_strpskp(b->c, FT_WHITESPACE);
-	if (!valid_num(b->c, arg->maxwidth))
-		return (-1);
 	if (!(arg->flag & SFF_IGNORE))
 		arg->arg = va_arg(b->ap, void *);
+	if (!valid_num(b->c, arg->maxwidth))
+		return ((arg->flag & SFF_OPTIONAL) ? 0 : -1);
 	ft_sfbuftoarg(b, arg, g_cmapup[8]);
 	(*c)++;
 	return ((arg->flag & SFF_IGNORE) ? 0 : 1);

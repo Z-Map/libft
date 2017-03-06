@@ -6,7 +6,7 @@
 /*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 20:45:33 by map               #+#    #+#             */
-/*   Updated: 2016/11/23 15:51:44 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/06 15:46:31 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int				ft_sfconv_n(const char **c, t_sfb *b, t_sfc *arg)
 	{
 		(*c)++;
 		b->c = ft_strpskp(b->c, FT_WHITESPACE);
-		return ((*(b->c++) == '%') ? 0 : -1);
+		return (((*(b->c++) == '%') || (arg->flag & SFF_OPTIONAL)) ? 0 : -1);
 	}
 	else if ((**c == 'n') || (**c == 'N'))
 	{

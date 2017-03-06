@@ -57,7 +57,7 @@ ifeq ($(config),release)
 endif
 
 ifeq ($(config),debug)
-	CFLAGS+=-g3
+	CFLAGS+=-g3 -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
 	OBJDIR=Debug
 endif
 

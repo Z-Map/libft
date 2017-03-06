@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
-/*   Updated: 2017/02/15 00:03:49 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/06 15:23:25 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@
 # include "libft_list.h"
 
 # define SF_TYPE_STR "idfxXusc%onN"
-# define SF_FLAG_STR "*hljz"
+# define SF_FLAG_STR "*hljz_"
 
 enum					e_sf_flag
 {
 	SFF_NONE = 0,
 	SFF_IGNORE = 1,
+	SFF_OPTIONAL = 1 << 1,
 	SFF_SHORT_SHORT = 1 << 10,
 	SFF_SHORT = 1 << 11,
 	SFF_LONG = 1 << 12,
@@ -107,6 +108,7 @@ const char				*ft_sfflag_l(const char *c, t_sfb *b);
 const char				*ft_sfflag_z(const char *c, t_sfb *b);
 const char				*ft_sfflag_width(const char *c, t_sfb *b);
 const char				*ft_sfflag_nc(const char *c, t_sfb *b);
+const char				*ft_sfflag_opt(const char *c, t_sfb *b);
 
 int						ft_sfconv_d(const char **c, t_sfb *b, t_sfc *arg);
 int						ft_sfconv_i(const char **c, t_sfb *b, t_sfc *arg);
@@ -130,8 +132,8 @@ const static t_sftab	g_sf_flag_tab[] = {
 	(t_sftab){&ft_sfflag_h, &ft_sfconv_d},
 	(t_sftab){&ft_sfflag_l, &ft_sfconv_f},
 	(t_sftab){&ft_sfflag_j, &ft_sfconv_u},
-	(t_sftab){&ft_sfflag_z,&ft_sfconv_u},
-	(t_sftab){NULL, &ft_sfconv_u},
+	(t_sftab){&ft_sfflag_z, &ft_sfconv_u},
+	(t_sftab){&ft_sfflag_opt, &ft_sfconv_u},
 	(t_sftab){NULL, &ft_sfconv_s},
 	(t_sftab){NULL, &ft_sfconv_c},
 	(t_sftab){NULL, &ft_sfconv_n},
