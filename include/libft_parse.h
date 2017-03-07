@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/06 15:23:25 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/06 20:02:58 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ enum					e_sf_flag
 {
 	SFF_NONE = 0,
 	SFF_IGNORE = 1,
-	SFF_OPTIONAL = 1 << 1,
+	SFF_OPTIONAL = 1 << 2,
 	SFF_SHORT_SHORT = 1 << 10,
 	SFF_SHORT = 1 << 11,
 	SFF_LONG = 1 << 12,

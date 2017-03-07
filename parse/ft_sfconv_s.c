@@ -6,7 +6,7 @@
 /*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 16:15:29 by map               #+#    #+#             */
-/*   Updated: 2017/03/06 15:51:59 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/07 11:41:26 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int					ft_sfconv_s(const char **c, t_sfb *b, t_sfc *arg)
 	int				len;
 
 	buf = NULL;
+	(*c)++;
 	if (!(arg->flag & SFF_IGNORE))
 		buf = va_arg(b->ap, char *);
 	b->c = ft_strpskp(b->c, FT_WHITESPACE);
@@ -31,6 +32,5 @@ int					ft_sfconv_s(const char **c, t_sfb *b, t_sfc *arg)
 		buf[len] = '\0';
 	}
 	b->c += len;
-	(*c)++;
 	return ((arg->flag & SFF_IGNORE) ? 0 : 1);
 }

@@ -6,11 +6,12 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 05:19:52 by qloubier          #+#    #+#             */
-/*   Updated: 2017/02/22 15:31:20 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/06 20:02:40 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_parse.h"
+#include "libft_printf.h"
 
 static void			init_sfarg(t_sfc *arg)
 {
@@ -41,7 +42,11 @@ const char			*ft_scanf_parse(const char *fstr, t_sfb *sfb)
 		return (NULL);
 	if (ft_isupper((int)(*c)))
 		sfb->arg.flag |= SFF_CAPITAL;
+	if (sfb->arg.flag & SFF_OPTIONAL)
+		ft_printf("Arg : %s\n", c);
 	ret = g_sf_flag_tab[i].convert(&c, sfb, &(sfb->arg));
+	if (sfb->arg.flag & SFF_OPTIONAL)
+		ft_printf("ret %i, %s\n", ret, c);
 	if (ret < 0)
 		return (NULL);
 	sfb->arglen += ret;

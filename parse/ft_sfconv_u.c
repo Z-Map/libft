@@ -6,7 +6,7 @@
 /*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 20:45:33 by map               #+#    #+#             */
-/*   Updated: 2017/03/06 15:52:16 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/07 11:40:33 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,19 @@ static int			valid_num(char c, const char *s, int len)
 
 int					ft_sfconv_u(const char **c, t_sfb *b, t_sfc *arg)
 {
+	const char		conv = **c;
+
+	(*c)++;
 	b->c = ft_strpskp(b->c, FT_WHITESPACE);
 	if (!(arg->flag & SFF_IGNORE))
 		arg->arg = va_arg(b->ap, void *);
 	if (!valid_num(**c, b->c, arg->maxwidth))
 		return ((arg->flag & SFF_OPTIONAL) ? 0 : -1);
-	if ((arg->flag & SFF_OPTIONAL) && !valid_num(**c, b->c, arg->maxwidth))
+	if ((arg->flag & SFF_OPTIONAL) && !valid_num(conv, b->c, arg->maxwidth))
 		return (0);
-	if ((**c == 'o') || (**c == 'O'))
+	if ((conv == 'o') || (conv == 'O'))
 		ft_sfbuftouarg(b, arg, g_cmapup[6]);
-	if ((**c == 'x') || (**c == 'X'))
+	if ((conv == 'x') || (conv == 'X'))
 	{
 		arg->flag &= ~SFF_CAPITAL;
 		if ((b->c[0] == 0) && (b->c[1] == **c) && (arg->maxwidth > 1))
@@ -47,6 +50,5 @@ int					ft_sfconv_u(const char **c, t_sfb *b, t_sfc *arg)
 	}
 	else
 		ft_sfbuftouarg(b, arg, g_cmapup[8]);
-	(*c)++;
 	return ((arg->flag & SFF_IGNORE) ? 0 : 1);
 }
