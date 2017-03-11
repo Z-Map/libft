@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/06 20:02:58 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/10 18:27:44 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,34 @@ const static t_sftab	g_sf_flag_tab[] = {
 	(t_sftab){NULL, &ft_sfconv_n},
 	(t_sftab){NULL, NULL}
 };
+
+/*
+** Arg parser
+*/
+
+typedef struct			s_argopt
+{
+	char				letter;
+	char				buf[3];
+	int					flag;
+	char				*argword;
+	int					(*cb)(FT_CC *, void *, FT_CC **, int);
+	struct s_argopt		*next;
+}						t_arg;
+
+typedef struct			s_argret
+{
+	int					argp;
+	int					ac;
+	char				**av;
+}						t_argret;
+
+
+t_arg					*ft_setarg(t_arg **arglst, char c, FT_CC *str,
+							int (*cb)(FT_CC *, void *, FT_CC **, int));
+t_argret				*ft_parsearg(t_arg *arglst, int argc, char **argv,
+							void *arg);
+int						ft_freearg(t_arg **arglst, t_argret *argp);
 
 /*
 ** TO DO
