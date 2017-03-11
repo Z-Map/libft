@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:34:07 by qloubier          #+#    #+#             */
-/*   Updated: 2016/11/22 19:21:32 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/10 17:35:13 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 # include "ft.h"
 # include "libft_memory.h"
 
-size_t				ft_strlen (const char *s);
-char				*ft_strdup (const char *s1);
-char				*ft_strcpy (char *dst, const char *src);
-char				*ft_strncpy (char *dst, const char *src, size_t n);
-char				*ft_strcat (char *s1, const char *s2);
-char				*ft_strncat (char *s1, const char *s2, size_t n);
-size_t				ft_strlcat (char *dst, const char *src, size_t size);
-char				*ft_strchr (const char *s, int c);
-char				*ft_strchrnul (const char *s, int c);
-char				*ft_strrchr (const char *s, int c);
+size_t				ft_strlen(const char *s);
+char				*ft_strdup(const char *s1);
+char				*ft_strcpy(char *dst, const char *src);
+char				*ft_strncpy(char *dst, const char *src, size_t n);
+char				*ft_strcat(char *s1, const char *s2);
+char				*ft_strncat(char *s1, const char *s2, size_t n);
+size_t				ft_strlcat(char *dst, const char *src, size_t size);
+char				*ft_strchr(const char *s, int c);
+char				*ft_strchrnul(const char *s, int c);
+char				*ft_strrchr(const char *s, int c);
 char				*ft_strnchr(const char *s, int c, size_t n);
 char				*ft_strchrnot (const char *s, int c);
 int					ft_strspn(const char *s, const char *skipset);
@@ -65,10 +65,27 @@ int					ft_strparse(char *str, char s,
 						int (**parser)(char *, void *), void *param);
 
 /*
+** NEED TESTING
+*/
+
+// Seems to work, need more testing :
+size_t				ft_stablen(const char **tab, size_t *slen);
+size_t				ft_stabnlen(const char **tab, size_t n, size_t *slen);
+char				**ft_stabdup(const char **tab);
+char				**ft_stabndup(const char **tab, size_t n);
+char				**ft_stabclone(const char **tab);
+char				**ft_stabnclone(const char **tab, size_t n);
+size_t				ft_strlcpy(char *dst, const char *src, size_t n);
+char				*ft_stpcpy(char *dst, const char *src);
+char				*ft_stpncpy(char *dst, const char *src, size_t n);
+char				*ft_strunsplit(const char **tab, const char *separator);
+
+// Not tested yet :
+
+/*
 ** TO DO
 */
 
-char				*ft_strunsplit(const char **tab, char separator);
 char				*ft_strmjoin(const size_t n, ...);
 char				*ft_strreplace(char *s, char what, char by);
 size_t				ft_strcount(const char *str, char c);
