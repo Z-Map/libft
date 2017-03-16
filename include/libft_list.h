@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:28:45 by qloubier          #+#    #+#             */
-/*   Updated: 2017/02/10 16:13:11 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/09 16:23:27 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int					ft_cbufwrite(t_cbuf *b, int fd);
 
 /*
 ** Stack Buffer Function
+** NOT SURE - MAY BE DELETED
 */
 
 int					ft_sbuf(int (*cb)(t_cbuf *b, void *p), void *p);
