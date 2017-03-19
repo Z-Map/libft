@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:05:20 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/10 14:49:06 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/19 13:07:51 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef const struct	s_char_map
 
 static const char		g_digitupmap[] = FT_DIGIT;
 static const char		g_digitlowmap[] = FT_DIGIT_L;
-static t_cmap			g_cmapup[] = {
+static const t_cmap		g_cmapup[] = {
 	(t_cmap){2, 0, g_digitupmap},
 	(t_cmap){3, 0, g_digitupmap},
 	(t_cmap){4, 0, g_digitupmap},
@@ -61,7 +61,7 @@ static t_cmap			g_cmapup[] = {
 	(t_cmap){15, 0, g_digitupmap},
 	(t_cmap){16, 0, g_digitupmap},
 };
-static t_cmap			g_cmaplow[] = {
+static const  t_cmap	g_cmaplow[] = {
 	(t_cmap){2, 0, g_digitlowmap},
 	(t_cmap){3, 0, g_digitlowmap},
 	(t_cmap){4, 0, g_digitlowmap},

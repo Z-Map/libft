@@ -45,7 +45,7 @@ endif
 ifndef LC
 	LC=ar
 endif
-ifeq ($(CHRONOS_NAZI_MODE),on)
+ifeq ($(CHRONOS_NAZI_MODE)_$(CC),on_clang)
 	CFLAGS=-Wextra -Werror -Weverything
 else
 	CFLAGS=-Wextra -Werror -Wall

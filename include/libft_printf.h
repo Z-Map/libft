@@ -6,7 +6,7 @@
 /*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/10 05:51:14 by map               #+#    #+#             */
-/*   Updated: 2017/02/16 16:54:35 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/19 13:17:27 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,9 +169,9 @@ int						ft_printf(const char *fstr, ...);
 int						ft_dprintf(int fd, const char *fstr, ...);
 int						ft_print_buff(const char *fstr, int len, t_list **args);
 
-const static char		*g_pf_nullstr = "(null)";
-const static char		*g_pf_floatstr = "-inf-nan";
-const static t_pftab	g_pf_flag_tab[] = {
+static const char		g_pf_nullstr[] = "(null)";
+static const char		g_pf_floatstr[] = "-inf-nan";
+static const t_pftab	g_pf_flag_tab[] = {
 	(t_pftab){&ft_pfflag_alt, &ft_pfarg_str, &ft_pflen_str, &ft_pfconv_str},
 	(t_pftab){&ft_pfflag_more, &ft_pfarg_nbr, &ft_pflen_nbr, &ft_pfconv_nbr},
 	(t_pftab){&ft_pfflag_zero, &ft_pfarg_nbr, &ft_pflen_nbr, &ft_pfconv_nbr},

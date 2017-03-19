@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/10 18:27:44 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/19 13:08:15 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ const char				*ft_scanf_convert(const char *fstr, int i, t_sfb *sfb);
 
 int						ft_sscanf(const char *str, const char *fstr, ...);
 
-const static t_sftab	g_sf_flag_tab[] = {
+static const t_sftab	g_sf_flag_tab[] = {
 	(t_sftab){&ft_sfflag_nc, &ft_sfconv_i},
 	(t_sftab){&ft_sfflag_h, &ft_sfconv_d},
 	(t_sftab){&ft_sfflag_l, &ft_sfconv_f},
