@@ -16,25 +16,27 @@
 #------------------------------------------------------------------------------#
 
 # Project var
-NAME=libft.a
-HEADERS=include includes
-SOURCES=mem lst str format parse io wstr unicode printf math
-MKLIBS= #libft/libft.a libdraw/libdraw.a minilibx/libmlx.a
-LIBSHEADERS=
-LIBS= #m bsd
-LIBSDIRS=
+NAME		= libft.a
+HEADERS		= include includes
+SOURCES		= mem lst str format parse io wstr unicode printf math
+MKLIBS		= #libft/libft.a libdraw/libdraw.a minilibx/libmlx.a
+LIBSHEADERS	=
+LIBS		= #m bsd
+LIBSDIRS	=
 
 # Environnement var
-SEARCH_CURRENTDIR=off
-LIBSDIR=libs/
-OPSYS=$(shell uname -s)
-FANCY_OUT=on
-CHRONOS_NAZI_MODE=on
+SRC_ROOT	= off
+LIBSDIR		= libs/
+OPSYS		= $(shell uname -s)
+FANCY_OUT	= on
+CHRONOS_NAZI_MODE = on
+
 ifndef config
 	config=release
 endif
+
 ifndef LOGNAME
-	LOGNAME=$USER
+	LOGNAME=$(USER)
 endif
 
 # Compilation var
@@ -48,39 +50,45 @@ endif
 ifeq ($(CHRONOS_NAZI_MODE)_$(CC),on_clang)
 	CFLAGS=-Wextra -Werror -Weverything
 else
-	CFLAGS=-Wextra -Werror -Wall
+	CFLAGS=-Wextra -Werror -Wall -Wpadding
 endif
-LFLAGS= -rcs
-BUILDIR=build
+
+LFLAGS		= -rcs
+
 ifeq ($(config),release)
-	OBJDIR=Release
+	CFLAGS	+= -O2
+	OBJDIR	= release
 endif
 
 ifeq ($(config),debug)
-	CFLAGS+=-g3 -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
-	OBJDIR=Debug
+	CFLAGS	+= -O1 -g3 -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
+	OBJDIR	= debug
 endif
 
 ifeq ($(config),opti)
-	CFLAGS+=-Ofast
-	OBJDIR=Opti
+	CFLAGS	+= -Ofast
+	OBJDIR	= opti
 endif
 
+BUILDIR		= build/$(OBJDIR)
+TARGETDIR	= .
+PROJECTPATH	= $(CURDIR)
+
 # Render var
-RENDERDIR=
-RENDER_BY=qloubier
-RENDER_EMAIL=marvin@student.42.fr
+RENDERDIR		=
+RENDER_BY		= qloubier
+RENDER_EMAIL	= marvin@student.42.fr
 
 # Messages
 
-LINE_LEN=80
-MSG_COMPILE_LIB=Creating :
-MSG_COMPILE_EXE=Compiling :
-MSG_COMPILE_OBJ=Compiling :
-MSG_COMPILE_DONE=is done !
-MSG_CLEAN_OBJECTS=Clean Objects files
-MSG_CLEAN_LIB=Clean Library file
-MSG_CLEAN_EXE=Clean Executable
+LINE_LEN			= 80
+MSG_COMPILE_LIB		= Creating :
+MSG_COMPILE_EXE		= Compiling :
+MSG_COMPILE_OBJ		= Compiling :
+MSG_COMPILE_DONE	= is done !
+MSG_CLEAN_OBJECTS	= Clean Objects files
+MSG_CLEAN_LIB		= Clean Library file
+MSG_CLEAN_EXE		= Clean Executable
 
 #===============================================================================
 # intern var
@@ -89,28 +97,29 @@ ifeq ($(FANCY_OUT),on)
 else
 	SILENT=
 endif
+
 I_CFLAGS_OBJS=
 ifeq ($(shell printf "$(NAME)" | tail -c2),.a)
-	I_MSG_COMPILE=$(MSG_COMPILE_LIB)
-	I_MSG_CLEAN=$(MSG_CLEAN_LIB)
-	BUILDTYPE=lib
-	I_REAL_NAME=$(NAME:%.a=%)
+	I_MSG_COMPILE	= $(MSG_COMPILE_LIB)
+	I_MSG_CLEAN		= $(MSG_CLEAN_LIB)
+	BUILDTYPE		= lib
+	I_REAL_NAME		= $(NAME:%.a=%)
 else
 ifeq ($(shell printf "$(NAME)" | tail -c3),.so)
-	I_MSG_COMPILE=$(MSG_COMPILE_LIB)
-	I_MSG_CLEAN=$(MSG_CLEAN_LIB)
-	BUILDTYPE=dynalib
-	I_REAL_NAME=$(NAME:%.so=%)
-	I_CFLAGS_OBJS+=-fPIC
+	I_MSG_COMPILE	= $(MSG_COMPILE_LIB)
+	I_MSG_CLEAN		= $(MSG_CLEAN_LIB)
+	BUILDTYPE		= dynalib
+	I_REAL_NAME		= $(NAME:%.so=%)
+	I_CFLAGS_OBJS	+= -fPIC
 else
-	I_MSG_COMPILE=$(MSG_COMPILE_EXE)
-	I_MSG_CLEAN=$(MSG_CLEAN_EXE)
-	BUILDTYPE=exe
-	I_REAL_NAME=$(NAME)
+	I_MSG_COMPILE	= $(MSG_COMPILE_EXE)
+	I_MSG_CLEAN		= $(MSG_CLEAN_EXE)
+	BUILDTYPE		= exe
+	I_REAL_NAME		= $(NAME)
 endif
 endif
 ifeq ($(strip $(RENDERDIR)),)
-	RENDERDIR=$(BUILDIR)/$(I_REAL_NAME)
+	RENDERDIR		= $(BUILDIR)/$(I_REAL_NAME)
 endif
 I_DATE=$(shell date "+%Y/%m/%d")
 I_TIME=$(shell date "+%H:%M:%S")
@@ -123,12 +132,12 @@ I_MSG_START_WIP=\\e[$(LINE_LEN)D%-$(I_WIP_LEN).$(I_WIP_LEN)b
 I_MSG_END_WIP=\\e[m[\\e[33min progress\\e[m]\\e[$(LINE_LEN)D
 I_MSG_START_OK=\\e[$(LINE_LEN)D%-$(I_OK_LEN).$(I_OK_LEN)b
 I_MSG_END_OK=\\e[m[\\e[32mok\\e[m]\\n
-OBBUDIR=$(BUILDIR)/$(OBJDIR)
+OBBUDIR=$(PROJECTPATH)/$(BUILDIR)
 OBBUWC=$(shell echo "$(OBBUDIR)/" | wc -c)
 OBBUDIRS=$(BUILDIR) $(OBBUDIR) $(shell for dir in $(SOURCES); do printf "$(OBBUDIR)/$$dir "; done)
 ALLINC=$(HEADERS) $(LIBSHEADERS)
 INCFLAGS=$(shell echo "-I$(ALLINC)" | sed "s/ \(.\)/ -I\1/g")
-ifeq ($(SEARCH_CURRENTDIR),on)
+ifeq ($(SRC_ROOT),on)
 	ALLHEADER=$(shell find *.h -type f 2> /dev/null; for dir in $(HEADERS); do find $$dir/*.h -type f 2> /dev/null; done)
 	ALLSRC=$(shell find *.c -type f 2> /dev/null; for dir in $(SOURCES); do find $$dir/*.c -type f 2> /dev/null; done)
 else
@@ -162,7 +171,7 @@ RENDER_OBVAR=$(shell for oname in $(ALLOBJ); do basename $$oname; done)
 		$(SILENT)$(MAKE) clean
 
 # Generic rules
-all: $(NAME)
+all: $(TARGETDIR)/$(NAME)
 
 install:
 	@echo "$(I_MKNSLIB)"
@@ -180,7 +189,7 @@ fclean: clean
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_WIP)       $(I_MSG_END_WIP)" "\e[33m$(I_MSG_CLEAN) \e[mfor \e[1m\e[35m$(NAME)"
 endif
-	$(SILENT)rm -rf $(NAME)
+	$(SILENT)rm -rf $(TARGETDIR)/$(NAME)
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_OK)         $(I_MSG_END_OK)" "\e[31m$(I_MSG_CLEAN) \e[mfor \e[1m\e[35m$(NAME)"
 endif
@@ -235,19 +244,19 @@ neutronstar:
 $(ALLSRC):
 
 # Compilation rules
-$(NAME): $(OBBUDIRS) $(ALLOBJ)
+$(TARGETDIR)/$(NAME): $(OBBUDIRS) $(ALLOBJ)
 ifeq (ALLOBJ_GUARD,on)
 ifeq ($(SILENT),@)
-	$(SILENT)$(MAKE) -s $(NAME) ALLOBJ_GUARD=off
+	$(SILENT)$(MAKE) -s $@ ALLOBJ_GUARD=off
 else
-	@$(MAKE) $(NAME) ALLOBJ_GUARD=off | grep "$(CC) -o"
+	@$(MAKE) $@ ALLOBJ_GUARD=off | grep "$(CC) -o"
 endif
 else
 ifeq ($(FANCY_OUT),on)
 	@printf "$(I_MSG_START_WIP)    $(I_MSG_END_WIP)" "\e[33m$(I_MSG_COMPILE) \e[1m\e[35m$(NAME)"
 endif
 ifeq ($(BUILDTYPE),lib)
-	$(SILENT)$(LC) $(LFLAGS) $(NAME) $(ALLOBJ)
+	$(SILENT)$(LC) $(LFLAGS) $@ $(ALLOBJ)
 else
 ifeq ($(BUILDTYPE),dynalib)
 	$(SILENT)$(CC) $(ALLOBJ) -shared -o $@ $(ALLCFLAGS) $(LIBSFLAGS)
@@ -281,9 +290,10 @@ $(RENDER_SUBDIRS):
 
 ifeq ($(FANCY_OUT),on)
 
+# Fancy Out - Norminette
 norme:
 ifeq ($(OPSYS),Darwin)
-	@printf "\e[33mChecking 42 Norme :\e[m\n"
+	@printf "\e[33mChecking 42 Norme :\e[m\e[20D"
 	@norminette $(ALLHEADER) $(ALLSRC) | awk 'BEGIN { FS=":"; filename="" }\
 	 	$$1 == "Norme" { filename=$$2; }\
 		$$1 ~ /Error .+/ { \
@@ -294,13 +304,16 @@ ifeq ($(OPSYS),Darwin)
 			sub("Error ","",$$1);\
 			if ($$2 == " C++ comment") { print "\033[0;33m"$$1"\033[32m"$$2 }\
 			else { print "\033[0;33m"$$1"\033[0m"$$2 }\
-		}'
+		}' > tmp_norme.txt
+	@if [[ -s tmp_norme.txt ]]; then cat tmp_norme.txt; else printf "\\e[1;32mNo norme error on rt sources\\e[m\\n"; fi;
+	@rm tmp_norme.txt
 else
 	@printf "\e[33mNo Norminette here\e[m\n"
 endif
 
 else
 
+# Raw Out - Norminette
 norme:
 ifeq ($(OPSYS),Darwin)
 	@norminette $(ALLHEADER) $(ALLSRC)
