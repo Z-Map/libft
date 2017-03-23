@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:28:46 by qloubier          #+#    #+#             */
-/*   Updated: 2017/02/07 00:15:52 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/23 14:08:26 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct		s_gnl_buffer
 }					t_gnlb;
 
 int					ft_get_line(int const fd, char **line);
+int					ft_readfile(const char *filename, char **content);
 void				ft_putchar (char c);
 void				ft_putstr (char const *s);
 void				ft_putendl(char const *s);
