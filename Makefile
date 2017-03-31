@@ -56,7 +56,7 @@ endif
 LFLAGS		= -rcs
 
 ifeq ($(config),release)
-	CFLAGS	+= -O2
+	CFLAGS	+= -Ofast
 	OBJDIR	= release
 endif
 
