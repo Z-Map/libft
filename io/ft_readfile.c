@@ -6,13 +6,14 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 14:06:20 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/23 14:33:07 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/02 18:18:03 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <stdlib.h>
 #include "libft_io.h"
 
 int				ft_readfile(const char *filename, char **content)
