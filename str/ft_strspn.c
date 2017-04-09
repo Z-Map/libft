@@ -17,7 +17,7 @@ int		ft_strspn(const char *s, const char *skipset)
 	int	i;
 
 	i = 0;
-	while ((*s) && (ft_strchr(skipset, (int)(*(s++)))))
+	while ((*s) && (FT_SCHR(skipset, (int)(*(s++)))))
 		++i;
 	return (i);
 }

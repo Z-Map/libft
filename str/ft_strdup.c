@@ -16,8 +16,8 @@ char	*ft_strdup(const char *s1)
 {
 	char *nstr;
 
-	nstr = ft_strnew(ft_strlen(s1));
+	nstr = ft_strnew(FT_SLEN(s1));
 	if (nstr)
-		ft_strcpy(nstr, s1);
+		FT_SCPY(nstr, s1);
 	return (nstr);
 }

@@ -22,7 +22,7 @@ size_t	ft_wrdcount(char const *s, int c)
 	while (cur)
 	{
 		++num;
-		if ((cur = ft_strchr(cur, c)))
+		if ((cur = FT_SCHR(cur, c)))
 			cur = ft_strchrnot(cur, c);
 	}
 	return (num);

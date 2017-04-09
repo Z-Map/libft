@@ -28,11 +28,11 @@ char	**ft_strsplit(char const *s, char c)
 		return (NULL);
 	while (i < len)
 	{
-		cur = ft_strchr(s, (int)c);
-		cur = (cur) ? cur : ft_strchr(s, 0);
+		cur = FT_SCHR(s, (int)c);
+		cur = (cur) ? cur : FT_SCHR(s, 0);
 		if (!(split[i] = ft_strnew((size_t)(cur - s))))
 			break ;
-		split[i] = ft_strncpy(split[i], s, (size_t)(cur - s));
+		split[i] = FT_SNCPY(split[i], s, (size_t)(cur - s));
 		++i;
 		s = (char const *)(ft_strchrnot(cur, (int)c));
 	}

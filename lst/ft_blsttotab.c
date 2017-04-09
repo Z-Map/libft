@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 19:58:15 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/09 19:24:37 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/08 02:15:37 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		*ft_blsttotab(t_blst *blst, size_t *len)
 	i = 0;
 	while (blst)
 	{
-		ft_memcpy(tab + i, blst->data, blst->len * blst->csize);
+		FT_MCPY(tab + i, blst->data, blst->len * blst->csize);
 		*len += blst->len;
 		i += blst->len * blst->csize;
 		blst = blst->next;

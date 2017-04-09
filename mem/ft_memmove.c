@@ -19,7 +19,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	if (src == dest)
 		return (dest);
 	if ((dest > src) && ((unsigned long)dest <= (unsigned long)src + n))
-		return (ft_memcpy(dest, src, n));
+		return (FT_MCPY(dest, src, n));
 	i = 0;
 	while (n--)
 	{

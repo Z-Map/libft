@@ -16,10 +16,10 @@ static int			valid_num(char c, const char *s, int len)
 {
 	if ((len > 1) && ((*s == '+') || (*s == '-')))
 		++s;
-	if (((c == 'x') && !ft_strchr(FT_DIGIT_L, (int)(*s))) ||
-		((c == 'X') && !ft_strchr(FT_DIGIT, (int)(*s))) ||
-		(((c == 'o') || (c == 'O')) && !ft_strchr(FT_DIGIT_L, (int)(*s))) ||
-		!ft_strchr(FT_DECIMAL_DIGIT, (int)*s))
+	if (((c == 'x') && !FT_SCHR(FT_DIGIT_L, (int)(*s))) ||
+		((c == 'X') && !FT_SCHR(FT_DIGIT, (int)(*s))) ||
+		(((c == 'o') || (c == 'O')) && !FT_SCHR(FT_DIGIT_L, (int)(*s))) ||
+		!FT_SCHR(FT_DECIMAL_DIGIT, (int)*s))
 		return (0);
 	return (1);
 }

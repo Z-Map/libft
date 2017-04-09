@@ -16,7 +16,7 @@ static int			valid_num(const char *s, int len)
 {
 	if ((len > 1) && ((*s == '+') || (*s == '-')))
 		++s;
-	if (ft_strchr(FT_DECIMAL_DIGIT, (int)*s))
+	if (FT_SCHR(FT_DECIMAL_DIGIT, (int)*s))
 		return (1);
 	return (0);
 }

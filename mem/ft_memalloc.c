@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 16:51:16 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/09 19:33:26 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/08 02:34:54 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void	*ft_memalloc(size_t size)
 
 	memptr = malloc(size);
 	if (memptr)
-		ft_bzero(memptr, size);
+		FT_BZERO(memptr, size);
 	return (memptr);
 }

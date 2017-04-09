@@ -20,7 +20,7 @@ void	ft_putnbr_fd(int n, int fd)
 	size_t			len;
 
 	len = 1;
-	ft_memset(buffer, (int)((n < 0) ? '-' : '+'), 11);
+	FT_MSET(buffer, (int)((n < 0) ? '-' : '+'), 11);
 	nbr = (unsigned int)((n < 0) ? -n : n);
 	buffer[10] = '0' + (char)(nbr % 10);
 	while ((nbr /= 10) && (len < 10))

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/05 01:18:17 by qloubier          #+#    #+#             */
-/*   Updated: 2017/02/22 15:30:20 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/08 02:11:27 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char				*alloc_and_fill(double d, char *tb, int len, t_ui prec)
 
 	if (!(c = (char *)malloc(sizeof(char) * ((t_ui)len + prec + 1u))))
 		return (NULL);
-	ft_memcpy(c, tb, (size_t)len);
+	FT_MCPY(c, tb, (size_t)len);
 	i = 0;
 	while (prec--)
 	{
@@ -64,7 +64,7 @@ char					*ft_dtoa(double n, t_ui prec)
 		return (c);
 	len = FT_MX_FLOATLEN;
 	c = buf + FT_MX_FLOATLEN;
-	ft_memcpy(c, ".", (size_t)2);
+	FT_MCPY(c, ".", (size_t)2);
 	while ((n > 18446744073709551615.0) && --len)
 	{
 		*(--c) = '0' + (char)ft_lastfdigit(n);

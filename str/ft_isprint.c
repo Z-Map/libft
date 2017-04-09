@@ -14,7 +14,7 @@
 
 int		ft_isprint(int c)
 {
-	if (ft_strchr(FT_WHITESPACE, c))
+	if (FT_SCHR(FT_WHITESPACE, c))
 		return (1);
 	return (0);
 }

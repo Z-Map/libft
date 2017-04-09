@@ -20,14 +20,14 @@ char	*ft_strtrim(char const *s)
 	len = 0;
 	if (!s)
 		return (NULL);
-	while (*s && ft_strchr(FT_WHITESPACE, (int)(*s)))
+	while (*s && FT_SCHR(FT_WHITESPACE, (int)(*s)))
 		s++;
 	if (!(*s))
 		return (ft_memalloc(1));
-	len = ft_strlen(s) - 1;
-	while (ft_strchr(FT_WHITESPACE, (int)(s[len])))
+	len = FT_SLEN(s) - 1;
+	while (FT_SCHR(FT_WHITESPACE, (int)(s[len])))
 		--len;
 	if ((nstr = ft_strnew(len + 1)))
-		ft_strncpy(nstr, s, len + 1);
+		FT_SNCPY(nstr, s, len + 1);
 	return (nstr);
 }

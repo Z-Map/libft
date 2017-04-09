@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 20:41:25 by qloubier          #+#    #+#             */
-/*   Updated: 2017/02/15 01:24:10 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/08 02:40:14 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			ft_parse_assign(const t_kf *a_table, const char *str, void *arg)
 		return (0);
 	while (a_table->key)
 	{
-		if (!ft_strcmp(a_table->key, sym_name) &&
+		if (!FT_SCMP(a_table->key, sym_name) &&
 			a_table->func(sym_name, str + len, arg))
 			return (1);
 		a_table++;

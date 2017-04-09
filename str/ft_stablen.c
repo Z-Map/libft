@@ -23,7 +23,7 @@ size_t			ft_stablen(const char **tab, size_t *slen)
 		while (*tab)
 		{
 			i++;
-			*slen += ft_strlen(*(tab++));
+			*slen += FT_SLEN(*(tab++));
 		}
 	}
 	else

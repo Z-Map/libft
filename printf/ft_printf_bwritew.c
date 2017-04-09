@@ -55,7 +55,7 @@ int				ft_printf_bwritew(t_pfb *b, const wchar_t *c, size_t len)
 			break ;
 		if ((b->blen + (int)cl) > FT_PF_BUFSIZE)
 			ft_printf_bflush(b);
-		ft_memcpy(b->c, &cb, (size_t)cl);
+		FT_MCPY(b->c, &cb, (size_t)cl);
 		b->c += cl;
 		b->blen += cl;
 		++c;

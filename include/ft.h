@@ -6,12 +6,54 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:05:20 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/19 13:07:51 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/08 03:07:44 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_H
 # define FT_H
+
+# ifdef FT_NATIVE_LIBC
+#pragma GCC diagnostic ignored "-Wdisabled-macro-expansion"
+
+#  define FT_MSET	memset
+#  define FT_BZERO	bzero
+#  define FT_MCPY	memcpy
+#  define FT_MCCPY	memccpy
+#  define FT_MMOVE	memmove
+#  define FT_MCHR	memchr
+#  define FT_MCMP	memcmp
+
+#  define FT_SLEN	strlen
+#  define FT_SCPY	strcpy
+#  define FT_SNCPY	strncpy
+#  define FT_SCAT	strcat
+#  define FT_SNCAT	strncat
+#  define FT_SCHR	strchr
+#  define FT_SRCHR	strrchr
+#  define FT_SCMP	strcmp
+#  define FT_SNCMP	strncmp
+
+# else
+#  define FT_MSET	ft_memset
+#  define FT_BZERO	ft_bzero
+#  define FT_MCPY	ft_memcpy
+#  define FT_MCCPY	ft_memccpy
+#  define FT_MMOVE	ft_memmove
+#  define FT_MCHR	ft_memchr
+#  define FT_MCMP	ft_memcmp
+
+#  define FT_SLEN	ft_strlen
+#  define FT_SCPY	ft_strcpy
+#  define FT_SNCPY	ft_strncpy
+#  define FT_SCAT	ft_strcat
+#  define FT_SNCAT	ft_strncat
+#  define FT_SCHR	ft_strchr
+#  define FT_SRCHR	ft_strrchr
+#  define FT_SCMP	ft_strcmp
+#  define FT_SNCMP	ft_strncmp
+
+# endif
 
 # define FT_DIGIT		"0123456789ABCDEF"
 # define FT_DIGIT_L		"0123456789abcdef"

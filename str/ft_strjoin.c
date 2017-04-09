@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strjoin.c                                          :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:30:04 by qloubier          #+#    #+#             */
-/*   Updated: 2015/12/22 14:12:09 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/08 02:38:50 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	else if (!s1 || !s2)
 		return (s1 ? ft_strdup(s1) : ft_strdup(s2));
-	bsize = ft_strlen(s1) + ft_strlen(s2);
+	bsize = FT_SLEN(s1) + FT_SLEN(s2);
 	if ((nstr = ft_strnew(bsize)))
-		ft_strcat(ft_strcpy(nstr, s1), s2);
+		FT_SCAT(FT_SCPY(nstr, s1), s2);
 	return (nstr);
 }

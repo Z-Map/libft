@@ -17,7 +17,7 @@ int		ft_atoi(const char *str)
 	unsigned int	ret;
 	char			sig;
 
-	while (ft_strchr(" \f\n\r\t\v", (int)(*str)) != NULL)
+	while (FT_SCHR(" \f\n\r\t\v", (int)(*str)) != NULL)
 		str++;
 	sig = (*str == '-') ? '-' : '+';
 	if (*str == '+' || *str == '-')

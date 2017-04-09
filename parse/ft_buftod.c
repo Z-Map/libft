@@ -26,9 +26,9 @@ double		ft_buftod(const char **str, int len, t_cmap cm)
 	d = 0.0;
 	if ((len >= 3))
 	{
-		if (!ft_strncmp(*str, "inf", 3))
+		if (!FT_SNCMP(*str, "inf", 3))
 			*((t_ul *)&d) = FT_D_EXP;
-		else if (!ft_strncmp(*str, "nan", 3))
+		else if (!FT_SNCMP(*str, "nan", 3))
 			*((t_ul *)&d) = FT_D_EXP + 1ul;
 	}
 	if (*((t_ul *)&d))

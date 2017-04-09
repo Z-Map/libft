@@ -15,7 +15,7 @@
 char	*ft_strpbrk(const char *s, const char *stopset)
 {
 	while (*s)
-		if (ft_strchr(stopset, (int)(*(s++))))
+		if (FT_SCHR(stopset, (int)(*(s++))))
 			return ((char *)(unsigned long)(--s));
 	return (NULL);
 }

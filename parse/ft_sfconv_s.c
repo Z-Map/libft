@@ -28,7 +28,7 @@ int					ft_sfconv_s(const char **c, t_sfb *b, t_sfc *arg)
 	len = (len > arg->maxwidth) ? arg->maxwidth : len;
 	if (!(arg->flag & SFF_IGNORE))
 	{
-		ft_strncpy(buf, b->c, (size_t)len);
+		FT_SNCPY(buf, b->c, (size_t)len);
 		buf[len] = '\0';
 	}
 	b->c += len;

@@ -16,7 +16,7 @@
 t_arg				*ft_setarg(t_arg **arglst, char c, FT_CC *str,
 						int (*cb)(FT_CC *, void *, FT_CC **, int))
 {
-	const size_t	slen = ft_strlen(str);
+	const size_t	slen = FT_SLEN(str);
 	t_arg			*arg;
 	t_arg			*i;
 
@@ -24,7 +24,7 @@ t_arg				*ft_setarg(t_arg **arglst, char c, FT_CC *str,
 		return (NULL);
 	*arg = (t_arg){ .letter = c, .buf = {'-', c, '\0'}, .flag = 0,
 		.argword = (((char *)arg) + sizeof(t_arg)), .cb = cb, .next = NULL};
-	ft_strcpy(arg->argword, str);
+	FT_SCPY(arg->argword, str);
 	if (!(*arglst))
 		*arglst = arg;
 	else

@@ -15,7 +15,7 @@
 
 char				*ft_strunsplit(const char **tab, const char *separator)
 {
-	const size_t	slen = ft_strlen(separator);
+	const size_t	slen = FT_SLEN(separator);
 	size_t			len;
 	FT_CC			**t;
 	char			*ret;
@@ -24,7 +24,7 @@ char				*ft_strunsplit(const char **tab, const char *separator)
 	len = 1;
 	t = tab;
 	while (*t)
-		len += slen + ft_strlen(*(t++));
+		len += slen + FT_SLEN(*(t++));
 	len -= slen;
 	if (!(ret = malloc(sizeof(char) * len)))
 		return (NULL);

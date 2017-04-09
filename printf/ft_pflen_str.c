@@ -22,7 +22,7 @@ int		ft_pflen_str(t_pfc *arg)
 		if (arg->type == PFT_WSTR)
 			len = ft_utf8wcslen((wchar_t *)(arg->arg));
 		else
-			len = ft_strlen((char *)(arg->arg));
+			len = FT_SLEN((char *)(arg->arg));
 	}
 	else
 		len = 6;

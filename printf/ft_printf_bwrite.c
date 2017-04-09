@@ -29,13 +29,13 @@ int				ft_printf_bwrite(t_pfb *b, const char *c, const size_t len)
 	i = b->blen + (int)len;
 	if (i > FT_PF_BUFSIZE)
 	{
-		ft_memcpy(b->c, c, (size_t)(FT_PF_BUFSIZE - b->blen));
+		FT_MCPY(b->c, c, (size_t)(FT_PF_BUFSIZE - b->blen));
 		i -= FT_PF_BUFSIZE;
 		ft_printf_bflush(b);
 	}
 	else
 		i = (int)len;
-	ft_memcpy(b->c, c, (size_t)i);
+	FT_MCPY(b->c, c, (size_t)i);
 	b->blen += i;
 	b->c += i;
 	return ((int)i);

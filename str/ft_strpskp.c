@@ -15,7 +15,7 @@
 char	*ft_strpskp(const char *s, const char *skipset)
 {
 	while (*s)
-		if (!ft_strchr(skipset, (int)(*(s++))))
+		if (!FT_SCHR(skipset, (int)(*(s++))))
 			return ((char *)(unsigned long)(--s));
 	return ((char *)(unsigned long)s);
 }

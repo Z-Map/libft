@@ -22,13 +22,13 @@ int				ft_printf_bwritec(t_pfb *b, char c, size_t len)
 	i = (int)len;
 	if ((b->blen + i) < FT_PF_BUFSIZE)
 	{
-		ft_memset(b->c, (int)c, (size_t)i);
+		FT_MSET(b->c, (int)c, (size_t)i);
 		b->blen += i;
 		b->c += i;
 	}
 	else
 	{
-		ft_memset(b->c, (int)c, (size_t)(i = FT_PF_BUFSIZE - b->blen));
+		FT_MSET(b->c, (int)c, (size_t)(i = FT_PF_BUFSIZE - b->blen));
 		ft_printf_bflush(b);
 		if ((i = (int)len - i))
 			ft_printf_bwritec(b, c, (size_t)i);

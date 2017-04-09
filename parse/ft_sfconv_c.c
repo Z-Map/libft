@@ -23,7 +23,7 @@ int					ft_sfconv_c(const char **c, t_sfb *b, t_sfc *arg)
 	if (ft_strnidx(b->c, 0, (size_t)len) >= 0)
 		return ((arg->flag & SFF_OPTIONAL) ? 0 : -1);
 	if (!(arg->flag & SFF_IGNORE))
-		ft_memcpy(arg->arg, b->c, (size_t)len);
+		FT_MCPY(arg->arg, b->c, (size_t)len);
 	b->c += len;
 	return ((arg->flag & SFF_IGNORE) ? 0 : 1);
 }
