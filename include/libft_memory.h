@@ -6,13 +6,14 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:24:59 by qloubier          #+#    #+#             */
-/*   Updated: 2017/02/18 13:34:50 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/10 17:50:05 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_MEMORY_H
 # define LIBFT_MEMORY_H
 # include <string.h>
+# include <stdarg.h>
 # include "ft.h"
 
 void			ft_bzero(void *s, size_t n);
@@ -26,6 +27,8 @@ int				ft_memcmp(const void *s1, const void *s2, size_t n);
 void			*ft_memdup(const void *s1, size_t n);
 void			*ft_memalloc(size_t size);
 void			ft_memdel(void **ap);
+void			ft_mfree(size_t num, ...);
+void			*ft_mfree_ret(void *ret, size_t num, ...);
 t_ui			ft_memalign(t_ui i);
 void			ft_ptabdel(void ***tptr);
 
