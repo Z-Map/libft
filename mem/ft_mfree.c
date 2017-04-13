@@ -6,14 +6,14 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 17:03:47 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/10 17:50:52 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/11 18:51:41 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft_memory.h"
 
-void			ft_mfree(void *ret, size_t num, ...)
+void			ft_mfree(size_t num, ...)
 {
 	va_list		ap;
 	void		**p;
@@ -21,7 +21,7 @@ void			ft_mfree(void *ret, size_t num, ...)
 	va_start(ap, num);
 	while (num--)
 	{
-		p = va_arg(ap, (void *));
+		p = va_arg(ap, void *);
 		if (p && *p)
 		{
 			free(*p);

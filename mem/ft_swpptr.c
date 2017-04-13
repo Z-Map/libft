@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mfree_ret.c                                     :+:      :+:    :+:   */
+/*   ft_swpptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/10 17:03:47 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/11 18:51:37 by qloubier         ###   ########.fr       */
+/*   Created: 2017/04/11 20:04:08 by qloubier          #+#    #+#             */
+/*   Updated: 2017/04/11 20:25:42 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft_memory.h"
 
-void			*ft_mfree_ret(void *ret, size_t num, ...)
+void			ft_swpptr(void **ptra, void **ptrb)
 {
-	va_list		ap;
-	void		**p;
+	register void	*a;
+	register void	*b;
 
-	va_start(ap, num);
-	while (num--)
-	{
-		p = va_arg(ap, void *);
-		if (p && *p)
-		{
-			free(*p);
-			*p = NULL;
-		}
-	}
-	va_end(ap);
-	return (ret);
+	a = *ptra;
+	b = *ptrb;
+	*ptra = b;
+	*ptrb = a;
 }
