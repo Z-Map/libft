@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/09 20:14:43 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/13 16:46:51 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,10 @@ static const t_sftab	g_sf_flag_tab[] = {
 
 /*
 ** Arg parser
+** !!! NEED TESTING !!!
 */
+
+# define FT_EQUAL_VALUE	0x01
 
 typedef struct			s_argopt
 {
