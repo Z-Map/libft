@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:24:59 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/11 20:25:33 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/16 15:00:58 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,28 @@
 # include <string.h>
 # include <stdarg.h>
 # include "ft.h"
+
+# define FT_VMEM_DEFAULT	0xFFFF
+# define FT_VMF_EMPTY		0x01
+# define FT_VMF_VALID		0x5<<28
+# define FT_VMF_VALIDAREA	0xF<<28
+
+typedef struct	s_vpointer_stat
+{
+	t_ui		flag;
+	short		prev_len;
+	short		len;
+}				t_vmps;
+
+typedef struct	s_virtual_memory
+{
+	t_vmem		*next;
+	void		*mem;
+	t_vmps		*cursor;
+	size_t		size;
+	size_t		len;
+	t_vmem		*_gnext;
+};
 
 void			ft_bzero(void *s, size_t n);
 void			*ft_memset(void *b, int c, size_t len);
@@ -32,6 +54,13 @@ void			ft_mfree(size_t num, ...);
 void			*ft_mfree_ret(void *ret, size_t num, ...);
 t_ui			ft_memalign(t_ui i);
 void			ft_ptabdel(void ***tptr);
+
+// Not tested yet :
+
+
+t_vmem			*ft_vmem(t_vmem *vm);
+t_vmem			*ft_vmemnew(size_t size);
+void			*ft_vmalloc(short size);
 
 /*
 ** TO-DO : Buffer tools

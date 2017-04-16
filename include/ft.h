@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:05:20 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/08 03:07:44 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/16 13:37:53 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,25 @@
 
 # define FT_CC			const char
 
-typedef unsigned int	t_idx;
-typedef unsigned char	t_uc;
-typedef unsigned short	t_us;
-typedef unsigned int	t_ui;
-typedef unsigned long	t_ul;
-typedef unsigned long	t_np;
+typedef unsigned int			t_idx;
+typedef unsigned char			t_uc;
+typedef unsigned short			t_us;
+typedef unsigned int			t_ui;
+typedef unsigned long			t_ul;
+typedef unsigned long			t_np;
 
+typedef struct s_virtual_memory	t_vmem;
 
-typedef const struct	s_char_map
+typedef const struct			s_char_map
 {
-	t_ui				base;
-	int					padding;
-	const char			*cmap;
-}						t_cmap;
+	t_ui						base;
+	int							padding;
+	const char					*cmap;
+}								t_cmap;
 
-static const char		g_digitupmap[] = FT_DIGIT;
-static const char		g_digitlowmap[] = FT_DIGIT_L;
-static const t_cmap		g_cmapup[] = {
+static const char				g_digitupmap[] = FT_DIGIT;
+static const char				g_digitlowmap[] = FT_DIGIT_L;
+static const t_cmap				g_cmapup[] = {
 	(t_cmap){2, 0, g_digitupmap},
 	(t_cmap){3, 0, g_digitupmap},
 	(t_cmap){4, 0, g_digitupmap},
@@ -103,7 +104,8 @@ static const t_cmap		g_cmapup[] = {
 	(t_cmap){15, 0, g_digitupmap},
 	(t_cmap){16, 0, g_digitupmap},
 };
-static const  t_cmap	g_cmaplow[] = {
+
+static const  t_cmap			g_cmaplow[] = {
 	(t_cmap){2, 0, g_digitlowmap},
 	(t_cmap){3, 0, g_digitlowmap},
 	(t_cmap){4, 0, g_digitlowmap},
@@ -120,4 +122,5 @@ static const  t_cmap	g_cmaplow[] = {
 	(t_cmap){15, 0, g_digitlowmap},
 	(t_cmap){16, 0, g_digitlowmap},
 };
+
 #endif

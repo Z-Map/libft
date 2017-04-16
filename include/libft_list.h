@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:28:45 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/09 16:23:27 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/16 13:28:00 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void				ft_lstcfree(void *vec, size_t s);
 **	Block List function
 */
 
+# define FT_BLIT(blst) (t_blit){.bloc = blst, .idx = 0}
+
 t_blst				*ft_blstnew(size_t csize, const size_t bsize);
 size_t				ft_blstlen(t_blst *blst);
 void				*ft_blststore(t_blst *blst, void *data);
@@ -86,13 +88,14 @@ void				*ft_blsttotab(t_blst *blst, size_t *len);
 
 /*
 ** Character Buffer Function
+** NOT VERY USEFULL
 */
 
 t_cbuf				*ft_cbufnew(size_t bsize);
-int					ft_cbufpush(t_cbuf *b, char c);
-int					ft_cbufspush(t_cbuf *b, const char *c);
-int					ft_cbufsnpush(t_cbuf *b, const char *c, size_t n);
-int					ft_cbufsbpush(t_cbuf *b, const char *c, size_t bsize);
+int					ft_cbufadd(t_cbuf *b, char c);
+int					ft_cbufscat(t_cbuf *b, const char *c);
+int					ft_cbufsncat(t_cbuf *b, const char *c, size_t n);
+int					ft_cbufsbcat(t_cbuf *b, const char *c, size_t bsize);
 char				ft_cbufget(t_cbuf *b, size_t idx);
 int					ft_cbufwrite(t_cbuf *b, int fd);
 
