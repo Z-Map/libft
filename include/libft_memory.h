@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:24:59 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/16 15:00:58 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/19 18:35:43 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,16 @@ typedef struct	s_vpointer_stat
 	short		len;
 }				t_vmps;
 
-typedef struct	s_virtual_memory
+struct			s_virtual_memory
 {
 	t_vmem		*next;
-	void		*mem;
+	t_vmem		*prev;
+	t_vmps		*mem;
 	t_vmps		*cursor;
 	size_t		size;
 	size_t		len;
 	t_vmem		*_gnext;
+	t_vmem		*_gprev;
 };
 
 void			ft_bzero(void *s, size_t n);
@@ -61,6 +63,9 @@ void			ft_ptabdel(void ***tptr);
 t_vmem			*ft_vmem(t_vmem *vm);
 t_vmem			*ft_vmemnew(size_t size);
 void			*ft_vmalloc(short size);
+t_vmem			*ft_vmemalloc(t_vmem *vm, short size);
+int				ft_vfree(void *vptr);
+
 
 /*
 ** TO-DO : Buffer tools
