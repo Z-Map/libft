@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:24:59 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/19 18:35:43 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/20 16:30:47 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ struct			s_virtual_memory
 	t_vmem		*next;
 	t_vmem		*prev;
 	t_vmps		*mem;
+	t_vmps		*last;
 	t_vmps		*cursor;
 	size_t		size;
 	size_t		len;

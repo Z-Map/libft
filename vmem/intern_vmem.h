@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 16:14:51 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/19 18:42:48 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/20 17:14:26 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ t_vmps			*ft_ivm_iter(t_vmi *it);
 void			*ft_ivm_mptr(t_vmps *vptr);
 t_vmem			*ft_ivm_getvmem(t_vmps *vptr);
 t_vmps			*ft_ivm_nextptr(t_vmps *vptr, t_vmem **vm);
+t_vmps			*ft_ivm_next_emptyptr(t_vmps *vptr, t_vmem **vm);
 t_vmps			*ft_ivm_prevptr(t_vmps *vptr, t_vmem **vm);
+t_vmps			*ft_ivm_splitptr(t_vmps *vptr, t_vmem *vm);
+t_vmps			*ft_ivm_mergeptr(t_vmps *vptr, t_vmem *vm);
+t_vmps			*ft_ivm_cleanptr(t_vmps *vptr, t_vmem *vm);
 
 #endif
