@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 16:34:42 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/21 00:33:56 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/21 20:24:45 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_vmem			*ft_vmemnew(size_t size)
 		.mem = p, .last = p, .cursor = p, .size = size, .len = sizeof(t_vmps),
 		._gnext = NULL, ._gprev = NULL};
 	*p = (t_vmps){ .flag = FT_VMF_VALID | FT_VMF_EMPTY,
-		.prev_len = 0, .len = size - sizeof(t_vmps)};
+		.prev_len = 0, .len = size};
 	ft_ivmempush(vm);
 	return (vm);
 }

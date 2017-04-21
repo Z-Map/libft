@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:24:59 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/21 16:00:27 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/21 21:33:32 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include "ft.h"
 
 # define FT_VMEM_DEFAULT	0xFFFF
-# define FT_VMF_EMPTY		0x01
-# define FT_VMF_VALID		0x5<<28
-# define FT_VMF_VALIDAREA	0xF<<28
+# define FT_VMF_EMPTY		0x01u
+# define FT_VMF_VALID		0x5u<<28
+# define FT_VMF_VALIDAREA	0xFu<<28
 
 typedef struct	s_vpointer_stat
 {
