@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:24:59 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/20 16:30:47 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/21 16:00:27 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ struct			s_virtual_memory
 	size_t		len;
 	t_vmem		*_gnext;
 	t_vmem		*_gprev;
+	t_vmem		*_lastactive;
 };
 
 void			ft_bzero(void *s, size_t n);
@@ -64,7 +65,7 @@ void			ft_ptabdel(void ***tptr);
 t_vmem			*ft_vmem(t_vmem *vm);
 t_vmem			*ft_vmemnew(size_t size);
 void			*ft_vmalloc(short size);
-t_vmem			*ft_vmemalloc(t_vmem *vm, short size);
+void			*ft_vmemalloc(t_vmem *vm, short size);
 int				ft_vfree(void *vptr);
 
 
