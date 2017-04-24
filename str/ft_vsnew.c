@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ivm_allocptr.c                                  :+:      :+:    :+:   */
+/*   ft_vsnew.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/21 20:36:33 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/22 02:50:16 by qloubier         ###   ########.fr       */
+/*   Created: 2015/11/25 16:45:37 by qloubier          #+#    #+#             */
+/*   Updated: 2017/04/22 02:40:11 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "intern_vmem.h"
+#include "libft_string.h"
 
-t_vmps			*ft_ivm_allocptr(size_t size, t_vmem *vm)
+char				*ft_vsnew(short size)
 {
-	t_vmps		*p;
+	static t_vmem	*vm;
 
-	size += sizeof(t_vmps);
-	p = vm->cursor;
-	while (p && ((size_t)p->len < size))
-		p = ft_ivm_emptyptr(vm, p);
-	if (p && ((size_t)p->len > (size + sizeof(t_vmps) + 4)))
-		ft_ivm_splitptr(p, size, vm);
-	if (p)
-		p->flag &= ~FT_VMF_EMPTY;
-	return (p);
+	if (!vm)
+		vm = ft_vmemnew(FT_VSBUF);
+	if (size >= 0)
+		return ((char *)ft_vmemalloc(vm, size + 1));
+	return (NULL);
 }

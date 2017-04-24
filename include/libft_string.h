@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:34:07 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/16 15:00:59 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/22 02:41:18 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define LIBFT_STRING_H
 # include "ft.h"
 # include "libft_memory.h"
+
+# define FT_VSBUF	0xFFFF
 
 size_t				ft_strlen(const char *s);
 char				*ft_strdup(const char *s1);
@@ -82,7 +84,10 @@ char				*ft_strunsplit(const char **tab, const char *separator);
 
 // Not tested yet :
 
-
+char				*ft_vsnew(short size);
+void				ft_vsdel(char **as);
+char				*ft_vsdup(const char *s1);
+char				*ft_vsjoin(char const *s1, char const *s2);
 
 /*
 ** TO DO

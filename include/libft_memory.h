@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:24:59 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/21 21:33:32 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/22 02:55:28 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 typedef struct	s_vpointer_stat
 {
 	t_ui		flag;
-	short		prev_len;
-	short		len;
+	t_us		prev_len;
+	t_us		len;
 }				t_vmps;
 
 struct			s_virtual_memory

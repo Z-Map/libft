@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ivm_splitptr.c                                  :+:      :+:    :+:   */
+/*   ft_vsjoin.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/20 17:31:15 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/22 02:56:39 by qloubier         ###   ########.fr       */
+/*   Created: 2015/12/02 16:30:04 by qloubier          #+#    #+#             */
+/*   Updated: 2017/04/22 02:46:32 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "intern_vmem.h"
+#include "libft_string.h"
 
-t_vmps			*ft_ivm_splitptr(t_vmps *vptr, size_t size, t_vmem *vm)
+char				*ft_vsjoin(char const *s1, char const *s2)
 {
-	t_vmps		*p;
+	const size_t	bsize = FT_SLEN(s1) + FT_SLEN(s2);
+	char			*nstr;
 
-	size += sizeof(t_vmps);
-	if (!vptr || (size >= (size_t)vptr->len))
+	if ((bsize >= 0x7FFF) || (!s1 && !s2))
 		return (NULL);
-	p = (t_vmps *)((size_t)vptr + size);
-	*p = (t_vmps){ .flag = FT_VMF_VALID | FT_VMF_EMPTY,
-		.prev_len = (t_us)size, .len = vptr->len - (t_us)size};
-	vptr->len = (t_us)size;
-	if (vm->last == vptr)
-		vm->last = p;
-	return (p);
+	else if (!s1 || !s2)
+		return (s1 ? ft_vsdup(s1) : ft_vsdup(s2));
+	if ((nstr = ft_vsnew((short)bsize)))
+		FT_SCAT(FT_SCPY(nstr, s1), s2);
+	return (nstr);
 }
