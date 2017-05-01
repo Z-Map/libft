@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:34:07 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/22 02:41:18 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/01 18:48:55 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ char				*ft_strunsplit(const char **tab, const char *separator);
 char				*ft_vsnew(short size);
 void				ft_vsdel(char **as);
 char				*ft_vsdup(const char *s1);
+char				*ft_vsndup(const char *s1, size_t n);
 char				*ft_vsjoin(char const *s1, char const *s2);
 
 /*
