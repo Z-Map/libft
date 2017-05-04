@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/13 16:46:51 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/04 10:33:26 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,5 +178,76 @@ int						ft_freearg(t_arg **arglst, t_argret *argp);
 ** TO DO
 */
 
+/*
+** Element system
+*/
+
+typedef enum			e_ft_valuetype
+{
+	VT_NONE			= 0,
+	VS_SHORTSHORT	= 0x0010,
+	VS_SHORT		= 0x0020,
+	VS_LONGLONG		= 0x0040,
+	VS_LONG			= 0x0080,
+	VF_UNSIGNED		= 0x0100,
+	VF_VEC2			= 0x0200,
+	VF_VEC3			= 0x0400,
+	VF_VEC4			= 0x0800,
+	VF_PTR			= 0x1000,
+	VF_ELEMENT		= 0x2000,
+	VT_INT			= 0x1,
+	VT_UINT			= VF_UNSIGNED | VT_INT,
+	VT_LONG			= VS_LONG | VT_INT,
+	VT_ULONG		= VF_UNSIGNED | VS_LONG | VT_INT,
+	VT_FLOAT		= 0x2,
+	VT_DOUBLE		= VS_LONG | VT_FLOAT,
+	VT_COLOR		= VF_VEC4 | VF_UNSIGNED | VS_SHORTSHORT | VT_INT,
+	VT_VEC2I		= VF_VEC2 | VT_INT,
+	VT_VEC3I		= VF_VEC3 | VT_INT,
+	VT_VEC4I		= VF_VEC4 | VT_INT,
+	VT_VEC2UI		= VF_VEC2 | VF_UNSIGNED | VT_INT,
+	VT_VEC3UI		= VF_VEC3 | VF_UNSIGNED | VT_INT,
+	VT_VEC4UI		= VF_VEC4 | VF_UNSIGNED | VT_INT,
+	VT_VEC2L		= VF_VEC2 | VT_LONG,
+	VT_VEC3L		= VF_VEC3 | VT_LONG,
+	VT_VEC4L		= VF_VEC4 | VT_LONG,
+	VT_VEC2F		= VF_VEC2 | VT_FLOAT,
+	VT_VEC3F		= VF_VEC3 | VT_FLOAT,
+	VT_VEC4F		= VF_VEC4 | VT_FLOAT,
+	VT_VEC2D		= VF_VEC2 | VT_DOUBLE,
+	VT_VEC3D		= VF_VEC3 | VT_DOUBLE,
+	VT_VEC4D		= VF_VEC4 | VT_DOUBLE,
+	VT_CHAR			= 0x3,
+	VT_STR			= VF_PTR | VT_CHAR,
+}						t_vt;
+
+struct					s_ft_value
+{
+	t_vt				basetype;
+	t_ui				offset;
+	char				*name;
+	t_elm				*descriptor;
+	void				(*getter)(t_val*, void*, void*);
+	void				(*setter)(t_val*, void*, void*);
+	int					(*parser)(t_val*, void*, const char *);
+};
+
+struct					s_ft_element
+{
+	char				*name;
+	t_ui				size;
+	t_ui				vlen;
+	t_val				*value;
+	void				(*getter)(t_elm*, void*, void*);
+	void				(*setter)(t_elm*, void*, void*);
+	int					(*parser)(t_elm*, void*, const char *);
+	t_elm				*next;
+};
+
+int						ft_vparse_int(t_val*, void*, const char *);
+int						ft_vparse_vec(t_val*, void*, const char *);
+int						ft_vparse_col(t_val*, void*, const char *);
+int						ft_vparse_str(t_val*, void*, const char *);
+int						ft_vparse_vstr(t_val*, void*, const char *);
 
 #endif
