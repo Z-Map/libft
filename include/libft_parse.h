@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/04 10:33:26 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/07 22:03:06 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int						ft_parse_assign(const t_kf *a_table, const char *str,
 
 const char				*ft_parse_digit(const char *str, unsigned int *num);
 const char				*ft_parse_cmap(const char *str, unsigned long *num,
+							t_cmap cm, int len);
+const char				*ft_parse_cmlow(const char *str, unsigned long *num,
 							t_cmap cm, int len);
 const char				*ft_parsej_cmap(const char *str, uintmax_t *num,
 							t_cmap cm, int len);
@@ -218,18 +220,15 @@ typedef enum			e_ft_valuetype
 	VT_VEC3D		= VF_VEC3 | VT_DOUBLE,
 	VT_VEC4D		= VF_VEC4 | VT_DOUBLE,
 	VT_CHAR			= 0x3,
-	VT_STR			= VF_PTR | VT_CHAR,
+	VT_STR			= VF_PTR | VT_CHAR
 }						t_vt;
 
 struct					s_ft_value
 {
-	t_vt				basetype;
+	t_ui				basetype;
 	t_ui				offset;
 	char				*name;
 	t_elm				*descriptor;
-	void				(*getter)(t_val*, void*, void*);
-	void				(*setter)(t_val*, void*, void*);
-	int					(*parser)(t_val*, void*, const char *);
 };
 
 struct					s_ft_element
@@ -238,16 +237,26 @@ struct					s_ft_element
 	t_ui				size;
 	t_ui				vlen;
 	t_val				*value;
-	void				(*getter)(t_elm*, void*, void*);
-	void				(*setter)(t_elm*, void*, void*);
-	int					(*parser)(t_elm*, void*, const char *);
+	void				(*getter)(t_val*, void*, void*);
+	void				(*setter)(t_val*, void*, void*);
+	int					(*parser)(t_val*, void*, const char *);
 	t_elm				*next;
 };
 
-int						ft_vparse_int(t_val*, void*, const char *);
-int						ft_vparse_vec(t_val*, void*, const char *);
-int						ft_vparse_col(t_val*, void*, const char *);
-int						ft_vparse_str(t_val*, void*, const char *);
-int						ft_vparse_vstr(t_val*, void*, const char *);
+typedef struct			s_ft_generic_parser
+{
+	const char			*separator;
+	const char			*end;
+	const char			*cursor;
+	const char			*buffer;
+}						t_gparse;
+
+int						ft_eparse(t_gparse parser, t_elm *elm, void *mem);
+int						ft_vparse_int(t_val *val, void *mem, const char *str);
+int						ft_vparse_uint(t_val *val, void *mem, const char *str);
+int						ft_vparse_vec(t_val *val, void *mem, const char *str);
+int						ft_vparse_col(t_val *val, void *mem, const char *str);
+int						ft_vparse_str(t_val *val, void *mem, const char *str);
+int						ft_vparse_vstr(t_val *val, void *mem, const char *str);
 
 #endif
