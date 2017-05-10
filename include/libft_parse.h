@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/10 15:11:39 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/10 19:45:38 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,14 +224,25 @@ typedef enum			e_ft_valuetype
 	VT_STR			= VF_PTR | VT_CHAR
 }						t_vt;
 
+typedef struct			s_ft_generic_separator
+{
+	const char			*separator;
+	const char			*end;
+}						t_gsep;
+
 typedef struct			s_ft_generic_parser
 {
 	const char			*separator;
+	
 	const char			*end;
 	const char			*cursor;
 	size_t				c_len;
 	const char			*buffer;
 	size_t				b_len;
+	const char			*key;
+	size_t				k_len;
+	const char			*value;
+	size_t				v_len;
 	void				*arg;
 }						t_gparse;
 
