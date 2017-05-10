@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/07 22:03:06 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/10 15:11:39 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,16 +187,17 @@ int						ft_freearg(t_arg **arglst, t_argret *argp);
 typedef enum			e_ft_valuetype
 {
 	VT_NONE			= 0,
-	VS_SHORTSHORT	= 0x0010,
-	VS_SHORT		= 0x0020,
-	VS_LONGLONG		= 0x0040,
-	VS_LONG			= 0x0080,
-	VF_UNSIGNED		= 0x0100,
-	VF_VEC2			= 0x0200,
-	VF_VEC3			= 0x0400,
-	VF_VEC4			= 0x0800,
-	VF_PTR			= 0x1000,
-	VF_ELEMENT		= 0x2000,
+	VM_TYPE			= 0xFF,
+	VS_SHORTSHORT	= 0x00100,
+	VS_SHORT		= 0x00200,
+	VS_LONGLONG		= 0x00400,
+	VS_LONG			= 0x00800,
+	VF_UNSIGNED		= 0x01000,
+	VF_VEC2			= 0x02000,
+	VF_VEC3			= 0x04000,
+	VF_VEC4			= 0x08000,
+	VF_PTR			= 0x10000,
+	VF_ELEMENT		= 0x20000,
 	VT_INT			= 0x1,
 	VT_UINT			= VF_UNSIGNED | VT_INT,
 	VT_LONG			= VS_LONG | VT_INT,
@@ -223,6 +224,17 @@ typedef enum			e_ft_valuetype
 	VT_STR			= VF_PTR | VT_CHAR
 }						t_vt;
 
+typedef struct			s_ft_generic_parser
+{
+	const char			*separator;
+	const char			*end;
+	const char			*cursor;
+	size_t				c_len;
+	const char			*buffer;
+	size_t				b_len;
+	void				*arg;
+}						t_gparse;
+
 struct					s_ft_value
 {
 	t_ui				basetype;
@@ -239,24 +251,21 @@ struct					s_ft_element
 	t_val				*value;
 	void				(*getter)(t_val*, void*, void*);
 	void				(*setter)(t_val*, void*, void*);
-	int					(*parser)(t_val*, void*, const char *);
+	int					(*parser)(t_val*, void*, t_gparse parser);
 	t_elm				*next;
 };
 
-typedef struct			s_ft_generic_parser
-{
-	const char			*separator;
-	const char			*end;
-	const char			*cursor;
-	const char			*buffer;
-}						t_gparse;
-
 int						ft_eparse(t_gparse parser, t_elm *elm, void *mem);
-int						ft_vparse_int(t_val *val, void *mem, const char *str);
-int						ft_vparse_uint(t_val *val, void *mem, const char *str);
-int						ft_vparse_vec(t_val *val, void *mem, const char *str);
-int						ft_vparse_col(t_val *val, void *mem, const char *str);
-int						ft_vparse_str(t_val *val, void *mem, const char *str);
-int						ft_vparse_vstr(t_val *val, void *mem, const char *str);
+int						ft_evparse(t_gparse parser, t_elm *elm, void *mem);
+void					ft_set_numval(t_val *val, void *mem, t_numv num, int s);
+int						ft_vparse_int(t_val *val, void *mem, t_gparse parser);
+int						ft_vparse_uint(t_val *val, void *mem, t_gparse parser);
+int						ft_vparse_float(t_val *val, void *mem, t_gparse parser);
+int						ft_vparse_vec(t_val *val, void *mem, t_gparse parser);
+int						ft_vparse_col(t_val *val, void *mem, t_gparse parser);
+int						ft_vparse_str(t_val *val, void *mem, t_gparse parser);
+int						ft_vparse_vstr(t_val *val, void *mem, t_gparse parser);
+
+
 
 #endif

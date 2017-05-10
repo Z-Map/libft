@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:05:20 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/03 18:03:20 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/09 21:22:11 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,21 @@ typedef unsigned long			t_np;
 typedef struct s_virtual_memory	t_vmem;
 typedef struct s_ft_value		t_val;
 typedef struct s_ft_element		t_elm;
+
+typedef union					u_num_value
+{
+	char						c;
+	unsigned char				uc;
+	short						s;
+	unsigned short				us;
+	int							i;
+	unsigned int				ui;
+	long						l;
+	unsigned long				ul;
+	float						f;
+	double						d;
+	long double					ld;
+}								t_numv;
 
 typedef const struct			s_char_map
 {

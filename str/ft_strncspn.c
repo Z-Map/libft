@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vparse_vec.c                                    :+:      :+:    :+:   */
+/*   ft_strncspn.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/05 17:25:16 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/09 19:10:32 by qloubier         ###   ########.fr       */
+/*   Created: 2016/01/10 04:46:59 by qloubier          #+#    #+#             */
+/*   Updated: 2017/05/09 22:21:54 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_parse.h"
+#include "libft_string.h"
 
-static int		vec_parse(t_val *val, void *mem, t_gparse parser)
+int		ft_strncspn(const char *s, const char *stopset, size_t n)
 {
+	int	i;
 
-}
-
-int				ft_vparse_vec(t_val *val, void *mem, t_gparse parser)
-{
-	const char	*s;
-	int			ret;
-
-	s = ft_strpskp(str, FT_WHITESPACE);
-	if (*s == 'v')
-		ret = vec_parse(val, mem, s);
-
+	i = 0;
+	while ((*s) && (n--) && !(FT_SCHR(stopset, (int)(*(s++)))))
+		++i;
+	return (i);
 }
