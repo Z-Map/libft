@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_eparse.c                                        :+:      :+:    :+:   */
+/*   ft_prsskp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/08 05:32:56 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 06:30:49 by qloubier         ###   ########.fr       */
+/*   Created: 2017/05/12 04:38:33 by qloubier          #+#    #+#             */
+/*   Updated: 2017/05/12 06:21:57 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_parse.h"
 
-
-int				ft_eparse(t_gparse parser, t_elm *elm, void *mem)
+size_t					ft_prsskp(FT_CC **c, size_t *l, FT_CC *s, FT_CC **b)
 {
-	int			i;
-	int			vid;
+	register size_t		tmp;
 
-	i = -1;
-	vid = 0;
-	parser.cursor = parser.value;
-	parser.c_len = parser.v_len;
-	while (ft_enext(&parser))
-	{
-
-	}
-	return (i);
+	if (!*l)
+		return (0);
+	tmp = (size_t)*c;
+	*c = ft_strnpskp(*c, s, *l);
+	if (b)
+		*b = (const char *)c;
+	 tmp = (size_t)*c - tmp;
+	*l -= tmp;
+	return (tmp);
 }

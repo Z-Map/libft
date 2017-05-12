@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parsebrk.c                                      :+:      :+:    :+:   */
+/*   ft_prsgetsep.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/12 04:38:28 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 04:55:10 by qloubier         ###   ########.fr       */
+/*   Created: 2017/05/12 05:29:34 by qloubier          #+#    #+#             */
+/*   Updated: 2017/05/12 05:30:55 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_parse.h"
 
-size_t					ft_parsebrk(FT_CC **c, size_t *l, FT_CC *s, FT_CC **b)
+int				ft_prsgetsep(t_gparse *p, const char *c, size_t len)
 {
-	register size_t		tmp;
+	size_t		seplen;
+	int			i;
 
-	tmp = (size_t)*c;
-	*c = ft_strnpbrk(*c, s, *l);
-	if (b)
-		*b = (const char *)c;
-	 tmp = (size_t)*c - tmp;
-	*l -= tmp;
-	return (tmp);
+	seplen = p->seplen;
+	i = 0;
+	while (seplen-- && ((size_t)p->seplst[i].slen > len
+		|| ft_strconcur(c, p->seplst[i].separator)))
+		i++;
+	return ((i < p->seplen) ? i : -1);
 }

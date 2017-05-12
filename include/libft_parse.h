@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 04:51:03 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 05:28:48 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,9 +269,11 @@ struct					s_ft_element
 	t_elm				*next;
 };
 
-size_t					ft_parseskp(FT_CC **c, size_t *l, FT_CC *s, FT_CC **b);
-size_t					ft_parsebrk(FT_CC **c, size_t *l, FT_CC *s, FT_CC **b);
-char					*ft_pskipgroup(FT_CC *c, size_t l, FT_CC *s, FT_CC *e);
+int						ft_prsgetsep(t_gparse *p, const char *c, size_t len);
+int						ft_prsgetgsep(t_gparse *p, const char *c, size_t len);
+size_t					ft_prsskp(FT_CC **c, size_t *l, FT_CC *s, FT_CC **b);
+size_t					ft_prsbrk(FT_CC **c, size_t *l, FT_CC *s, FT_CC **b);
+size_t					ft_prsgskp(t_gparse *p, t_gsep *group, FT_CC *e);
 int						ft_enext(t_gparse *parser);
 int						ft_eparse(t_gparse parser, t_elm *elm, void *mem);
 int						ft_evparse(t_gparse p, t_elm *elm, void *mem, int *i);
