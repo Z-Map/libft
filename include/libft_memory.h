@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:24:59 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/10 16:50:54 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 18:46:08 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_vmem			*ft_vmem(t_vmem *vm);
 t_vmem			*ft_vmemnew(size_t size);
 void			*ft_vmalloc(short size);
 void			*ft_vmemalloc(t_vmem *vm, short size);
-int				ft_vfree(void **vptr);
+int				ft_vfree(void *vptr);
 
 
 /*
