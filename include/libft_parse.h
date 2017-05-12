@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 10:28:32 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 17:11:34 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,7 +291,5 @@ int						ft_vparse_vec(t_val *val, void *mem, t_gparse parser);
 int						ft_vparse_col(t_val *val, void *mem, t_gparse parser);
 int						ft_vparse_str(t_val *val, void *mem, t_gparse parser);
 int						ft_vparse_vstr(t_val *val, void *mem, t_gparse parser);
-
-
 
 #endif
