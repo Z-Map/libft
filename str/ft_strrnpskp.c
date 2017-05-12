@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_eparse.c                                        :+:      :+:    :+:   */
+/*   ft_strrnpskp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/08 05:32:56 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 09:35:12 by qloubier         ###   ########.fr       */
+/*   Created: 2016/01/10 04:46:59 by qloubier          #+#    #+#             */
+/*   Updated: 2017/05/12 09:07:00 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_parse.h"
+#include "libft_string.h"
 
-
-int				ft_eparse(t_gparse parser, t_elm *elm, void *mem)
+char	*ft_strrnpskp(const char *s, const char *skip, size_t n)
 {
-	int			i;
-	int			vid;
+	const size_t	len = FT_SLEN(s);
 
-	i = 0;
-	vid = 0;
-	parser.cursor = parser.value;
-	parser.c_len = parser.v_len;
-	while (ft_enext(&parser))
-	{
-		ft_prstrim(&parser.cursor, &parser.c_len, FT_WHITESPACE);
-		if (ft_evparse(parser, elm, mem, &vid) >= 0)
-			i = 1;
-	}
-	return (i);
+	n = (len < n) ? len : n;
+	while (n--)
+		if (!FT_SCHR(skip, (int)(s[n])))
+			return ((char *)(unsigned long)(s + n));
+	return (NULL);
 }

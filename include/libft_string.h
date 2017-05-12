@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:34:07 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 00:58:33 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 09:18:29 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,27 @@ char				*ft_strrchr(const char *s, int c);
 char				*ft_strnchr(const char *s, int c, size_t n);
 char				*ft_strchrnot (const char *s, int c);
 int					ft_strspn(const char *s, const char *skipset);
+int					ft_strrspn(const char *s, const char *skipset);
 int					ft_strnspn(const char *s, const char *skipset, size_t n);
+int					ft_strrnspn(const char *s, const char *skipset, size_t n);
 int					ft_strcspn(const char *s, const char *stop);
+int					ft_strrcspn(const char *s, const char *stop);
 int					ft_strncspn(const char *s, const char *stop, size_t n);
+int					ft_strrncspn(const char *s, const char *stop, size_t n);
 char				*ft_strpskp(const char *s, const char *skipset);
+char				*ft_strrpskp(const char *s, const char *skipset);
+char				*ft_strrpskpnul(const char *s, const char *skipset);
 char				*ft_strnpskp(const char *s, const char *skip, size_t n);
+char				*ft_strrnpskp(const char *s, const char *skip, size_t n);
+char				*ft_strrnpskpnul(const char *s, const char *skip, size_t n);
 char				*ft_strpbrk(const char *s, const char *stopset);
+char				*ft_strrpbrk(const char *s, const char *stopset);
 char				*ft_strnpbrk(const char *s, const char *stop, size_t n);
+char				*ft_strrnpbrk(const char *s, const char *stop, size_t n);
 char				*ft_strpbrknul(const char *s, const char *stopset);
+char				*ft_strrpbrknul(const char *s, const char *stopset);
 char				*ft_strnpbrknul(const char *s, const char *stop, size_t n);
+char				*ft_strrnpbrknul(const char *s, const char *stop, size_t n);
 int					ft_stridx(const char *s, int c);
 int					ft_strnidx(const char *s, int c, size_t n);
 char				*ft_strstr(const char *s1, const char *s2);

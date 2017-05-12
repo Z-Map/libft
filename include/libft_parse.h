@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 05:28:48 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 10:28:32 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,6 +253,8 @@ struct					s_ft_value
 {
 	t_ui				basetype;
 	t_ui				offset;
+	t_ui				idx;
+	t_ui				flags;
 	char				*name;
 	t_elm				*descriptor;
 };
@@ -262,7 +264,7 @@ struct					s_ft_element
 	char				*name;
 	t_ui				size;
 	t_ui				vlen;
-	t_val				*value;
+	t_val				*values;
 	void				(*getter)(t_val*, void*, void*);
 	void				(*setter)(t_val*, void*, void*);
 	int					(*parser)(t_val*, void*, t_gparse parser);
@@ -271,6 +273,7 @@ struct					s_ft_element
 
 int						ft_prsgetsep(t_gparse *p, const char *c, size_t len);
 int						ft_prsgetgsep(t_gparse *p, const char *c, size_t len);
+size_t					ft_prstrim(FT_CC **c, size_t *l, FT_CC *s);
 size_t					ft_prsskp(FT_CC **c, size_t *l, FT_CC *s, FT_CC **b);
 size_t					ft_prsbrk(FT_CC **c, size_t *l, FT_CC *s, FT_CC **b);
 size_t					ft_prsgskp(t_gparse *p, t_gsep *group, FT_CC *e);
@@ -278,6 +281,9 @@ int						ft_enext(t_gparse *parser);
 int						ft_eparse(t_gparse parser, t_elm *elm, void *mem);
 int						ft_evparse(t_gparse p, t_elm *elm, void *mem, int *i);
 void					ft_set_numval(t_val *val, void *mem, t_numv num, int s);
+void					ft_int_setter(t_val *val, void *mem, void *v);
+void					ft_uint_setter(t_val *val, void *mem, void *v);
+void					ft_float_setter(t_val *val, void *mem, void *v);
 int						ft_vparse_int(t_val *val, void *mem, t_gparse parser);
 int						ft_vparse_uint(t_val *val, void *mem, t_gparse parser);
 int						ft_vparse_float(t_val *val, void *mem, t_gparse parser);

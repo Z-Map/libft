@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:05:20 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/09 21:22:11 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 09:57:28 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@
 # define FT_HEXA_C_L	"+-0123456789abcdef"
 
 # define FT_WHITESPACE	" \t\n\r\v\f"
+# define FT_STRLIMITER	"\"'`"
 
 # define FT_MX_FLOATLEN	310
 

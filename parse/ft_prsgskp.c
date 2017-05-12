@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/12 05:20:10 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 06:15:58 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 10:39:43 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ size_t				ft_prsgskp(t_gparse *p, t_gsep *group, FT_CC *e)
 	i = 0;
 	while (p->c_len && *(p->cursor))
 	{
-		if (group && (group->elen >= p->c_len)
+		if (group && ((size_t)group->elen >= p->c_len)
 			&& ft_strconcur(p->cursor, group->end))
 		{
 			p->cursor += group->elen;

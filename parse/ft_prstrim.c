@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_eparse.c                                        :+:      :+:    :+:   */
+/*   ft_prstrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/08 05:32:56 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 09:35:12 by qloubier         ###   ########.fr       */
+/*   Created: 2017/05/12 04:38:33 by qloubier          #+#    #+#             */
+/*   Updated: 2017/05/12 10:40:15 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_parse.h"
 
-
-int				ft_eparse(t_gparse parser, t_elm *elm, void *mem)
+size_t					ft_prstrim(FT_CC **c, size_t *l, FT_CC *s)
 {
-	int			i;
-	int			vid;
+	register size_t		tmp;
 
-	i = 0;
-	vid = 0;
-	parser.cursor = parser.value;
-	parser.c_len = parser.v_len;
-	while (ft_enext(&parser))
-	{
-		ft_prstrim(&parser.cursor, &parser.c_len, FT_WHITESPACE);
-		if (ft_evparse(parser, elm, mem, &vid) >= 0)
-			i = 1;
-	}
-	return (i);
+	if (!*l)
+		return (0);
+	tmp = (size_t)*c;
+	*c = ft_strnpskp(*c, s, *l);
+	 tmp = *l - (size_t)*c - tmp;
+	*l = tmp - (size_t)ft_strrnspn(*c, s, *l);
+	return (tmp);
 }

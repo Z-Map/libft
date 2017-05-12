@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 17:25:16 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/10 19:45:42 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 12:57:10 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,16 @@ int				ft_vparse_vec(t_val *val, void *mem, t_gparse parser)
 	const char	*s;
 	int			ret;
 
-	s = ft_strpskp(str, FT_WHITESPACE);
-	if (*s == 'v')
-		ret = vec_parse(val, mem, s);
+	if (!parser.value)
+		return (-1);
+	parser.cursor = ft_strpskp(parser.value, FT_WHITESPACE);
+	parser.c_len = parser.v_len - (size_t)(parser.cursor - parser.value);
+	if ((*parser.cursor == 'v') || !ft_strconcur(parser.cursor, "vec")
+		|| !ft_strconcur(parser.cursor, "t_v"))
+		ret = vec_parse(val, mem, parser);
+	else
+	{
 
+	}
+	return (ret);
 }
