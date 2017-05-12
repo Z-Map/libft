@@ -50,7 +50,7 @@ endif
 ifeq ($(CHRONOS_NAZI_MODE)_$(CC),on_clang)
 	CFLAGS=-Wextra -Werror -Weverything
 else
-	CFLAGS=-Wextra -Werror -Wall -Wpadding
+	CFLAGS=-Wextra -Werror -Wall -Wpadded
 endif
 
 LFLAGS		= -rcs
