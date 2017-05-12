@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/10 19:45:38 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 04:51:03 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,12 +228,15 @@ typedef struct			s_ft_generic_separator
 {
 	const char			*separator;
 	const char			*end;
+	int					slen;
+	int					elen;
 }						t_gsep;
 
 typedef struct			s_ft_generic_parser
 {
-	const char			*separator;
-	
+	const char			*stopset;
+	t_gsep				*seplst;
+	size_t				seplen;
 	const char			*end;
 	const char			*cursor;
 	size_t				c_len;
@@ -266,8 +269,12 @@ struct					s_ft_element
 	t_elm				*next;
 };
 
+size_t					ft_parseskp(FT_CC **c, size_t *l, FT_CC *s, FT_CC **b);
+size_t					ft_parsebrk(FT_CC **c, size_t *l, FT_CC *s, FT_CC **b);
+char					*ft_pskipgroup(FT_CC *c, size_t l, FT_CC *s, FT_CC *e);
+int						ft_enext(t_gparse *parser);
 int						ft_eparse(t_gparse parser, t_elm *elm, void *mem);
-int						ft_evparse(t_gparse parser, t_elm *elm, void *mem);
+int						ft_evparse(t_gparse p, t_elm *elm, void *mem, int *i);
 void					ft_set_numval(t_val *val, void *mem, t_numv num, int s);
 int						ft_vparse_int(t_val *val, void *mem, t_gparse parser);
 int						ft_vparse_uint(t_val *val, void *mem, t_gparse parser);

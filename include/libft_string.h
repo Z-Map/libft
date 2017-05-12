@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:34:07 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/09 22:15:25 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 00:58:33 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,21 @@ int					ft_strnspn(const char *s, const char *skipset, size_t n);
 int					ft_strcspn(const char *s, const char *stop);
 int					ft_strncspn(const char *s, const char *stop, size_t n);
 char				*ft_strpskp(const char *s, const char *skipset);
+char				*ft_strnpskp(const char *s, const char *skip, size_t n);
 char				*ft_strpbrk(const char *s, const char *stopset);
+char				*ft_strnpbrk(const char *s, const char *stop, size_t n);
 char				*ft_strpbrknul(const char *s, const char *stopset);
+char				*ft_strnpbrknul(const char *s, const char *stop, size_t n);
 int					ft_stridx(const char *s, int c);
 int					ft_strnidx(const char *s, int c, size_t n);
-char				*ft_strstr (const char *s1, const char *s2);
-char				*ft_strnstr (const char *s1, const char *s2, size_t n);
-int					ft_strcmp (const char *s1, const char *s2);
-int					ft_strncmp (const char *s1, const char *s2, size_t n);
-char				*ft_strnew (size_t size);
-void				ft_strdel (char **as);
-void				ft_strclr (char *s);
+char				*ft_strstr(const char *s1, const char *s2);
+char				*ft_strnstr(const char *s1, const char *s2, size_t n);
+int					ft_strcmp(const char *s1, const char *s2);
+int					ft_strconcur(const char *s1, const char *s2);
+int					ft_strncmp(const char *s1, const char *s2, size_t n);
+char				*ft_strnew(size_t size);
+void				ft_strdel(char **as);
+void				ft_strclr(char *s);
 void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 char				*ft_strmap(char const *s, char (*f)(char));
