@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 05:32:56 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 09:35:12 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/16 20:41:01 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int				ft_eparse(t_gparse parser, t_elm *elm, void *mem)
 {
 	int			i;
-	int			vid;
+	t_ui		vid;
 
 	i = 0;
 	vid = 0;
