@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:33:28 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 08:02:27 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/18 12:19:26 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int				ft_enext(t_gparse *parser)
 		c++;
 	parser->k_len = (size_t)((i < 0) ? 0 : c - parser->cursor);
 	parser->key = (parser->k_len) ? parser->cursor : NULL;
-	len = parser->k_len + ((i < 0) ? (size_t)parser->seplst[i].slen : 0);
+	len = parser->k_len + ((i < 0) ? 0 : (size_t)parser->seplst[i].slen);
 	parser->cursor += len;
 	parser->c_len -= len;
 	parser->value = parser->cursor;

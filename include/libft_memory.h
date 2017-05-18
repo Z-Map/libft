@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:24:59 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 18:46:08 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/18 00:02:07 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,12 @@ void			ft_mfree(size_t num, ...);
 void			*ft_mfree_ret(void *ret, size_t num, ...);
 t_ui			ft_memalign(t_ui i);
 void			ft_ptabdel(void ***tptr);
+void			ft_setbitfield(char *mem, size_t idx);
+void			ft_unsetbitfield(char *mem, size_t idx);
+void			ft_togglebitfield(char *mem, size_t idx);
+int				ft_getbitfield(char *mem, size_t idx);
 
 // Not tested yet :
-
 
 t_vmem			*ft_vmem(t_vmem *vm);
 t_vmem			*ft_vmemnew(size_t size);

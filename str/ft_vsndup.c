@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 17:18:23 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/01 18:49:50 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/17 20:28:55 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char		*ft_vsndup(const char *s1, size_t n)
 		nstr = ft_vsnew((short)n);
 		if (nstr)
 			FT_SNCPY(nstr, s1, n);
+		nstr[n] = '\0';
 	}
 	return (nstr);
 }

@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ivm_allocptr.c                                  :+:      :+:    :+:   */
+/*   ft_setbitfield.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/21 20:36:33 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/16 15:51:57 by qloubier         ###   ########.fr       */
+/*   Created: 2017/05/17 22:56:57 by qloubier          #+#    #+#             */
+/*   Updated: 2017/05/17 23:41:37 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "intern_vmem.h"
+#include "libft_memory.h"
 
-t_vmps			*ft_ivm_allocptr(size_t size, t_vmem *vm)
+void			ft_setbitfield(char *mem, size_t idx)
 {
-	t_vmps		*p;
+	size_t		i;
 
-	size += sizeof(t_vmps);
-	p = vm->cursor;
-	while (p && ((size_t)p->len < size))
-		p = ft_ivm_emptyptr(vm, p);
-	if (p && ((size_t)p->len > (size + sizeof(t_vmps) + 4)))
-		ft_ivm_splitptr(p, size, vm);
-	if (p)
-	{
-		p->flag &= ~FT_VMF_EMPTY;
-		vm->cursor = ft_ivm_emptyptr(vm, vm->mem);
-	}
-	return (p);
+	i = idx % 8;
+	idx /= 8;
+	mem[idx] |= 1 << i;
 }
