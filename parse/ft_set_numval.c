@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 20:18:01 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 10:41:53 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/22 03:31:26 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,12 @@
 
 static void			set_float_type(t_val *val, void *mem, t_numv num)
 {
-	float			f;
-	double			d;
-
 	if (val->basetype & VS_LONGLONG)
 		val->descriptor->setter(val, mem, &num.ld);
 	else if (val->basetype & VS_LONG)
-	{
-		d = (double)num.ld;
-		val->descriptor->setter(val, mem, &d);
-	}
+		val->descriptor->setter(val, mem, &num.d);
 	else
-	{
-		f = (float)num.ld;
-		val->descriptor->setter(val, mem, &f);
-	}
+		val->descriptor->setter(val, mem, &num.f);
 }
 
 static void			set_signed_type(t_val *val, void *mem, t_numv num, int s)

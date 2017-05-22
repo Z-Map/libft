@@ -6,7 +6,7 @@
 /*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 23:01:47 by map               #+#    #+#             */
-/*   Updated: 2016/10/21 18:09:19 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/22 04:17:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void			ft_pfconv_float(t_pfb *b, t_pfc *arg, size_t len)
 	i = 0;
 	if (!len)
 		return ;
-	while ((d < 1.0) && (++i < (int)len))
+	while ((d < 0.999999) && (++i < (int)len))
 		d *= 10.0;
 	i -= (i) ? 1 : 0;
 	ft_printf_bwritec(b, '0', (size_t)i);

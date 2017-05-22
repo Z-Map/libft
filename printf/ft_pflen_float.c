@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/21 18:38:53 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/22 04:13:11 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char		*pf_floattobuf(t_pfc *arg, double d, int *len)
 	char			*c;
 
 	i = 0;
-	if (d < 0)
+	if (d < 0.0)
 		d = -d;
 	if (arg->precision || (arg->flag & PFF_ALTERNTE))
 	{
@@ -29,7 +29,7 @@ static char		*pf_floattobuf(t_pfc *arg, double d, int *len)
 	}
 	l = (unsigned long)d;
 	c = ft_ujfillbuf(l, arg->tmpb, len);
-	d -= (double)l;
+	d = (d - (double)l);
 	arg->arg = (uintmax_t)(*((unsigned long *)(&(d))));
 	*len += i;
 	return (c);
