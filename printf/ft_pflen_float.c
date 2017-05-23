@@ -6,11 +6,27 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/22 04:13:11 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/23 23:27:22 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_printf.h"
+
+static char		*pf_float_spe(t_pfc *arg, double d, int *len)
+{
+	unsigned long	l;
+	char			*c;
+
+	l = *((unsigned long *)(&d)) & FT_D_MAN;
+	c = arg->tmpb + *len - 4;
+	if (l)
+		ft_memcpy(c, "NaN", 4);
+	else
+		ft_memcpy(c, "inf", 4);
+	arg->precision = 0;
+	*len = 3;
+	return (c);
+}
 
 static char		*pf_floattobuf(t_pfc *arg, double d, int *len)
 {
@@ -30,7 +46,7 @@ static char		*pf_floattobuf(t_pfc *arg, double d, int *len)
 	l = (unsigned long)d;
 	c = ft_ujfillbuf(l, arg->tmpb, len);
 	d = (d - (double)l);
-	arg->arg = (uintmax_t)(*((unsigned long *)(&(d))));
+	arg->arg = (uintmax_t)(*((unsigned long *)(&d)));
 	*len += i;
 	return (c);
 }
@@ -70,7 +86,9 @@ int				ft_pflen_float(t_pfc *arg)
 	if (!(arg->flag & PFF_PREC_SET))
 		arg->precision = 6;
 	l = (arg->arg & FT_D_EXP) >> 52;
-	if (l > 1075)
+	if (l == 0x7FF)
+		arg->tmpb = pf_float_spe(arg, d, (int *)&len);
+	else if (l > 1075)
 		arg->tmpb = pf_float_biglen(arg, d, (int *)&len);
 	else
 		arg->tmpb = pf_floattobuf(arg, d, (int *)&len);
