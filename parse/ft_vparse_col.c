@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 17:25:16 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 02:28:15 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/24 01:19:51 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static int		colvec_parse(t_gparse parser, t_ul *num)
 	while (i--)
 		if ((vec[i] >= 0.0f) && (vec[i] <= 1.0f))
 			vec[i] *= 255;
-	*num = (t_ul)(((t_uc)vec[0] << 24) | ((t_uc)vec[1] << 16)
-		| ((t_uc)vec[2] << 8) | (t_uc)vec[3]);
+	*num = (t_ul)(((t_uc)vec[3] << 24) | ((t_uc)vec[2] << 16)
+		| ((t_uc)vec[1] << 8) | (t_uc)vec[0]);
 	return (ret);
 }
 
@@ -53,8 +53,10 @@ int				ft_vparse_col(t_val *val, void *mem, t_gparse parser)
 		parser.cursor++;
 		ret = (int)(ft_parse_cmlow(parser.cursor, &num, g_cmaplow[14],
 			(int)parser.v_len) - parser.cursor);
+		num = ((num & 0xff) << 16) | ((num & 0xff0000) >> 16) |
+			(num & 0xff00ff00);
 		if (ret < 7)
-			num = (num << 8) | 0xff;
+			num = num | (0xff000000ul);
 		ret = (ret) ? ret : -1;
 	}
 	else
