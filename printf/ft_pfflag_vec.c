@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pfarg_float.c                                   :+:      :+:    :+:   */
+/*   ft_pfflag_vec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/18 19:56:26 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/08 00:59:34 by qloubier         ###   ########.fr       */
+/*   Created: 2017/06/08 00:19:05 by qloubier          #+#    #+#             */
+/*   Updated: 2017/06/08 01:09:10 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_printf.h"
 
-int			ft_pfarg_float(int cc, va_list ap, t_pfc *arg)
+const char				*ft_pfflag_vec(const char *c, t_pfb *b)
 {
-	arg->type = PFT_FLOAT;
-	if (arg->flag & PFF_VECTOR_SET)
-		arg->arg = (uintmax_t)va_arg(ap, void *);
+	int				i;
+
+	i = 0;
+	if (c[1] == '*')
+	{
+		i = va_arg(b->ap, int);
+		b->arg.vlen = (t_ui)((i < 0) ? 0 : i);
+		c += 2;
+	}
 	else
-		*((double *)(&(arg->arg))) = va_arg(ap, double);
-	return (cc);
+		c = ft_parse_digit(c + 1, &(b->arg.vlen));
+	if (i >= 0)
+		b->arg.flag |= PFF_VECTOR_SET;
+	return (c);
 }

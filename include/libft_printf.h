@@ -6,7 +6,7 @@
 /*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/10 05:51:14 by map               #+#    #+#             */
-/*   Updated: 2017/03/19 13:17:27 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/08 01:41:23 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define PF_BUFSIZE (FT_PF_BUFSIZE + 1 + (8 - ((FT_PF_BUFSIZE + 1) % 8)))
 
 # define PF_TYPE_STR "sdiuxcbDXUp%SCoOfFn"
-# define PF_FLAG_STR "#+0- .hljz*"
+# define PF_FLAG_STR "#+0- .hljz*v"
 
 # define PF_UCHAR 0xFF
 # define PF_UPFF_SHORT 0xFFFF
@@ -56,9 +56,12 @@ enum					e_pf_flag
 	PFF_CAPITAL = 1 << 16,
 	PFF_PREC_SET = 1 << 17,
 	PFF_MNW_SET = 1 << 18,
-	PFF_PTR = 1 << 19,
-	PFF_NEG = 1 << 20,
+	PFF_VECTOR_SET = 1 << 19,
+	PFF_PTR = 1 << 20,
+	PFF_NEG = 1 << 21,
 	PFF_PTRSET = PFF_LONG | PFF_ALTERNTE | PFF_PTR,
+	PFF_NOSIZE = ~(PFF_SHORT_SHORT | PFF_SHORT | PFF_LONG | PFF_LONG_LONG
+		| PFF_SIZE_T | PFF_INTMAX),
 	PFF_END = (int)(1u << 30)
 };
 
@@ -86,7 +89,7 @@ typedef struct			s_printf_convert
 	t_ui				precision;
 	t_ui				minwidth;
 	int					b_len;
-	int					padding;
+	t_ui				vlen;
 	uintmax_t			arg;
 	char				*tmpb;
 }						t_pfc;
@@ -122,6 +125,7 @@ const char				*ft_pfflag_width(const char *c, t_pfb *b);
 const char				*ft_pfflag_more(const char *c, t_pfb *b);
 const char				*ft_pfflag_less(const char *c, t_pfb *b);
 const char				*ft_pfflag_space(const char *c, t_pfb *b);
+const char				*ft_pfflag_vec(const char *c, t_pfb *b);
 
 int						ft_pfarg_nbr(int cc, va_list ap, t_pfc *arg);
 int						ft_pfarg_unbr(int cc, va_list ap, t_pfc *arg);
@@ -135,6 +139,8 @@ int						ft_pfarg_ptr(int cc, va_list ap, t_pfc *arg);
 int						ft_pfarg_spc(int cc, va_list ap, t_pfc *arg);
 int						ft_pfarg_n(int cc, va_list ap, t_pfc *arg);
 int						ft_pfarg_bin(int cc, va_list ap, t_pfc *arg);
+
+t_pfc					ft_pfargvec(t_pfc arg, t_ui i);
 
 int						ft_pflen_nbr(t_pfc *arg);
 int						ft_pflen_unbr(t_pfc *arg);
@@ -183,7 +189,7 @@ static const t_pftab	g_pf_flag_tab[] = {
 	(t_pftab){&ft_pfflag_j, &ft_pfarg_hex, &ft_pflen_unbr, &ft_pfconv_unbr},
 	(t_pftab){&ft_pfflag_z, &ft_pfarg_unbr, &ft_pflen_unbr, &ft_pfconv_unbr},
 	(t_pftab){&ft_pfflag_width, &ft_pfarg_ptr, &ft_pflen_unbr, &ft_pfconv_unbr},
-	(t_pftab){NULL, &ft_pfarg_spc, &ft_pflen_char, &ft_pfconv_char},
+	(t_pftab){&ft_pfflag_vec, &ft_pfarg_spc, &ft_pflen_char, &ft_pfconv_char},
 	(t_pftab){NULL, &ft_pfarg_wstr, &ft_pflen_str, &ft_pfconv_str},
 	(t_pftab){NULL, &ft_pfarg_char, &ft_pflen_char, &ft_pfconv_char},
 	(t_pftab){NULL, &ft_pfarg_oct, &ft_pflen_unbr, &ft_pfconv_unbr},

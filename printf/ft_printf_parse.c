@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 05:19:52 by qloubier          #+#    #+#             */
-/*   Updated: 2016/10/09 22:27:08 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/08 01:42:48 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,27 @@ static void				init_pfarg(t_pfc *arg, t_pfb *b)
 	arg->flag = 0;
 	arg->type = 0;
 	arg->tmpb = b->tmp;
+	arg->vlen = 1;
+}
+
+static inline void		convert_loop(int i, t_pfb *pfb)
+{
+	t_ui				j;
+	t_pfc				arg;
+
+	if (!(pfb->arg.flag & PFF_VECTOR_SET))
+		ft_printf_convert(i, &(pfb->arg), pfb);
+	else
+	{
+		j = 0;
+		while (pfb->arg.vlen) {
+			arg = ft_pfargvec(pfb->arg, j++);
+			ft_printf_convert(i, &arg, pfb);
+			pfb->arg.vlen--;
+			if (pfb->arg.vlen)
+				ft_printf_bwritec(pfb, ' ', 1);
+		}
+	}
 }
 
 const char				*ft_printf_parse(const char *fstr, t_pfb *pfb)
@@ -48,6 +69,6 @@ const char				*ft_printf_parse(const char *fstr, t_pfb *pfb)
 		i = ft_pfarg_spc(-(int)(*c), pfb->ap, &(pfb->arg));
 	else
 		i = g_pf_flag_tab[i].getarg(i, pfb->ap, &(pfb->arg));
-	ft_printf_convert(i, &(pfb->arg), pfb);
+	convert_loop(i, pfb);
 	return (c + 1);
 }
