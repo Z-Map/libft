@@ -14,10 +14,12 @@
 
 static char		*pf_float_spe(t_pfc *arg, double d, int *len)
 {
+	const t_ul		*p = (t_ul *)(&d);
 	unsigned long	l;
 	char			*c;
 
-	l = *((unsigned long *)(&d)) & FT_D_MAN;
+
+	l = *p & FT_D_MAN;
 	c = arg->tmpb + *len - 4;
 	if (l)
 		ft_memcpy(c, "NaN", 4);
@@ -30,6 +32,7 @@ static char		*pf_float_spe(t_pfc *arg, double d, int *len)
 
 static char		*pf_floattobuf(t_pfc *arg, double d, int *len)
 {
+	const t_ul		*p = (t_ul *)(&d);
 	int				i;
 	unsigned long	l;
 	char			*c;
@@ -46,7 +49,7 @@ static char		*pf_floattobuf(t_pfc *arg, double d, int *len)
 	l = (unsigned long)d;
 	c = ft_ujfillbuf(l, arg->tmpb, len);
 	d = (d - (double)l);
-	arg->arg = (uintmax_t)(*((unsigned long *)(&d)));
+	arg->arg = (uintmax_t)(*p);
 	*len += i;
 	return (c);
 }
@@ -78,7 +81,8 @@ static char		*pf_float_biglen(t_pfc *arg, double d, int *len)
 
 int				ft_pflen_float(t_pfc *arg)
 {
-	const double	d = *((double *)(&(arg->arg)));
+	const double	*p = (double *)(&(arg->arg));
+	const double	d = *p;
 	size_t			l;
 	t_ui			len;
 

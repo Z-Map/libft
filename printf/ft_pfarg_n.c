@@ -14,7 +14,10 @@
 
 int			ft_pfarg_n(int cc, va_list ap, t_pfc *arg)
 {
-	*((int *)&(arg->flag)) &= ~PFF_VECTOR_SET;
+	t_ui	*flg;
+
+	flg = (unsigned int *)&(arg->flag);
+	*flg &= ~((t_ui)PFF_VECTOR_SET);
 	arg->type = PFT_N;
 	arg->arg = (uintmax_t)va_arg(ap, void *);
 	return (cc);

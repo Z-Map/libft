@@ -52,12 +52,14 @@ static void	getnbr(void *ptr, t_ui i, t_pfc *arg)
 static void	getfnbr(void *ptr, t_ui i, t_pfc *arg)
 {
 	double 	d;
+	t_ul	*pul;
 
+	pul = (t_ul *)&d;
 	if (arg->flag & (PFF_LONG | PFF_CAPITAL))
 		d = ((double *)ptr)[i];
 	else
 		d = (double)(((float *)ptr)[i]);
-	arg->arg = *((t_ul*)(t_ul)(&d));
+	arg->arg = *pul;
 }
 
 t_pfc			ft_pfargvec(t_pfc arg, t_ui i)

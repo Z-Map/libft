@@ -15,19 +15,21 @@
 double			ft_ftrunc(const double *d)
 {
 	const unsigned long	ld = *((const unsigned long *)(d));
+	double				*p;
 	unsigned long		l;
 
+	p = (double *)&l;
 	l = (ld & FT_D_EXP) >> 52;
 	if ((l > 1022) && (l < 1076))
 	{
 		l = FT_D_MAN >> (l - 1023);
 		l = ld & (~l);
-		return (*((double *)&l));
+		return (*p);
 	}
 	else if (l > 1076)
 	{
 		l = (ld & ~FT_D_MAN) | ((ld & FT_D_MAN) - 1);
-		return (*((double *)&l));
+		return (*p);
 	}
 	return (0.0);
 }

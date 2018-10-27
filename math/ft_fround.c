@@ -16,15 +16,17 @@ double					ft_fround(const double *d)
 {
 	const unsigned long	ld = *((const unsigned long *)(d));
 	unsigned long		l;
+	double				*p;
 	double				od;
 
+	p = (double *)&l;
 	l = (ld & FT_D_EXP) >> 52;
 	if ((l > 1022) && (l < 1076))
 	{
 		l = FT_D_MAN >> (l - 1023);
 		od = ((ld & (l & (~l >> 1))) ? 1.0 : 0.0);
 		l = ld & (~l);
-		return (*((double *)&l) + od);
+		return (*p + od);
 	}
 	else if (l > 1076)
 		return (*d);

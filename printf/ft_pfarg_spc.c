@@ -14,8 +14,11 @@
 
 int			ft_pfarg_spc(int cc, va_list ap, t_pfc *arg)
 {
+	t_ui	*flg;
+
 	(void)ap;
-	*((int *)&(arg->flag)) &= ~PFF_VECTOR_SET;
+	flg = (unsigned int *)&(arg->flag);
+	*flg &= ~((t_ui)PFF_VECTOR_SET);
 	arg->type = PFT_SPECHAR;
 	if (cc < 0)
 	{

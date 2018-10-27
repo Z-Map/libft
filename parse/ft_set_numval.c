@@ -24,31 +24,39 @@ static void			set_float_type(t_val *val, void *mem, t_numv num)
 
 static void			set_signed_type(t_val *val, void *mem, t_numv num, int s)
 {
-	long			l;
+	t_ul			l;
+	t_us			*pus;
+	t_ui			*pui;
 
+    pus = (t_us *)(&l);
+    pui = (t_ui *)(&l);
 	if (val->basetype & VS_SHORTSHORT)
 		*(t_uc *)(&l) = (num.uc & ~FT_SM_C) | ((unsigned)(char)s & FT_SM_C);
-	if (val->basetype & VS_SHORT)
-		*(t_us *)(&l) = (num.us & ~FT_SM_S) | ((unsigned)(short)s & FT_SM_S);
-	if (val->basetype & VS_LONG)
+	else if (val->basetype & VS_SHORT)
+		*pus = (num.us & ~FT_SM_S) | ((unsigned)(short)s & FT_SM_S);
+	else if (val->basetype & VS_LONG)
 		*(t_ul *)(&l) = (num.ul & ~FT_SM_L) | ((unsigned)(long)s & FT_SM_L);
 	else
-		*(t_ui *)(&l) = (num.ui & ~FT_SM_I) | ((unsigned)(int)s & FT_SM_I);
+		*pui = (num.ui & ~FT_SM_I) | ((unsigned)(int)s & FT_SM_I);
 	val->descriptor->setter(val, mem, &l);
 }
 
 static void			set_unsigned_type(t_val *val, void *mem, t_numv num)
 {
 	unsigned long	ul;
+	t_us			*pus;
+	t_ui			*pui;
 
+	pus = (t_us *)(&ul);
+	pui = (t_ui *)(&ul);
 	if (val->basetype & VS_SHORTSHORT)
 		*(t_uc *)(&ul) = num.uc;
 	if (val->basetype & VS_SHORT)
-		*(t_us *)(&ul) = num.us;
+		*pus = num.us;
 	if (val->basetype & VS_LONG)
 		*(t_ul *)(&ul) = num.ul;
 	else
-		*(t_ui *)(&ul) = num.ui;
+		*pui = num.ui;
 	val->descriptor->setter(val, mem, &ul);
 }
 

@@ -14,10 +14,13 @@
 
 int			ft_pfarg_float(int cc, va_list ap, t_pfc *arg)
 {
+	double	*d;
+
 	arg->type = PFT_FLOAT;
+	d = (double *)(&(arg->arg));
 	if (arg->flag & PFF_VECTOR_SET)
 		arg->arg = (uintmax_t)va_arg(ap, void *);
 	else
-		*((double *)(&(arg->arg))) = va_arg(ap, double);
+		*d = va_arg(ap, double);
 	return (cc);
 }

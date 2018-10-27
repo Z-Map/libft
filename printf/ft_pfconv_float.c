@@ -14,11 +14,12 @@
 
 void			ft_pfconv_float(t_pfb *b, t_pfc *arg, size_t len)
 {
-	double					d;
-	const unsigned long		*l = (unsigned long *)&d;
-	int						i;
+	double			d;
+	unsigned long	*l;
+	int				i;
 
-	d = *((double *)(&(arg->arg)));
+	l = (unsigned long *)&d;
+	*l = *((unsigned long *)(&(arg->arg)));
 	ft_printf_bwrite(b, arg->tmpb, (size_t)(arg->b_len));
 	len = (size_t)arg->precision;
 	i = 0;

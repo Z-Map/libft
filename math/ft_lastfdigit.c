@@ -14,7 +14,8 @@
 
 int					ft_lastfdigit(double d)
 {
-	const unsigned long	l = *((const unsigned long *)(&d));
+	const unsigned long	*p = (const unsigned long *)(&d);
+	const unsigned long	l = *p;
 	long				ld;
 	unsigned long		msk;
 	int					i;

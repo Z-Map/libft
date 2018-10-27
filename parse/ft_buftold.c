@@ -14,12 +14,14 @@
 
 static int		is_special(long double	*ld, const char **str)
 {
-	double		d;
+	double	d;
+	t_ul	*dr;
 
+	dr = (t_ul *)&d;
 	if (!FT_SNCMP(*str, "inf", 3))
-		*((t_ul *)&d) = FT_D_EXP;
+		*dr = FT_D_EXP;
 	else if (!FT_SNCMP(*str, "nan", 3))
-		*((t_ul *)&d) = FT_D_EXP + 1ul;
+		*dr = FT_D_EXP + 1ul;
 	else
 		return (0);
 	*ld = (long double)d;
