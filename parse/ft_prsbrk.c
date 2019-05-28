@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/12 04:38:28 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 05:35:02 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 14:58:22 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ size_t					ft_prsbrk(FT_CC **c, size_t *l, FT_CC *s, FT_CC **b)
 	*c = ft_strnpbrk(*c, s, *l);
 	if (b)
 		*b = (const char *)c;
-	 tmp = (size_t)*c - tmp;
+	tmp = (size_t)*c - tmp;
 	*l -= tmp;
 	return (tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 02:43:11 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 23:27:22 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 15:09:16 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static char		*pf_float_spe(t_pfc *arg, double d, int *len)
 	const t_ul		*p = (t_ul *)(&d);
 	unsigned long	l;
 	char			*c;
-
 
 	l = *p & FT_D_MAN;
 	c = arg->tmpb + *len - 4;

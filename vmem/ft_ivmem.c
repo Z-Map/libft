@@ -6,13 +6,13 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 18:14:55 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/19 18:18:08 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 15:12:50 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "intern_vmem.h"
 
-t_vmem				**ft_ivmem(void )
+t_vmem				**ft_ivmem(void)
 {
 	static t_vmem	*vmem_lst = NULL;
 

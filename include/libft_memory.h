@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:24:59 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/18 00:02:07 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 14:29:55 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ struct			s_virtual_memory
 	t_vmps		*cursor;
 	size_t		size;
 	size_t		len;
-	t_vmem		*_gnext;
-	t_vmem		*_gprev;
-	t_vmem		*_lastactive;
+	t_vmem		*p_gnext;
+	t_vmem		*p_gprev;
+	t_vmem		*p_lastactive;
 };
 
 void			ft_bzero(void *s, size_t n);
@@ -63,14 +63,15 @@ void			ft_unsetbitfield(char *mem, size_t idx);
 void			ft_togglebitfield(char *mem, size_t idx);
 int				ft_getbitfield(char *mem, size_t idx);
 
-// Not tested yet :
+/*
+** Not tested yet :
+*/
 
 t_vmem			*ft_vmem(t_vmem *vm);
 t_vmem			*ft_vmemnew(size_t size);
 void			*ft_vmalloc(short size);
 void			*ft_vmemalloc(t_vmem *vm, short size);
 int				ft_vfree(void *vptr);
-
 
 /*
 ** TO-DO : Buffer tools

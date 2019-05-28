@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:28:46 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/23 23:26:21 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 14:21:59 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ size_t				ft_filename_ext(char *buf, const char *path,
 */
 
 int					ft_readfile(const char *filename, char **content);
-
 
 /*
 ** TO DO

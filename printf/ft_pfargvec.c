@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 01:06:56 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/08 01:54:13 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 15:07:25 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	getnbr(void *ptr, t_ui i, t_pfc *arg)
 
 static void	getfnbr(void *ptr, t_ui i, t_pfc *arg)
 {
-	double 	d;
+	double	d;
 	t_ul	*pul;
 
 	pul = (t_ul *)&d;
@@ -62,7 +62,7 @@ static void	getfnbr(void *ptr, t_ui i, t_pfc *arg)
 	arg->arg = *pul;
 }
 
-t_pfc			ft_pfargvec(t_pfc arg, t_ui i)
+t_pfc		ft_pfargvec(t_pfc arg, t_ui i)
 {
 	if (arg.type == PFT_INT)
 		getnbr((void *)arg.arg, i, &arg);

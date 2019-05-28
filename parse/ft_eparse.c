@@ -6,12 +6,11 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 05:32:56 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/18 13:20:12 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 14:51:56 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_parse.h"
-
 
 int				ft_eparse(t_gparse parser, t_elm *elm, void *mem)
 {

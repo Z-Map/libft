@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 00:13:36 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/21 00:34:32 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 14:28:38 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ t_vmem				*ft_vmem(t_vmem *vm)
 
 	if (vm == activemem)
 	{
-		activemem = vm->_lastactive;
-		vm->_lastactive = vm;
+		activemem = vm->p_lastactive;
+		vm->p_lastactive = vm;
 	}
 	else if (vm)
 	{
-		vm->_lastactive = activemem;
+		vm->p_lastactive = activemem;
 		activemem = vm;
 	}
 	else if (!activemem)

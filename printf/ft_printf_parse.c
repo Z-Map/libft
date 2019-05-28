@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 05:19:52 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/08 01:42:48 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 15:09:38 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static inline void		convert_loop(int i, t_pfb *pfb)
 	else
 	{
 		j = 0;
-		while (pfb->arg.vlen) {
+		while (pfb->arg.vlen)
+		{
 			arg = ft_pfargvec(pfb->arg, j++);
 			ft_printf_convert(i, &arg, pfb);
 			pfb->arg.vlen--;

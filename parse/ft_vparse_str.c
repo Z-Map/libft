@@ -6,12 +6,11 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/12 09:40:36 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/18 13:34:38 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 15:05:30 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_parse.h"
-
 #include "libft_printf.h"
 
 int				ft_vparse_str(t_val *val, void *mem, t_gparse parser)
@@ -21,7 +20,7 @@ int				ft_vparse_str(t_val *val, void *mem, t_gparse parser)
 	if (!parser.value || !parser.v_len)
 		return (-1);
 	ft_prstrim(&(parser.value), &(parser.v_len), FT_WHITESPACE);
-	if ((parser.v_len > 1) && ft_strchr(FT_STRLIMITER,(int)(*parser.value))
+	if ((parser.v_len > 1) && ft_strchr(FT_STRLIMITER, (int)(*parser.value))
 		&& (*parser.value == parser.value[parser.v_len - 1]))
 	{
 		parser.v_len -= 2;

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 18:18:42 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/19 18:31:19 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 14:28:20 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void			ft_ivmempush(t_vmem *vm)
 	if (!vm)
 		return ;
 	pvmem = ft_ivmem();
-	vm->_gprev = NULL;
-	while ((*pvmem) && (*pvmem != vm) && (pvmem = &((*pvmem)->_gnext)))
-		vm->_gprev = *pvmem;
+	vm->p_gprev = NULL;
+	while ((*pvmem) && (*pvmem != vm) && (pvmem = &((*pvmem)->p_gnext)))
+		vm->p_gprev = *pvmem;
 	if (*pvmem)
 		return ;
-	vm->_gnext = NULL;
+	vm->p_gnext = NULL;
 	*pvmem = vm;
 }

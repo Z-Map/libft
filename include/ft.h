@@ -14,7 +14,7 @@
 # define FT_H
 
 # ifdef FT_NATIVE_LIBC
-#pragma GCC diagnostic ignored "-Wdisabled-macro-expansion"
+#  pragma GCC diagnostic ignored "-Wdisabled-macro-expansion"
 
 #  define FT_MSET	memset
 #  define FT_BZERO	bzero
@@ -123,7 +123,7 @@ static const t_cmap				g_cmapup[] = {
 	(t_cmap){16, 0, g_digitupmap},
 };
 
-static const  t_cmap			g_cmaplow[] = {
+static const t_cmap				g_cmaplow[] = {
 	(t_cmap){2, 0, g_digitlowmap},
 	(t_cmap){3, 0, g_digitlowmap},
 	(t_cmap){4, 0, g_digitlowmap},

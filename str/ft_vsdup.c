@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 17:18:23 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/16 15:53:50 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 14:47:16 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char		*ft_vsdup(const char *s1)
 {
 	const size_t	len = FT_SLEN(s1);
-	char 			*nstr;
+	char			*nstr;
 
 	nstr = NULL;
 	if (len < 0x7FFF)

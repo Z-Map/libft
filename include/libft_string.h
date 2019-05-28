@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:34:07 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 09:18:29 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 14:46:28 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,10 @@ int					ft_strparse(char *str, char s,
 ** NEED TESTING
 */
 
-// Seems to work, need more testing :
+/*
+** Seems to work, need more testing :
+*/
+
 size_t				ft_stablen(const char **tab, size_t *slen);
 size_t				ft_stabnlen(const char **tab, size_t n, size_t *slen);
 char				**ft_stabdup(const char **tab);
@@ -100,7 +103,9 @@ char				*ft_stpcpy(char *dst, const char *src);
 char				*ft_stpncpy(char *dst, const char *src, size_t n);
 char				*ft_strunsplit(const char **tab, const char *separator);
 
-// Not tested yet :
+/*
+** Not tested yet :
+*/
 
 char				*ft_vsnew(short size);
 void				ft_vsdel(char **as);

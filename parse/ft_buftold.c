@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_buftold.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 13:00:11 by map               #+#    #+#             */
-/*   Updated: 2017/05/22 02:30:02 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 14:51:06 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_parse.h"
 
-static int		is_special(long double	*ld, const char **str)
+static int		is_special(long double *ld, const char **str)
 {
 	double	d;
 	t_ul	*dr;

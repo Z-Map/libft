@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsef.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: map <map@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 13:19:18 by map               #+#    #+#             */
-/*   Updated: 2017/05/22 03:46:56 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 14:56:54 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ const char	*ft_parsef(const char *str, double *num, t_cmap cm, int len)
 		n = (n * (double)cm.base) + (double)(i);
 		str++;
 	}
-	if ((*str == '.') && (len > 0))
+	if ((*(str++) == '.') && (len > 0))
 	{
-		str++;
 		d = (double)cm.base;
 		while ((*str) && (len-- > 0) &&
 			((i = ft_strnidx(cm.cmap, (int)(*str), (size_t)cm.base)) >= 0))

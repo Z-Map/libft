@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 19:48:04 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/21 04:45:44 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 14:45:08 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,6 @@ typedef struct			s_argret
 	char				**av;
 }						t_argret;
 
-
 t_arg					*ft_setarg(t_arg **arglst, char c, FT_CC *str,
 							int (*cb)(FT_CC *, void *, FT_CC **, int));
 t_argret				*ft_parsearg(t_arg *arglst, int argc, char **argv,
@@ -186,42 +185,42 @@ int						ft_freearg(t_arg **arglst, t_argret *argp);
 
 typedef enum			e_ft_valuetype
 {
-	VT_NONE			= 0,
-	VM_TYPE			= 0xFF,
-	VS_SHORTSHORT	= 0x00100,
-	VS_SHORT		= 0x00200,
-	VS_LONGLONG		= 0x00400,
-	VS_LONG			= 0x00800,
-	VF_UNSIGNED		= 0x01000,
-	VF_VEC2			= 0x02000,
-	VF_VEC3			= 0x04000,
-	VF_VEC4			= 0x08000,
-	VF_PTR			= 0x10000,
-	VF_ELEMENT		= 0x20000,
-	VT_INT			= 0x1,
-	VT_UINT			= VF_UNSIGNED | VT_INT,
-	VT_LONG			= VS_LONG | VT_INT,
-	VT_ULONG		= VF_UNSIGNED | VS_LONG | VT_INT,
-	VT_FLOAT		= 0x2,
-	VT_DOUBLE		= VS_LONG | VT_FLOAT,
-	VT_COLOR		= VF_VEC4 | VF_UNSIGNED | VS_SHORTSHORT | VT_INT,
-	VT_VEC2I		= VF_VEC2 | VT_INT,
-	VT_VEC3I		= VF_VEC3 | VT_INT,
-	VT_VEC4I		= VF_VEC4 | VT_INT,
-	VT_VEC2UI		= VF_VEC2 | VF_UNSIGNED | VT_INT,
-	VT_VEC3UI		= VF_VEC3 | VF_UNSIGNED | VT_INT,
-	VT_VEC4UI		= VF_VEC4 | VF_UNSIGNED | VT_INT,
-	VT_VEC2L		= VF_VEC2 | VT_LONG,
-	VT_VEC3L		= VF_VEC3 | VT_LONG,
-	VT_VEC4L		= VF_VEC4 | VT_LONG,
-	VT_VEC2F		= VF_VEC2 | VT_FLOAT,
-	VT_VEC3F		= VF_VEC3 | VT_FLOAT,
-	VT_VEC4F		= VF_VEC4 | VT_FLOAT,
-	VT_VEC2D		= VF_VEC2 | VT_DOUBLE,
-	VT_VEC3D		= VF_VEC3 | VT_DOUBLE,
-	VT_VEC4D		= VF_VEC4 | VT_DOUBLE,
-	VT_CHAR			= 0x3,
-	VT_STR			= VF_PTR | VT_CHAR
+	VT_NONE = 0,
+	VM_TYPE = 0xFF,
+	VS_SHORTSHORT = 0x00100,
+	VS_SHORT = 0x00200,
+	VS_LONGLONG = 0x00400,
+	VS_LONG = 0x00800,
+	VF_UNSIGNED = 0x01000,
+	VF_VEC2 = 0x02000,
+	VF_VEC3 = 0x04000,
+	VF_VEC4 = 0x08000,
+	VF_PTR = 0x10000,
+	VF_ELEMENT = 0x20000,
+	VT_INT = 0x1,
+	VT_UINT = VF_UNSIGNED | VT_INT,
+	VT_LONG = VS_LONG | VT_INT,
+	VT_ULONG = VF_UNSIGNED | VS_LONG | VT_INT,
+	VT_FLOAT = 0x2,
+	VT_DOUBLE = VS_LONG | VT_FLOAT,
+	VT_COLOR = VF_VEC4 | VF_UNSIGNED | VS_SHORTSHORT | VT_INT,
+	VT_VEC2I = VF_VEC2 | VT_INT,
+	VT_VEC3I = VF_VEC3 | VT_INT,
+	VT_VEC4I = VF_VEC4 | VT_INT,
+	VT_VEC2UI = VF_VEC2 | VF_UNSIGNED | VT_INT,
+	VT_VEC3UI = VF_VEC3 | VF_UNSIGNED | VT_INT,
+	VT_VEC4UI = VF_VEC4 | VF_UNSIGNED | VT_INT,
+	VT_VEC2L = VF_VEC2 | VT_LONG,
+	VT_VEC3L = VF_VEC3 | VT_LONG,
+	VT_VEC4L = VF_VEC4 | VT_LONG,
+	VT_VEC2F = VF_VEC2 | VT_FLOAT,
+	VT_VEC3F = VF_VEC3 | VT_FLOAT,
+	VT_VEC4F = VF_VEC4 | VT_FLOAT,
+	VT_VEC2D = VF_VEC2 | VT_DOUBLE,
+	VT_VEC3D = VF_VEC3 | VT_DOUBLE,
+	VT_VEC4D = VF_VEC4 | VT_DOUBLE,
+	VT_CHAR = 0x3,
+	VT_STR = VF_PTR | VT_CHAR
 }						t_vt;
 
 typedef struct			s_ft_generic_separator
@@ -307,167 +306,166 @@ int						ft_vparse_vstr(t_val *val, void *mem, t_gparse parser);
 int						ft_vparse_elm(t_val *val, void *mem, t_gparse parser);
 int						ft_vparse_null(t_val *val, void *mem, t_gparse parser);
 
-static const t_elm		g_el_int = {"int", sizeof(int), 0, 0, NULL,
-							NULL, ft_int_setter, ft_vparse_int, NULL};
-static const t_elm		g_el_uint = {"uint", sizeof(unsigned int), 0, 0, NULL,
-							NULL, ft_uint_setter, ft_vparse_uint,
-							(t_elm *)(t_ul)&g_el_int};
-static const t_elm		g_el_long = {"long", sizeof(long), 0, 0, NULL,
-							NULL, ft_int_setter, ft_vparse_int,
-							(t_elm *)(t_ul)&g_el_uint};
-static const t_elm		g_el_ulong = {"ulong", sizeof(unsigned long),
-							0, 0, NULL,
-							NULL, ft_uint_setter, ft_vparse_uint,
-							(t_elm *)(t_ul)&g_el_long};
-static const t_elm		g_el_float = {"float", sizeof(float), 0, 0, NULL,
-							NULL, ft_float_setter, ft_vparse_float,
-							(t_elm *)(t_ul)&g_el_ulong};
-static const t_elm		g_el_double = {"double", sizeof(double), 0, 0, NULL,
-							NULL, ft_float_setter, ft_vparse_float,
-							(t_elm *)(t_ul)&g_el_float};
-static const t_elm		g_el_longdouble = {"longdouble", sizeof(long double),
-							0, 0, NULL,
-							NULL, ft_float_setter, ft_vparse_float,
-							(t_elm *)(t_ul)&g_el_double};
-static const t_val		g_el_vecd_valtab[8] = {
-							{VT_DOUBLE, 0, 0, 0, "x",
-								(t_elm *)(t_ul)&g_el_float},
-							{VT_DOUBLE, 0, 0, 0, "r",
-								(t_elm *)(t_ul)&g_el_float},
-							{VT_DOUBLE, sizeof(double), 1, 0, "y",
-								(t_elm *)(t_ul)&g_el_float},
-							{VT_DOUBLE, sizeof(double), 1, 0, "g",
-								(t_elm *)(t_ul)&g_el_float},
-							{VT_DOUBLE, sizeof(double) * 2, 2, 0, "z",
-								(t_elm *)(t_ul)&g_el_float},
-							{VT_DOUBLE, sizeof(double) * 2, 2, 0, "b",
-								(t_elm *)(t_ul)&g_el_float},
-							{VT_DOUBLE, sizeof(double) * 3, 3, 0, "w",
-								(t_elm *)(t_ul)&g_el_float},
-							{VT_DOUBLE, sizeof(double) * 3, 3, 0, "a",
-								(t_elm *)(t_ul)&g_el_float}};
-static const t_val		g_el_vecf_valtab[8] = {
-							{VT_FLOAT, 0, 0, 0, "x",
-								(t_elm *)(t_ul)&g_el_float},
-							{VT_FLOAT, 0, 0, 0, "r",
-								(t_elm *)(t_ul)&g_el_float},
-							{VT_FLOAT, sizeof(float), 1, 0, "y",
-								(t_elm *)(t_ul)&g_el_float},
-							{VT_FLOAT, sizeof(float), 1, 0, "g",
-								(t_elm *)(t_ul)&g_el_float},
-							{VT_FLOAT, sizeof(float) * 2, 2, 0, "z",
-								(t_elm *)(t_ul)&g_el_float},
-							{VT_FLOAT, sizeof(float) * 2, 2, 0, "b",
-								(t_elm *)(t_ul)&g_el_float},
-							{VT_FLOAT, sizeof(float) * 3, 3, 0, "w",
-								(t_elm *)(t_ul)&g_el_float},
-							{VT_FLOAT, sizeof(float) * 3, 3, 0, "a",
-								(t_elm *)(t_ul)&g_el_float}};
-static const t_val		g_el_veci_valtab[8] = {
-							{VT_INT, 0, 0, 0, "x", (t_elm *)(t_ul)&g_el_int},
-							{VT_INT, 0, 0, 0, "r", (t_elm *)(t_ul)&g_el_int},
-							{VT_INT, sizeof(int), 1, 0, "y",
-								(t_elm *)(t_ul)&g_el_int},
-							{VT_INT, sizeof(int), 1, 0, "g",
-								(t_elm *)(t_ul)&g_el_int},
-							{VT_INT, sizeof(int) * 2, 2, 0, "z",
-								(t_elm *)(t_ul)&g_el_int},
-							{VT_INT, sizeof(int) * 2, 2, 0, "b",
-								(t_elm *)(t_ul)&g_el_int},
-							{VT_INT, sizeof(int) * 3, 3, 0, "w",
-								(t_elm *)(t_ul)&g_el_int},
-							{VT_INT, sizeof(int) * 3, 3, 0, "a",
-								(t_elm *)(t_ul)&g_el_int}};
-static const t_val		g_el_vecui_valtab[8] = {
-							{VT_UINT, 0, 0, 0, "x", (t_elm *)(t_ul)&g_el_uint},
-							{VT_UINT, 0, 0, 0, "r", (t_elm *)(t_ul)&g_el_uint},
-							{VT_UINT, sizeof(t_ui), 1, 0, "y",
-								(t_elm *)(t_ul)&g_el_uint},
-							{VT_UINT, sizeof(t_ui), 1, 0, "g",
-								(t_elm *)(t_ul)&g_el_uint},
-							{VT_UINT, sizeof(t_ui) * 2, 2, 0, "z",
-								(t_elm *)(t_ul)&g_el_uint},
-							{VT_UINT, sizeof(t_ui) * 2, 2, 0, "b",
-								(t_elm *)(t_ul)&g_el_uint},
-							{VT_UINT, sizeof(t_ui) * 3, 3, 0, "w",
-								(t_elm *)(t_ul)&g_el_uint},
-							{VT_UINT, sizeof(t_ui) * 3, 3, 0, "a",
-								(t_elm *)(t_ul)&g_el_uint}};
-static const t_val		g_el_vecl_valtab[8] = {
-							{VT_LONG, 0, 0, 0, "x", (t_elm *)(t_ul)&g_el_long},
-							{VT_LONG, 0, 0, 0, "r", (t_elm *)(t_ul)&g_el_long},
-							{VT_LONG, sizeof(long), 1, 0, "y",
-								(t_elm *)(t_ul)&g_el_long},
-							{VT_LONG, sizeof(long), 1, 0, "g",
-								(t_elm *)(t_ul)&g_el_long},
-							{VT_LONG, sizeof(long) * 2, 2, 0, "z",
-								(t_elm *)(t_ul)&g_el_long},
-							{VT_LONG, sizeof(long) * 2, 2, 0, "b",
-								(t_elm *)(t_ul)&g_el_long},
-							{VT_LONG, sizeof(long) * 3, 3, 0, "w",
-								(t_elm *)(t_ul)&g_el_long},
-							{VT_LONG, sizeof(long) * 3, 3, 0, "a",
-								(t_elm *)(t_ul)&g_el_long}};
-static const t_elm		g_el_vec = {"vec", sizeof(double) * 4, 3, 8,
-							(t_val *)(t_ul)g_el_vecd_valtab,
-							NULL, NULL, ft_vparse_vec, NULL};
-static const t_elm		g_el_vec2f = {"vec2f", sizeof(float) * 2, 1, 4,
-							(t_val *)(t_ul)g_el_vecf_valtab,
-							NULL, NULL, ft_vparse_vec,
-							(t_elm *)(t_ul)&g_el_vec};
-static const t_elm		g_el_vec3f = {"vec3f", sizeof(float) * 3, 2, 6,
-							(t_val *)(t_ul)g_el_vecf_valtab,
-							NULL, NULL, ft_vparse_vec,
-							(t_elm *)(t_ul)&g_el_vec2f};
-static const t_elm		g_el_vec4f = {"vec4f", sizeof(float) * 4, 3, 8,
-							(t_val *)(t_ul)g_el_vecf_valtab,
-							NULL, NULL, ft_vparse_vec,
-							(t_elm *)(t_ul)&g_el_vec3f};
-static const t_elm		g_el_vec2d = {"vec2f", sizeof(double) * 2, 1, 4,
-							(t_val *)(t_ul)g_el_vecd_valtab,
-							NULL, NULL, ft_vparse_vec,
-							(t_elm *)(t_ul)&g_el_vec4f};
-static const t_elm		g_el_vec3d = {"vec3f", sizeof(double) * 3, 2, 6,
-							(t_val *)(t_ul)g_el_vecd_valtab,
-							NULL, NULL, ft_vparse_vec,
-							(t_elm *)(t_ul)&g_el_vec2d};
-static const t_elm		g_el_vec4d = {"vec4f", sizeof(double) * 4, 3, 8,
-							(t_val *)(t_ul)g_el_vecd_valtab,
-							NULL, NULL, ft_vparse_vec,
-							(t_elm *)(t_ul)&g_el_vec3d};
-static const t_elm		g_el_vec2i = {"vec2i", sizeof(int) * 2, 1, 4,
-							(t_val *)(t_ul)g_el_veci_valtab,
-							NULL, NULL, ft_vparse_vec,
-							(t_elm *)(t_ul)&g_el_vec4d};
-static const t_elm		g_el_vec3i = {"vec3i", sizeof(int) * 3, 2, 6,
-							(t_val *)(t_ul)g_el_veci_valtab,
-							NULL, NULL, ft_vparse_vec,
-							(t_elm *)(t_ul)&g_el_vec2i};
-static const t_elm		g_el_vec4i = {"vec4i", sizeof(int) * 4, 3, 8,
-							(t_val *)(t_ul)g_el_veci_valtab,
-							NULL, NULL, ft_vparse_vec,
-							(t_elm *)(t_ul)&g_el_vec3i};
-static const t_elm		g_el_vec2ui = {"vec2ui", sizeof(int) * 2, 1, 4,
-							(t_val *)(t_ul)g_el_vecui_valtab,
-							NULL, NULL, ft_vparse_vec,
-							(t_elm *)(t_ul)&g_el_vec4i};
-static const t_elm		g_el_vec3ui = {"vec3ui", sizeof(int) * 3, 2, 6,
-							(t_val *)(t_ul)g_el_vecui_valtab,
-							NULL, NULL, ft_vparse_vec,
-							(t_elm *)(t_ul)&g_el_vec2ui};
-static const t_elm		g_el_vec4ui = {"vec4ui", sizeof(int) * 4, 3, 8,
-							(t_val *)(t_ul)g_el_vecui_valtab,
-							NULL, NULL, ft_vparse_vec,
-							(t_elm *)(t_ul)&g_el_vec3ui};
-static const t_elm		g_el_col = {"rgba", sizeof(int), 0, 0, NULL,
-							NULL, NULL, ft_vparse_col,
-							(t_elm *)(t_ul)&g_el_vec4ui};
-static const t_elm		g_el_str = {"str", sizeof(char *), 0, 0, NULL,
-							NULL, ft_str_setter, ft_vparse_str,
-							(t_elm *)(t_ul)&g_el_col};
-static const t_elm		g_el_vstr = {"vstr", sizeof(char *), 0, 0, NULL,
-							NULL, ft_str_setter, ft_vparse_vstr,
-							(t_elm *)(t_ul)&g_el_str};
-
+static const t_elm	g_el_int = {"int", sizeof(int), 0, 0, NULL,
+	NULL, ft_int_setter, ft_vparse_int, NULL};
+static const t_elm	g_el_uint = {"uint", sizeof(unsigned int), 0, 0, NULL,
+	NULL, ft_uint_setter, ft_vparse_uint,
+	(t_elm *)(t_ul)&g_el_int};
+static const t_elm	g_el_long = {"long", sizeof(long), 0, 0, NULL,
+	NULL, ft_int_setter, ft_vparse_int,
+	(t_elm *)(t_ul)&g_el_uint};
+static const t_elm	g_el_ulong = {"ulong", sizeof(unsigned long),
+	0, 0, NULL,
+	NULL, ft_uint_setter, ft_vparse_uint,
+	(t_elm *)(t_ul)&g_el_long};
+static const t_elm	g_el_float = {"float", sizeof(float), 0, 0, NULL,
+	NULL, ft_float_setter, ft_vparse_float,
+	(t_elm *)(t_ul)&g_el_ulong};
+static const t_elm	g_el_double = {"double", sizeof(double), 0, 0, NULL,
+	NULL, ft_float_setter, ft_vparse_float,
+	(t_elm *)(t_ul)&g_el_float};
+static const t_elm	g_el_longdouble = {"longdouble", sizeof(long double),
+	0, 0, NULL,
+	NULL, ft_float_setter, ft_vparse_float,
+	(t_elm *)(t_ul)&g_el_double};
+static const t_val	g_el_vecd_valtab[8] = {
+	{VT_DOUBLE, 0, 0, 0, "x",
+		(t_elm *)(t_ul)&g_el_float},
+	{VT_DOUBLE, 0, 0, 0, "r",
+		(t_elm *)(t_ul)&g_el_float},
+	{VT_DOUBLE, sizeof(double), 1, 0, "y",
+		(t_elm *)(t_ul)&g_el_float},
+	{VT_DOUBLE, sizeof(double), 1, 0, "g",
+		(t_elm *)(t_ul)&g_el_float},
+	{VT_DOUBLE, sizeof(double) * 2, 2, 0, "z",
+		(t_elm *)(t_ul)&g_el_float},
+	{VT_DOUBLE, sizeof(double) * 2, 2, 0, "b",
+		(t_elm *)(t_ul)&g_el_float},
+	{VT_DOUBLE, sizeof(double) * 3, 3, 0, "w",
+		(t_elm *)(t_ul)&g_el_float},
+	{VT_DOUBLE, sizeof(double) * 3, 3, 0, "a",
+		(t_elm *)(t_ul)&g_el_float}};
+static const t_val	g_el_vecf_valtab[8] = {
+	{VT_FLOAT, 0, 0, 0, "x",
+		(t_elm *)(t_ul)&g_el_float},
+	{VT_FLOAT, 0, 0, 0, "r",
+		(t_elm *)(t_ul)&g_el_float},
+	{VT_FLOAT, sizeof(float), 1, 0, "y",
+		(t_elm *)(t_ul)&g_el_float},
+	{VT_FLOAT, sizeof(float), 1, 0, "g",
+		(t_elm *)(t_ul)&g_el_float},
+	{VT_FLOAT, sizeof(float) * 2, 2, 0, "z",
+		(t_elm *)(t_ul)&g_el_float},
+	{VT_FLOAT, sizeof(float) * 2, 2, 0, "b",
+		(t_elm *)(t_ul)&g_el_float},
+	{VT_FLOAT, sizeof(float) * 3, 3, 0, "w",
+		(t_elm *)(t_ul)&g_el_float},
+	{VT_FLOAT, sizeof(float) * 3, 3, 0, "a",
+		(t_elm *)(t_ul)&g_el_float}};
+static const t_val	g_el_veci_valtab[8] = {
+	{VT_INT, 0, 0, 0, "x", (t_elm *)(t_ul)&g_el_int},
+	{VT_INT, 0, 0, 0, "r", (t_elm *)(t_ul)&g_el_int},
+	{VT_INT, sizeof(int), 1, 0, "y",
+		(t_elm *)(t_ul)&g_el_int},
+	{VT_INT, sizeof(int), 1, 0, "g",
+		(t_elm *)(t_ul)&g_el_int},
+	{VT_INT, sizeof(int) * 2, 2, 0, "z",
+		(t_elm *)(t_ul)&g_el_int},
+	{VT_INT, sizeof(int) * 2, 2, 0, "b",
+		(t_elm *)(t_ul)&g_el_int},
+	{VT_INT, sizeof(int) * 3, 3, 0, "w",
+		(t_elm *)(t_ul)&g_el_int},
+	{VT_INT, sizeof(int) * 3, 3, 0, "a",
+		(t_elm *)(t_ul)&g_el_int}};
+static const t_val	g_el_vecui_valtab[8] = {
+	{VT_UINT, 0, 0, 0, "x", (t_elm *)(t_ul)&g_el_uint},
+	{VT_UINT, 0, 0, 0, "r", (t_elm *)(t_ul)&g_el_uint},
+	{VT_UINT, sizeof(t_ui), 1, 0, "y",
+		(t_elm *)(t_ul)&g_el_uint},
+	{VT_UINT, sizeof(t_ui), 1, 0, "g",
+		(t_elm *)(t_ul)&g_el_uint},
+	{VT_UINT, sizeof(t_ui) * 2, 2, 0, "z",
+		(t_elm *)(t_ul)&g_el_uint},
+	{VT_UINT, sizeof(t_ui) * 2, 2, 0, "b",
+		(t_elm *)(t_ul)&g_el_uint},
+	{VT_UINT, sizeof(t_ui) * 3, 3, 0, "w",
+		(t_elm *)(t_ul)&g_el_uint},
+	{VT_UINT, sizeof(t_ui) * 3, 3, 0, "a",
+		(t_elm *)(t_ul)&g_el_uint}};
+static const t_val	g_el_vecl_valtab[8] = {
+	{VT_LONG, 0, 0, 0, "x", (t_elm *)(t_ul)&g_el_long},
+	{VT_LONG, 0, 0, 0, "r", (t_elm *)(t_ul)&g_el_long},
+	{VT_LONG, sizeof(long), 1, 0, "y",
+		(t_elm *)(t_ul)&g_el_long},
+	{VT_LONG, sizeof(long), 1, 0, "g",
+		(t_elm *)(t_ul)&g_el_long},
+	{VT_LONG, sizeof(long) * 2, 2, 0, "z",
+		(t_elm *)(t_ul)&g_el_long},
+	{VT_LONG, sizeof(long) * 2, 2, 0, "b",
+		(t_elm *)(t_ul)&g_el_long},
+	{VT_LONG, sizeof(long) * 3, 3, 0, "w",
+		(t_elm *)(t_ul)&g_el_long},
+	{VT_LONG, sizeof(long) * 3, 3, 0, "a",
+		(t_elm *)(t_ul)&g_el_long}};
+static const t_elm	g_el_vec = {"vec", sizeof(double) * 4, 3, 8,
+	(t_val *)(t_ul)g_el_vecd_valtab,
+	NULL, NULL, ft_vparse_vec, NULL};
+static const t_elm	g_el_vec2f = {"vec2f", sizeof(float) * 2, 1, 4,
+	(t_val *)(t_ul)g_el_vecf_valtab,
+	NULL, NULL, ft_vparse_vec,
+	(t_elm *)(t_ul)&g_el_vec};
+static const t_elm	g_el_vec3f = {"vec3f", sizeof(float) * 3, 2, 6,
+	(t_val *)(t_ul)g_el_vecf_valtab,
+	NULL, NULL, ft_vparse_vec,
+	(t_elm *)(t_ul)&g_el_vec2f};
+static const t_elm	g_el_vec4f = {"vec4f", sizeof(float) * 4, 3, 8,
+	(t_val *)(t_ul)g_el_vecf_valtab,
+	NULL, NULL, ft_vparse_vec,
+	(t_elm *)(t_ul)&g_el_vec3f};
+static const t_elm	g_el_vec2d = {"vec2f", sizeof(double) * 2, 1, 4,
+	(t_val *)(t_ul)g_el_vecd_valtab,
+	NULL, NULL, ft_vparse_vec,
+	(t_elm *)(t_ul)&g_el_vec4f};
+static const t_elm	g_el_vec3d = {"vec3f", sizeof(double) * 3, 2, 6,
+	(t_val *)(t_ul)g_el_vecd_valtab,
+	NULL, NULL, ft_vparse_vec,
+	(t_elm *)(t_ul)&g_el_vec2d};
+static const t_elm	g_el_vec4d = {"vec4f", sizeof(double) * 4, 3, 8,
+	(t_val *)(t_ul)g_el_vecd_valtab,
+	NULL, NULL, ft_vparse_vec,
+	(t_elm *)(t_ul)&g_el_vec3d};
+static const t_elm	g_el_vec2i = {"vec2i", sizeof(int) * 2, 1, 4,
+	(t_val *)(t_ul)g_el_veci_valtab,
+	NULL, NULL, ft_vparse_vec,
+	(t_elm *)(t_ul)&g_el_vec4d};
+static const t_elm	g_el_vec3i = {"vec3i", sizeof(int) * 3, 2, 6,
+	(t_val *)(t_ul)g_el_veci_valtab,
+	NULL, NULL, ft_vparse_vec,
+	(t_elm *)(t_ul)&g_el_vec2i};
+static const t_elm	g_el_vec4i = {"vec4i", sizeof(int) * 4, 3, 8,
+	(t_val *)(t_ul)g_el_veci_valtab,
+	NULL, NULL, ft_vparse_vec,
+	(t_elm *)(t_ul)&g_el_vec3i};
+static const t_elm	g_el_vec2ui = {"vec2ui", sizeof(int) * 2, 1, 4,
+	(t_val *)(t_ul)g_el_vecui_valtab,
+	NULL, NULL, ft_vparse_vec,
+	(t_elm *)(t_ul)&g_el_vec4i};
+static const t_elm	g_el_vec3ui = {"vec3ui", sizeof(int) * 3, 2, 6,
+	(t_val *)(t_ul)g_el_vecui_valtab,
+	NULL, NULL, ft_vparse_vec,
+	(t_elm *)(t_ul)&g_el_vec2ui};
+static const t_elm	g_el_vec4ui = {"vec4ui", sizeof(int) * 4, 3, 8,
+	(t_val *)(t_ul)g_el_vecui_valtab,
+	NULL, NULL, ft_vparse_vec,
+	(t_elm *)(t_ul)&g_el_vec3ui};
+static const t_elm	g_el_col = {"rgba", sizeof(int), 0, 0, NULL,
+	NULL, NULL, ft_vparse_col,
+	(t_elm *)(t_ul)&g_el_vec4ui};
+static const t_elm	g_el_str = {"str", sizeof(char *), 0, 0, NULL,
+	NULL, ft_str_setter, ft_vparse_str,
+	(t_elm *)(t_ul)&g_el_col};
+static const t_elm	g_el_vstr = {"vstr", sizeof(char *), 0, 0, NULL,
+	NULL, ft_str_setter, ft_vparse_vstr,
+	(t_elm *)(t_ul)&g_el_str};
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 20:18:01 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/22 03:31:26 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/05/28 15:04:19 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static void			set_signed_type(t_val *val, void *mem, t_numv num, int s)
 	t_us			*pus;
 	t_ui			*pui;
 
-    pus = (t_us *)(&l);
-    pui = (t_ui *)(&l);
+	pus = (t_us *)(&l);
+	pui = (t_ui *)(&l);
 	if (val->basetype & VS_SHORTSHORT)
 		*(t_uc *)(&l) = (num.uc & ~FT_SM_C) | ((unsigned)(char)s & FT_SM_C);
 	else if (val->basetype & VS_SHORT)
@@ -60,7 +60,7 @@ static void			set_unsigned_type(t_val *val, void *mem, t_numv num)
 	val->descriptor->setter(val, mem, &ul);
 }
 
-void			ft_set_numval(t_val *val, void *mem, t_numv num, int s)
+void				ft_set_numval(t_val *val, void *mem, t_numv num, int s)
 {
 	if ((val->basetype & VM_TYPE) == VT_FLOAT)
 		set_float_type(val, mem, num);
