@@ -28,7 +28,7 @@ OUT_TYPE		= lib
 OUT_NAME		= 
 
 # Project private var
-P_IINCDIRS		=
+P_INCDIRS		=
 P_INCS			= vmem/intern_vmem.h
 SUBMAKES		= 
 AUTO_SRCS		= on
@@ -167,8 +167,8 @@ endif
 # All sources file definition
 I_SOURCE_FILES	:= $(SRCS) $(AUTO_SRCS)
 # All headers file definition
-I_INCLUDE_FILES	:= $(INCS) $(foreach module,$(SRCDIRS)\
-	$(INCDIRS),$(call filesearch,$(module),*.h))
+I_INCLUDE_FILES	:= $(INCS) $(P_INCS) $(foreach module,$(SRCDIRS)\
+	$(INCDIRS) $(P_INCDIRS),$(call filesearch,$(module),*.h))
 
 # Render configuration
 
