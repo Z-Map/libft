@@ -140,6 +140,7 @@ endif
 
 I_LIB_FLAGS		:= $(addprefix -L,$(LIBDIRS)) $(addprefix -l,$(LIBS))
 I_INC_FLAGS		:= $(addprefix -I,$(INCDIRS)) $(addprefix -i,$(INCS))
+
 ifeq ($(OUT_TYPE)_$(LINK_MODE),lib_shared)
   I_OBJ_FLAGS	:= $(CFLAGS) -fPIC $(I_INC_FLAGS)
   I_OUT_FLAG	:= $(CFLAGS) -shared $(I_INC_FLAGS) $(I_LIB_FLAGS)
@@ -150,23 +151,35 @@ endif
 
 
 # Compile files configuration
+
+# Source search function definition
 ifeq ($(AUTO_RECURSIVE),on)
   filesearch	= $(shell find $(1) -name "$(2)")
 else
   filesearch	= $(shell find $(1) -depth 1 -name "$(2)")
 endif
 
+# Auto-search from source directories
 ifeq ($(AUTO_SRCS),on)
   AUTO_SRCS		:= $(foreach module,$(SRCDIRS),$(call filesearch,$(module),*.c))
 endif
+
+# All sources file definition
 I_SOURCE_FILES	:= $(SRCS) $(AUTO_SRCS)
+# All headers file definition
 I_INCLUDE_FILES	:= $(INCS) $(foreach module,$(SRCDIRS)\
 	$(INCDIRS),$(call filesearch,$(module),*.h))
 
 # Render configuration
+
+# Render sub directories definition
 I_RENDER_DIRS	:= $(addprefix $(RENDERDIR)/,$(sort $(dir $(I_SOURCE_FILES)\
 	$(I_INCLUDE_FILES))))
+
+# Render source file list definition
 I_RENDER_SRCS	:= $(addprefix $(RENDERDIR)/,$(I_SOURCE_FILES))
+
+# Render header file list definition
 I_RENDER_INCS	:= $(addprefix $(RENDERDIR)/,$(I_INCLUDE_FILES))
 
 #------------------------------------------------------------------------------#
@@ -180,13 +193,20 @@ else
   I_BUILD_DIR	:= $(BUILDIR)
 endif
 
+# Build sub dir definition
 I_BUILD_O_DIR	:= $(I_BUILD_DIR)/obj
 I_BUILD_D_DIR	:= $(I_BUILD_DIR)/d
+
+# Object file list definition
 I_OBJ_FILES		:= $(foreach ansrcfile,$(I_SOURCE_FILES:%.c=%),\
 	$(I_BUILD_O_DIR)/$(subst /,+,$(ansrcfile)).o)
+
+# Dependency file list definition
 I_DEP_FILES		:= $(I_OBJ_FILES:$(I_BUILD_O_DIR)/%.o=$(I_BUILD_D_DIR)/%.d)
 
 # Compiling functions
+
+# Object compiling function definition
 ifeq ($(CC),clang)
   compile_obj	= $(call compile_msg,$(notdir $(3)),$(CC) $(I_OBJ_FLAGS) \
 					-MMD -MP -MT"$(1)" -MF $(2)\
@@ -196,6 +216,7 @@ else
   					$(CC) $(I_OBJ_FLAGS) -c $(3) -o $(1))
 endif
 
+# Target compiling function definition
 ifeq ($(OUT_TYPE)_$(LINK_MODE),lib_static)
   compile_out	= $(call compile_msg,$(1),$(LC) $(LFLAGS) $(1) $(2))
 else
@@ -210,7 +231,7 @@ endif
 .PHONY: lclean clean fclean re all render 
 
 # Default target
-all: $(TARGETDIR)/$(OUT_NAME)
+all: $(TARGETDIR)/$(NAME)
 
 # Light clean, just clean object files 
 lclean:
@@ -236,10 +257,6 @@ $(I_BUILD_DIR):
 	$(SILENT)$(call generic_msg,\e[33;1mBuild directory \e[0;32mcreated !,\
 		mkdir -p $@)
 
-$(TARGETDIR):
-	$(SILENT)$(call generic_msg,\e[33;1mTarget directory \e[0;32mcreated !,\
-		mkdir -p $@)
-
 $(I_BUILD_O_DIR): $(I_BUILD_DIR)
 	$(SILENT)$(call generic_msg,\e[33;1mObject directory \e[0;32mcreated !,\
 		mkdir -p $@)
@@ -255,36 +272,54 @@ $(I_OBJ_FILES): | $(I_BUILD_O_DIR) $(I_BUILD_D_DIR)
 		$(@:$(I_BUILD_O_DIR)/%.o=$(I_BUILD_D_DIR)/%.d),\
 		$(subst +,/,$(@:$(I_BUILD_O_DIR)/%.o=%.c)))
 
+# Include empty target with the dependencies for each .o files
 -include $(I_DEP_FILES)
 
+# Compile the target 
+$(NAME): $(I_OBJ_FILES)
+	$(SILENT)$(call compile_out,$@,$(I_OBJ_FILES))
+
+# Create it and compile the target in the target directory if it is defined
 ifneq ($(TARGETDIR),.)
-  $(TARGETDIR)/$(OUT_NAME): $(I_OBJ_FILES) | $(TARGETDIR)
+  $(TARGETDIR):
+  	$(SILENT)$(call generic_msg,\e[33;1mTarget directory \e[0;32mcreated !,\
+  	mkdir -p $@)
+
+  $(TARGETDIR)/$(NAME): $(I_OBJ_FILES) | $(TARGETDIR)
   	$(SILENT)$(call compile_out,$@,$(I_OBJ_FILES))
 endif
 
-$(NAME): $(I_OBJ_FILES)
-	$(SILENT)$(call compile_out,$@,$(I_OBJ_FILES))
+# Compile the target with the default name in target directory
+ifneq ($(NAME),$(OUT_NAME))
+  $(TARGETDIR)/$(OUT_NAME): $(I_OBJ_FILES) | $(TARGETDIR)
+  	$(SILENT)$(call compile_out,$@,$(I_OBJ_FILES))
+endif
 
 #------------------------------------------------------------------------------#
 #                             Render Rules                                     #
 #------------------------------------------------------------------------------#
 
+# Create render directory
 $(RENDERDIR):
 	$(SILENT)$(call generic_msg,\e[35;1mRender directory \e[0;32mcreated !,\
 		mkdir -p $@)
 
+# Create sources directories in render directory
 $(I_RENDER_DIRS): | $(RENDERDIR)
 	$(SILENT)$(call g_tmp_msg,\e[33mCreating \e[35;1m$@\e[0;33m ...,\
 		mkdir -p $@)
 
+# Copy sources
 $(I_RENDER_SRCS): $(RENDERDIR)/%.c: %.c | $(I_RENDER_DIRS)
 	$(SILENT)$(call g_tmp_msg,\e[33mCopying \e[36;1m$@\e[0;33m ...,\
 		cp $< $@)
 
+# Copy headers
 $(I_RENDER_INCS): $(RENDERDIR)/%.h: %.h | $(I_RENDER_DIRS)
 	$(SILENT)$(call g_tmp_msg,\e[33mCopying \e[34;1m$@\e[0;33m ...,\
 		cp $< $@)
 
+# Generate Makefile in render directory
 $(RENDERDIR)/Makefile: Makefile \
 	$(I_RENDER_SRCS) $(I_RENDER_INCS) | $(RENDERDIR)
 	$(SILENT)$(call g_tmp_msg,\e[33mCreating the makefile ...,head -n \
@@ -295,6 +330,7 @@ $(RENDERDIR)/Makefile: Makefile \
 		+$(shell awk '/AUTO_SRCS/{ print NR+1; exit }' Makefile)\
 		Makefile >> $(RENDERDIR)/Makefile)
 
+# Render target
 render: $(RENDERDIR)/Makefile
 
 #------------------------------------------------------------------------------#
