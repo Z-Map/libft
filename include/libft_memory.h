@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 10:24:59 by qloubier          #+#    #+#             */
-/*   Updated: 2019/05/28 14:29:55 by qloubier         ###   ########.fr       */
+/*   Updated: 2019/07/25 16:20:38 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int				ft_getbitfield(char *mem, size_t idx);
 
 t_vmem			*ft_vmem(t_vmem *vm);
 t_vmem			*ft_vmemnew(size_t size);
+int				ft_vmemdelete(t_vmem *vm);
 void			*ft_vmalloc(short size);
 void			*ft_vmemalloc(t_vmem *vm, short size);
 int				ft_vfree(void *vptr);
