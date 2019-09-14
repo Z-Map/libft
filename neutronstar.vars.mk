@@ -75,8 +75,8 @@ endif
 BUILDIR			?= build
 TARGETDIR		?= .
 RENDERDIR		?= $(BUILDIR)/render
-LOGNAME			?=$(USER)
-CHRONOS_NAZI_MODE = on
+LOGNAME			?= $(USER)
+CHRONOS_NAZI_MODE ?= on
 
 
 # Compilation var

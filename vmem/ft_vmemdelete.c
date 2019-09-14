@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "intern_vmem.h"
 
 int				ft_vmemdelete(t_vmem *vm)
